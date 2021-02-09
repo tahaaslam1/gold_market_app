@@ -14,7 +14,7 @@ class GoldValueWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 100.0,
+      height: 70.0,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
@@ -86,12 +86,6 @@ class GoldValueWidget extends StatelessWidget {
                 ),
               ),
             ],
-          ),
-          Divider(
-            color: kPrimaryColor,
-            thickness: 1.0,
-            indent: 50.0,
-            endIndent: 50.0,
           ),
         ],
       ),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gold_zoid/constants.dart';
 import 'package:gold_zoid/titles/home_page_title.dart';
 import 'package:gold_zoid/widgets/gold_value_widget.dart';
+import 'package:gold_zoid/widgets/current_metal_prices.dart';
 
 // ignore: camel_case_types
 class Home_Page extends StatelessWidget {
@@ -15,11 +16,13 @@ class Home_Page extends StatelessWidget {
             side_text: 'explore your market',
           ),
           SizedBox(
-              height: 5.0), // dhek lou abhi agar bachti he jagah tu bhara dena
+            height: 5.0,          // dhek lou abhi agar bachti he jagah tu bhara dena
+          ), 
           GoldValueWidget(
             gold_in_grams: 450.toString(),
             gold_value: 17000.00.toString(),
           ),
+          kYellowDivider,
           Container(
             height: 260.0,
             child: Column(
@@ -33,59 +36,44 @@ class Home_Page extends StatelessWidget {
                     style: TextStyle(color: kPrimaryTextColor, fontSize: 25),
                   ),
                 ),
-                SizedBox(height: 10.0 ,),
+                SizedBox(
+                  height: 10.0,
+                ),
                 Expanded(
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Container(
-                        height: 211.0,
-                        width: 150.0,
-                        padding: EdgeInsets.only(left: 25.0),
-                        decoration: BoxDecoration(
-                          boxShadow: [
-                            BoxShadow(
-                              spreadRadius: 2.0,
-                              color: Colors.grey.withOpacity(0.5),
-                              blurRadius: 10,
-                            ),
-                          ],
-                          color: Colors.white,
-                          borderRadius: BorderRadius.all(Radius.circular(15.0)),
-                        ),
+                      CurrentMetalPriceWidget(
+                        metal_image: 'assets/images/gold_icon.png',
+                        metal_name: 'Gold',
+                        high_quality_metal_grade: '24K',
+                        high_quality_metal_price: '590',
+                        avg_quality_metal_grade: '22K',
+                        avg_quality_metal_price: '500',
                       ),
                       SizedBox(
                         width: 20.0,
                       ),
-                      Container(
-                          height: 211.0,
-                          width: 150.0,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            boxShadow: [
-                            BoxShadow(
-                              spreadRadius: 2.0,
-                              color: Colors.grey.withOpacity(0.5),
-                              blurRadius: 10,
-                            ),
-                          ],
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(15.0)),
-                          )),
+                      CurrentMetalPriceWidget(
+                        metal_image: 'assets/images/silver_icon.png',
+                        metal_name: 'Silver',
+                        high_quality_metal_grade: '999',
+                        high_quality_metal_price: '590',
+                        avg_quality_metal_grade: '960',
+                        avg_quality_metal_price: '500',
+                      ),
                     ],
                   ),
                 ),
-                SizedBox(height: 5.0,),
-                Divider(
-                  color: kPrimaryColor,
-                  thickness: 1.0,
-                  indent: 50.0,
-                  endIndent: 50.0,
+                SizedBox(
+                  height: 5.0,
                 ),
               ],
             ),
           ),
-          Container(color: Colors.blue, height: 240.0),
+          SizedBox(height: 5.0,),
+          kYellowDivider,
+          Container(color: Colors.blue, height: 235.0),
         ],
       ),
     ));

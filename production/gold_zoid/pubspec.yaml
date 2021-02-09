@@ -45,7 +45,8 @@ flutter:
     - family: Avenir1
       fonts:
         - asset: assets/fonts/Avenir-Light.otf
-
+  assets:
+    - assets/images/
 
 
   # The following line ensures that the Material Icons font is
