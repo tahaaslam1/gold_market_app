@@ -41,10 +41,10 @@ flutter:
   fonts:
     - family: Avenir
       fonts:
-        - asset: fonts/Avenir-Black.otf
+        - asset: assets/fonts/Avenir-Black.otf
     - family: Avenir1
       fonts:
-        - asset: fonts/Avenir-Light.otf
+        - asset: assets/fonts/Avenir-Light.otf
 
 
 
