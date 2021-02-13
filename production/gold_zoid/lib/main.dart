@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gold_zoid/screens/login_screen.dart';
+import 'package:gold_zoid/screens/registration_screen.dart';
 import 'screens/home_page.dart';
 
 void main() {
@@ -12,7 +13,7 @@ class Gold_Zoid extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(fontFamily: 'Avenir',scaffoldBackgroundColor: Colors.white),
-      home: Login_Page(),
+      home: Registration_Page(),
     );
   }
 }
