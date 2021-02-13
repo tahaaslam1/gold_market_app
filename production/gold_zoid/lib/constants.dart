@@ -4,7 +4,10 @@ const kPrimaryColor = Color(0xFFFFBC41);
 const kPrimaryTextColor = Color(0xFF767676);
 const kSecondaryTextColor = Color(0xFF2B2B2B);
 const kGoldIconContainerColor = Color(0xFFF0F0F0);
+const kActiveColor = Color(0xFFFFBC41);
+const kInActiveColor = Color(0xFFFFF2DD);
 const kDrawerHeight = 120.0;
+
 
 const kSideTextStyle = TextStyle(
   color: kPrimaryTextColor,

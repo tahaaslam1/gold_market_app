@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gold_zoid/constants.dart';
-import 'package:gold_zoid/widgets/drawer_button.dart';
+import 'package:gold_zoid/commonWidgets/drawer_button.dart';
 
 
 
