@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gold_zoid/constants.dart';
 import 'package:gold_zoid/commonWidgets/custom_text_field.dart';
 import 'package:gold_zoid/titles/login_page_title.dart';
+import 'package:gold_zoid/commonWidgets/login_signup_navigator.dart';
 
 // ignore: camel_case_types
 class Login_Page extends StatelessWidget {
@@ -19,7 +20,7 @@ class Login_Page extends StatelessWidget {
                 SizedBox(
                   height: 120.0,
                 ),
-                LoginPageTitle(),           // login page title i.e GOLDZOID in center
+                LoginPageTitle(), // login page title i.e GOLDZOID in center
                 SizedBox(
                   height: 100.0,
                 ),
@@ -136,31 +137,7 @@ class Login_Page extends StatelessWidget {
                 SizedBox(
                   height: 30.0,
                 ),
-                InkWell(
-                  onTap: () {
-                    // navigate to Sign up screen
-                  },
-                  child: RichText(
-                    text: TextSpan(
-                      text: 'Dont have an account?',
-                      style: TextStyle(
-                        color: kSecondaryTextColor,
-                        fontSize: 17.0,
-                        fontFamily: 'Avenir',
-                      ),
-                      children: <TextSpan>[
-                        TextSpan(
-                          text: ' Signup here',
-                          style: TextStyle(
-                            color: kPrimaryColor,
-                            fontSize: 17.0,
-                            fontFamily: 'Avenir',
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
+                LoginSignUpNavigator(text1: 'Don\'t have an account?',text2: 'Signup here',),
               ],
             ),
           ),
@@ -169,3 +146,4 @@ class Login_Page extends StatelessWidget {
     );
   }
 }
+

@@ -11,7 +11,7 @@ class Home_Page extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
-              child: SafeArea(
+        child: SafeArea(
           child: Column(
             children: [
               HomePageTitle(
@@ -35,7 +35,8 @@ class Home_Page extends StatelessWidget {
                       padding: const EdgeInsets.only(left: 25.0),
                       child: Text(
                         'Current market price',
-                        style: TextStyle(color: kPrimaryTextColor, fontSize: 25),
+                        style:
+                            TextStyle(color: kPrimaryTextColor, fontSize: 25),
                       ),
                     ),
                     SizedBox(
@@ -84,7 +85,8 @@ class Home_Page extends StatelessWidget {
                       padding: const EdgeInsets.only(left: 25.0),
                       child: Text(
                         'Your sales graph',
-                        style: TextStyle(color: kPrimaryTextColor, fontSize: 25),
+                        style:
+                            TextStyle(color: kPrimaryTextColor, fontSize: 25),
                       ),
                     ),
                     SizedBox(

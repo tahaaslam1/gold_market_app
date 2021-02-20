@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gold_zoid/commonWidgets/login_signup_navigator.dart';
 import 'package:gold_zoid/constants.dart';
 import 'package:gold_zoid/commonWidgets/custom_text_field.dart';
 
@@ -135,30 +136,9 @@ class Registration_Page extends StatelessWidget {
                 height: 25.0,
               ),
               Center(
-                child: InkWell(
-                  onTap: () {
-                    // navigate to Sign up screen
-                  },
-                  child: RichText(
-                    text: TextSpan(
-                      text: 'Already have an account?',
-                      style: TextStyle(
-                        color: kSecondaryTextColor,
-                        fontSize: 17.0,
-                        fontFamily: 'Avenir',
-                      ),
-                      children: <TextSpan>[
-                        TextSpan(
-                          text: ' Login here',
-                          style: TextStyle(
-                            color: kPrimaryColor,
-                            fontSize: 17.0,
-                            fontFamily: 'Avenir',
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
+                child: LoginSignUpNavigator(
+                  text1: 'Already have an account?',
+                  text2: 'Login here',
                 ),
               ),
             ],

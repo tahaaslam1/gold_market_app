@@ -21,12 +21,12 @@ class CurrentMetalPriceWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(top: 15.0),
-            child: Container(
+      child: Center(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -53,82 +53,81 @@ class CurrentMetalPriceWidget extends StatelessWidget {
                 ),
               ),
             ),
-          ),
-          SizedBox(
-            height: 10.0,
-          ),
-          kBlackDivider,
-          SizedBox(
-            height: 5.0,
-          ),
-          RichText(
-            text: TextSpan(
-              text: '$high_quality_metal_grade : ',
-              style: TextStyle(
-                color: kPrimaryTextColor,
-                fontSize: 14.0,
-                fontFamily: 'Avenir',
-              ),
-              children: <TextSpan>[
-                TextSpan(
-                  text: '\$$high_quality_metal_price',
-                  style: TextStyle(
-                    color: kSecondaryTextColor,
-                    fontSize: 14.0,
-                    fontFamily: 'Avenir',
-                  ),
-                ),
-                TextSpan(
-                  text: '/10gr',
-                  style: TextStyle(
-                    color: kSecondaryTextColor,
-                    fontSize: 10.0,
-                    fontFamily: 'Avenir',
-                  ),
-                ),
-              ],
+            SizedBox(
+              height: 10.0,
             ),
-          ),
-          SizedBox(
-            height: 5.0,
-          ),
-          kBlackDivider,
-          SizedBox(
-            height: 5.0,
-          ),
-          RichText(
-            text: TextSpan(
-              text: '$avg_quality_metal_grade : ',
-              style: TextStyle(
-                color: kPrimaryTextColor,
-                fontSize: 14.0,
-                fontFamily: 'Avenir',
-              ),
-              children: <TextSpan>[
-                TextSpan(
-                  text: '\$$avg_quality_metal_price',
-                  style: TextStyle(
-                    color: kSecondaryTextColor,
-                    fontSize: 14.0,
-                    fontFamily: 'Avenir',
-                  ),
-                ),
-                TextSpan(
-                  text: '/10gr',
-                  style: TextStyle(
-                    color: kSecondaryTextColor,
-                    fontSize: 10.0,
-                    fontFamily: 'Avenir',
-                  ),
-                ),
-              ],
+            kBlackDivider,
+            SizedBox(
+              height: 5.0,
             ),
-          ),
-        ],
+            RichText(
+              text: TextSpan(
+                text: '$high_quality_metal_grade : ',
+                style: TextStyle(
+                  color: kPrimaryTextColor,
+                  fontSize: 14.0,
+                  fontFamily: 'Avenir',
+                ),
+                children: <TextSpan>[
+                  TextSpan(
+                    text: '\$$high_quality_metal_price',
+                    style: TextStyle(
+                      color: kSecondaryTextColor,
+                      fontSize: 14.0,
+                      fontFamily: 'Avenir',
+                    ),
+                  ),
+                  TextSpan(
+                    text: '/10gr',
+                    style: TextStyle(
+                      color: kSecondaryTextColor,
+                      fontSize: 10.0,
+                      fontFamily: 'Avenir',
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: 5.0,
+            ),
+            kBlackDivider,
+            SizedBox(
+              height: 5.0,
+            ),
+            RichText(
+              text: TextSpan(
+                text: '$avg_quality_metal_grade : ',
+                style: TextStyle(
+                  color: kPrimaryTextColor,
+                  fontSize: 14.0,
+                  fontFamily: 'Avenir',
+                ),
+                children: <TextSpan>[
+                  TextSpan(
+                    text: '\$$avg_quality_metal_price',
+                    style: TextStyle(
+                      color: kSecondaryTextColor,
+                      fontSize: 14.0,
+                      fontFamily: 'Avenir',
+                    ),
+                  ),
+                  TextSpan(
+                    text: '/10gr',
+                    style: TextStyle(
+                      color: kSecondaryTextColor,
+                      fontSize: 10.0,
+                      fontFamily: 'Avenir',
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
       height: 211.0,
       width: 150.0,
-      padding: EdgeInsets.only(left: 25.0),
       decoration: BoxDecoration(
         boxShadow: [
           BoxShadow(

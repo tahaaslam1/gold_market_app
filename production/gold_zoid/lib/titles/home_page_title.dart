@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:gold_zoid/constants.dart';
 import 'package:gold_zoid/commonWidgets/drawer_button.dart';
 
-
-
 class HomePageTitle extends StatelessWidget {
   // ignore: non_constant_identifier_names
   final String side_text;
@@ -20,49 +18,44 @@ class HomePageTitle extends StatelessWidget {
         children: [
           Padding(
             padding: const EdgeInsets.only(left: 25.0),
-            child: Container(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  RichText(
-                    text: TextSpan(
-                      text: 'GOLD',
-                      style: TextStyle(
-                        letterSpacing: -1.0,
-                        color: kPrimaryColor,
-                        fontSize: 35.0,
-                        fontFamily: 'Avenir',
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                RichText(
+                  text: TextSpan(
+                    text: 'GOLD',
+                    style: TextStyle(
+                      letterSpacing: -1.0,
+                      color: kPrimaryColor,
+                      fontSize: 35.0,
+                      fontFamily: 'Avenir',
+                    ),
+                    children: <TextSpan>[
+                      TextSpan(
+                        text: 'ZO',
+                        style: TextStyle(
+                          letterSpacing: -1.0,
+                          color: Color(0xFF0000000),
+                          fontSize: 35.0,
+                        ),
                       ),
-                      children: <TextSpan>[
-                        TextSpan(
-                          text: 'ZO',
-                          style: TextStyle(
-                            letterSpacing: -1.0,
-                            color: Color(0xFF0000000),
-                            fontSize: 35.0,
-                          ),
+                      TextSpan(
+                        text: 'ID',
+                        style: TextStyle(
+                          letterSpacing: -1.0,
+                          color: kPrimaryColor,
+                          fontSize: 35.0,
                         ),
-                        TextSpan(
-                          text: 'ID',
-                          style: TextStyle(
-                            letterSpacing: -1.0,
-                            color: kPrimaryColor,
-                            fontSize: 35.0,
-                          ),
-                        ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 10.0),
-                    child: Text(
-                      side_text,
-                      style: kSideTextStyle,
-                    ),
-                  ),
-                ],
-              ),
+                ),
+                Text(
+                  side_text,
+                  style: kSideTextStyle,
+                ),
+              ],
             ),
           ),
           DrawerButton(),
