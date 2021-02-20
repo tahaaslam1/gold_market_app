@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gold_zoid/constants.dart';
 import 'package:gold_zoid/commonWidgets/drawer_button.dart';
 import 'package:gold_zoid/titles/common_title.dart';
+import 'package:gold_zoid/trading_screen_widgets/residual.dart';
 
 class Trade_Page extends StatelessWidget {
   @override
@@ -111,45 +112,23 @@ class Trade_Page extends StatelessWidget {
               ),
               Container(
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    SizedBox(height: 50.0),
-                    Center(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Text(
-                            'Weight :',
-                            style: TextStyle(
-                              fontSize: 15.0,
-                              color: kPrimaryTextColor,
-                            ),
-                          ),
-                          Container(
-                           height: 15.0, 
-                            width: 40.0,
-                            child: TextField(
-                              style: TextStyle(
-                                fontSize: 15.0,
-                                color: kSecondaryTextColor,
-                              ),
-                              cursorColor: kSecondaryTextColor,
-                              cursorHeight: 15.0,
-                              decoration: InputDecoration(
-                                disabledBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: kPrimaryTextColor,
-                                  ),
-                                ),
-                                focusedBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: kPrimaryColor,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
+                    Residual(
+                      residualName: 'Weight :',
+                      residualValue: null,
+                    ),
+                    Residual(
+                      residualName: 'Market Price :',
+                      residualValue: null,
+                    ),
+                    Residual(
+                      residualName: 'Wastage :',
+                      residualValue: null,
+                    ),
+                    Residual(
+                      residualName: 'Labor :',
+                      residualValue: null,
                     ),
                   ],
                 ),
