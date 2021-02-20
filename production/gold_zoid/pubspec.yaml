@@ -46,7 +46,10 @@ flutter:
       fonts:
         - asset: assets/fonts/Avenir-Light.otf
   assets:
-    - assets/images/
+    - assets/images/testing_profile.jpg
+    - assets/images/gold_icon.png
+    - assets/images/gold_icon2.png
+    - assets/images/silver_icon.png
 
 
   # The following line ensures that the Material Icons font is

@@ -147,6 +147,10 @@ class Trade_Page extends StatelessWidget {
                   ),
                 ),
               ),
+              Container(
+                height: 252,
+                color: Colors.black,
+              ),
             ],
           ),
         ),
