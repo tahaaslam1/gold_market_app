@@ -47,7 +47,7 @@ class Home_Page extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           CurrentMetalPriceWidget(
-                            metal_image: 'assets/images/gold_icon.png',
+                            metal_image: 'assets/images/gold_icon.png', 
                             metal_name: 'Gold',
                             high_quality_metal_grade: '24K',
                             high_quality_metal_price: '590',
