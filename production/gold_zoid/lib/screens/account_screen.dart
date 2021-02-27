@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:gold_zoid/constants.dart';
 import 'package:gold_zoid/titles/common_title.dart';
+import 'package:gold_zoid/accountScreenWidgets/edit_name_or_number.dart';
+import 'package:gold_zoid/accountScreenWidgets/profile_picture.dart';
+
+
 
 class Account_Page extends StatelessWidget {
   @override
@@ -19,40 +23,7 @@ class Account_Page extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 10.0),
-              Stack(
-                children: [
-                  Container(
-                    height: 170.0,
-                    width: 170.0,
-                    decoration: BoxDecoration(
-                      color: Colors.black,
-                      shape: BoxShape.circle,
-                      image: DecorationImage(
-                        fit: BoxFit.fill,
-                        image: AssetImage('assets/images/testing_profile.jpg'),
-                      ),
-                    ),
-                  ),
-                  Positioned(
-                    top: 120.0,
-                    right: 5.0,
-                    bottom: 0.0,
-                    child: Container(
-                      child: Icon(
-                        Icons.camera_alt,
-                        size: 25.0,
-                        color: Colors.white,
-                      ),
-                      height: 50.0,
-                      width: 50.0,
-                      decoration: BoxDecoration(
-                        color: kPrimaryColor,
-                        shape: BoxShape.circle,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+              ProfilePicture(image: 'assets/images/testing_profile.jpg',),
               SizedBox(
                 height: 30.0,
               ),
@@ -101,65 +72,3 @@ class Account_Page extends StatelessWidget {
   }
 }
 
-class EditNameOrNumber extends StatelessWidget {
-  final Widget icon;
-  final String type;
-  final String attribute;
-  EditNameOrNumber(
-      {@required this.icon, @required this.type, @required this.attribute});
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        SizedBox(
-          width: 20.0,
-        ),
-        Expanded(
-          flex: 1,
-          child: icon,
-        ),
-
-        SizedBox(
-          width: 20.0,
-        ),
-        Expanded(
-          flex: 0,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                type,
-                style: TextStyle(
-                  fontSize: 13.0,
-                  color: kSecondaryTextColor,
-                ),
-              ),
-              SizedBox(
-                height: 5.0,
-              ),
-              Text(
-                attribute,
-                style: TextStyle(
-                  fontSize: 15.0,
-                  color: kSecondaryTextColor,
-                ),
-              ),
-            ],
-          ),
-        ),
-        SizedBox(
-          width: 100.0,
-        ), // media query  daaalo idher ....... ... . . .. . . . .. . . . . . .here . . .. . . . .. .
-        Expanded(
-          flex: 2,
-          child: Icon(
-            Icons.edit,
-            size: 25.0,
-            color: kPrimaryColor,
-          ),
-        ),
-      ],
-    );
-  }
-}
