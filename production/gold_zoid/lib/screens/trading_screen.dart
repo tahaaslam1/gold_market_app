@@ -14,7 +14,7 @@ class Trade_Page extends StatelessWidget {
             children: [
               CommonTitle(
                 mainTitleText: 'Buy / Sell',
-                icon: Icon(Icons.monetization_on_rounded, size: 35.0),
+                icon: Icon(Icons.monetization_on_rounded, size: 35.0,color: kTitleIconColor),
                 sideText: 'earn your profit',
               ),
               SizedBox(

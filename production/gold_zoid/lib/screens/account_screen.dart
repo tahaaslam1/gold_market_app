@@ -20,6 +20,7 @@ class Account_Page extends StatelessWidget {
                 icon: Icon(
                   Icons.person_outline,
                   size: 35.0,
+                  color: kTitleIconColor,
                 ),
               ),
               SizedBox(height: 10.0),
