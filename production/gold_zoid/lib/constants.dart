@@ -7,6 +7,7 @@ const kGoldIconContainerColor = Color(0xFFF0F0F0);
 const kActiveColor = Color(0xFFFFBC41);
 const kInActiveColor = Color(0xFFFFF2DD);
 const kTitleIconColor = Color(0xFF1E1909);
+const kInventoryBoxColor = Color(0xFFC8C8C8);
 const kDrawerHeight = 120.0;
 
 
