@@ -48,7 +48,6 @@ class Inventory_Page extends StatelessWidget {
                   ItemTypeWidget(),
                   ItemTypeWidget(),
                   ItemTypeWidget(),
-                  
                 ],
               ),
             ),

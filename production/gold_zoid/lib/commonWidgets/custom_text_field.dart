@@ -20,7 +20,7 @@ class CustomTextField extends StatelessWidget {
       child: TextField(
         obscureText: obscureText,
         style: TextStyle(
-          fontSize: 20.0,
+          fontSize: 15.0,
           color: kSecondaryTextColor,
         ),
         //autofocus: false,
@@ -43,7 +43,7 @@ class CustomTextField extends StatelessWidget {
           prefixIcon: icon,
           hintText: hintText,
           hintStyle: TextStyle(
-            fontSize: 20.0,
+            fontSize: 15.0,
             color: kPrimaryTextColor,
           ),
         ),

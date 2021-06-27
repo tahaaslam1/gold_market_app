@@ -17,7 +17,7 @@ class LoginSignUpNavigator extends StatelessWidget {
           text: text1,
           style: TextStyle(
             color: kSecondaryTextColor,
-            fontSize: 17.0,
+            fontSize: 15.0,
             fontFamily: 'Avenir',
           ),
           children: <TextSpan>[
@@ -25,7 +25,7 @@ class LoginSignUpNavigator extends StatelessWidget {
               text: ' $text2',
               style: TextStyle(
                 color: kPrimaryColor,
-                fontSize: 17.0,
+                fontSize: 15.0,
                 fontFamily: 'Avenir',
               ),
             ),

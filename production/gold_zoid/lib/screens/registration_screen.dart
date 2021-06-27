@@ -50,7 +50,7 @@ class Registration_Page extends StatelessWidget {
                 icon: Icon(
                   Icons.person_outline,
                   color: kPrimaryColor,
-                  size: 35.0,
+                  size: 30.0,
                 ),
                 hintText: 'Enter your name',
               ),
@@ -64,7 +64,7 @@ class Registration_Page extends StatelessWidget {
                 icon: Icon(
                   Icons.call_outlined,
                   color: kPrimaryColor,
-                  size: 35.0,
+                  size: 30.0,
                 ),
                 hintText: 'Enter your phone number',
               ),
@@ -78,7 +78,7 @@ class Registration_Page extends StatelessWidget {
                 icon: Icon(
                   Icons.lock_outline,
                   color: kPrimaryColor,
-                  size: 35.0,
+                  size: 30.0,
                 ),
                 hintText: 'Enter your password',
               ),
@@ -92,7 +92,7 @@ class Registration_Page extends StatelessWidget {
                 icon: Icon(
                   Icons.lock_outline,
                   color: kPrimaryColor,
-                  size: 35.0,
+                  size: 30.0,
                 ),
                 hintText: 'Confirm your password',
               ),
@@ -114,8 +114,8 @@ class Registration_Page extends StatelessWidget {
                         ),
                       ),
                     ),
-                    height: 60.0,
-                    width: 315.0,
+                    height: 55.0,
+                    width: 300.0,
                     decoration: BoxDecoration(
                       boxShadow: [
                         BoxShadow(

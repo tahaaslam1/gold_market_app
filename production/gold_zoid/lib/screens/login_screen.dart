@@ -31,7 +31,7 @@ class Login_Page extends StatelessWidget {
                   icon: Icon(
                     Icons.call_outlined,
                     color: kPrimaryColor,
-                    size: 35.0,
+                    size: 30.0,
                   ),
                   hintText: 'Enter your phone number',
                 ),
@@ -45,7 +45,7 @@ class Login_Page extends StatelessWidget {
                   icon: Icon(
                     Icons.lock_outline,
                     color: kPrimaryColor,
-                    size: 35.0,
+                    size: 30.0,
                   ),
                   hintText: 'Enter your password',
                 ),
@@ -117,8 +117,8 @@ class Login_Page extends StatelessWidget {
                         ),
                       ),
                     ),
-                    height: 60.0,
-                    width: 315.0,
+                    height: 55.0,
+                    width: 300.0,
                     decoration: BoxDecoration(
                       boxShadow: [
                         BoxShadow(
