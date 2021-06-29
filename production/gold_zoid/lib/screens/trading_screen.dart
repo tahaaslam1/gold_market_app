@@ -3,6 +3,7 @@ import 'package:gold_zoid/constants.dart';
 import 'package:gold_zoid/commonWidgets/drawer_button.dart';
 import 'package:gold_zoid/titles/common_title.dart';
 import 'package:gold_zoid/trading_screen_widgets/residual.dart';
+import 'package:gold_zoid/trading_screen_widgets/customKeyPad.dart';
 
 class Trade_Page extends StatelessWidget {
   @override
@@ -147,10 +148,8 @@ class Trade_Page extends StatelessWidget {
                   ),
                 ),
               ),
-              Container(
-                height: 252,
-                color: Colors.black,
-              ),
+              SizedBox(height: 10.0),
+              CustomKeyboard(),
             ],
           ),
         ),
