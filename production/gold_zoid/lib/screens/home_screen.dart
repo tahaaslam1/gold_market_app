@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:gold_zoid/constants.dart';
 import 'package:gold_zoid/titles/home_page_title.dart';
-import 'package:gold_zoid/homeScreenWidgets/current_metal_prices.dart';
-import 'package:gold_zoid/homeScreenWidgets/gold_value_widget.dart';
-import 'package:gold_zoid/homeScreenWidgets/graph_selector_widget.dart';
+import 'package:gold_zoid/widgets/homeScreenWidgets/current_metal_prices.dart';
+import 'package:gold_zoid/widgets/homeScreenWidgets/gold_value_widget.dart';
+import 'package:gold_zoid/widgets/homeScreenWidgets/graph_selector_widget.dart';
 
 // ignore: camel_case_types
 class Home_Page extends StatelessWidget {

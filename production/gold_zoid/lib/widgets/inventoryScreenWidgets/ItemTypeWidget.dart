@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gold_zoid/constants.dart';
-import 'package:gold_zoid/inventoryScreenWidgets/ItemInfoWidget.dart';
+import 'package:gold_zoid/widgets/inventoryScreenWidgets/ItemInfoWidget.dart';
 
 class ItemTypeWidget extends StatelessWidget {
   

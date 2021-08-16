@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:gold_zoid/commonWidgets/login_signup_navigator.dart';
+import 'package:gold_zoid/widgets/commonWidgets/login_signup_navigator.dart';
 import 'package:gold_zoid/constants.dart';
-import 'package:gold_zoid/commonWidgets/custom_text_field.dart';
+import 'package:gold_zoid/widgets/commonWidgets/custom_text_field.dart';
 
 class Registration_Page extends StatelessWidget {
   @override

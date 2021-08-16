@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:gold_zoid/constants.dart';
 import 'package:gold_zoid/titles/common_title.dart';
-import 'package:gold_zoid/accountScreenWidgets/edit_name_or_number.dart';
-import 'package:gold_zoid/accountScreenWidgets/profile_picture.dart';
+import 'package:gold_zoid/widgets/accountScreenWidgets/edit_name_or_number.dart';
+import 'package:gold_zoid/widgets/accountScreenWidgets/profile_picture.dart';
 
 
 

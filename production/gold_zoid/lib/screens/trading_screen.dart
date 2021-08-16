@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:gold_zoid/constants.dart';
-import 'package:gold_zoid/commonWidgets/drawer_button.dart';
+import 'package:gold_zoid/widgets/commonWidgets/drawer_button.dart';
 import 'package:gold_zoid/titles/common_title.dart';
-import 'package:gold_zoid/trading_screen_widgets/residual.dart';
-import 'package:gold_zoid/trading_screen_widgets/customKeyPad.dart';
+import 'package:gold_zoid/widgets/trading_screen_widgets/residual.dart';
+import 'package:gold_zoid/widgets/trading_screen_widgets/customKeyPad.dart';
+import 'package:gold_zoid/widgets/trading_screen_widgets/tradeOption.dart';
+import 'package:gold_zoid/widgets/trading_screen_widgets/bottom_trade_button.dart';
 
 class Trade_Page extends StatelessWidget {
   @override
@@ -15,69 +17,31 @@ class Trade_Page extends StatelessWidget {
             children: [
               CommonTitle(
                 mainTitleText: 'Buy / Sell',
-                icon: Icon(Icons.monetization_on_rounded, size: 35.0,color: kTitleIconColor),
+                icon: Icon(
+                  Icons.monetization_on_rounded,
+                  size: 35.0,
+                  color: kTitleIconColor,
+                ),
                 sideText: 'earn your profit',
               ),
               SizedBox(
-                height: 40.0,
+                height: 25.0,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  Container(
-                    height: 40.0,
-                    width: 80.0,
-                    decoration: BoxDecoration(
-                      boxShadow: [
-                        BoxShadow(
-                          spreadRadius: 1.0,
-                          color: Colors.grey.withOpacity(0.5),
-                          blurRadius: 5,
-                        ),
-                      ],
-                      color: kActiveColor,
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(30.0),
-                      ),
-                    ),
-                    child: Center(
-                      child: Text(
-                        'Buy',
-                        style: TextStyle(
-                          fontSize: 15.0,
-                        ),
-                      ),
-                    ),
+                  TradeOption(
+                    tradeOption: 'Buy',
+                    color: kActiveColor,
                   ),
-                  Container(
-                    height: 40.0,
-                    width: 80.0,
-                    decoration: BoxDecoration(
-                      boxShadow: [
-                        BoxShadow(
-                          spreadRadius: 1.0,
-                          color: Colors.grey.withOpacity(0.5),
-                          blurRadius: 5,
-                        ),
-                      ],
-                      color: kInActiveColor,
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(30.0),
-                      ),
-                    ),
-                    child: Center(
-                      child: Text(
-                        'Sell',
-                        style: TextStyle(
-                          fontSize: 15.0,
-                        ),
-                      ),
-                    ),
+                  TradeOption(
+                    tradeOption: 'Sell',
+                    color: kInActiveColor,
                   ),
                 ],
               ),
               SizedBox(
-                height: 10.0,
+                height: 5.0,
               ),
               Divider(
                 color: kPrimaryColor,
@@ -86,7 +50,7 @@ class Trade_Page extends StatelessWidget {
                 indent: 90.0,
               ),
               SizedBox(
-                height: 10.0,
+                height: 5.0,
               ),
               RichText(
                 text: TextSpan(
@@ -148,8 +112,9 @@ class Trade_Page extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(height: 10.0),
+              //SizedBox(height: 10.0),
               CustomKeyboard(),
+              BottomTradeButton(finalTradeOption: 'Buy GOLD',),
             ],
           ),
         ),
@@ -157,3 +122,4 @@ class Trade_Page extends StatelessWidget {
     );
   }
 }
+

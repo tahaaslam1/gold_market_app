@@ -16,7 +16,7 @@ class Gold_Zoid extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(fontFamily: 'Avenir',scaffoldBackgroundColor: Colors.white),
-      home: Trade_Page(),
+      home: Login_Page(),
     );
   }
 }

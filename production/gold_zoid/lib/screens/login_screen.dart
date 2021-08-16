@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:gold_zoid/constants.dart';
-import 'package:gold_zoid/commonWidgets/custom_text_field.dart';
+import 'package:gold_zoid/widgets/commonWidgets/custom_text_field.dart';
 import 'package:gold_zoid/titles/login_page_title.dart';
-import 'package:gold_zoid/commonWidgets/login_signup_navigator.dart';
+import 'package:gold_zoid/widgets/commonWidgets/login_signup_navigator.dart';
 
 // ignore: camel_case_types
 class Login_Page extends StatelessWidget {
