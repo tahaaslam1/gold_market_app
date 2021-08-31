@@ -78,7 +78,7 @@ class CurrentMetalPriceWidget extends StatelessWidget {
                     ),
                   ),
                   TextSpan(
-                    text: '/10gr',
+                    text: '/gr',
                     style: TextStyle(
                       color: kSecondaryTextColor,
                       fontSize: 10.0,
@@ -113,7 +113,7 @@ class CurrentMetalPriceWidget extends StatelessWidget {
                     ),
                   ),
                   TextSpan(
-                    text: '/10gr',
+                    text: '/gr',
                     style: TextStyle(
                       color: kSecondaryTextColor,
                       fontSize: 10.0,

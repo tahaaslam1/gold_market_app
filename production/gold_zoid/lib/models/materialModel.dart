@@ -2,8 +2,7 @@
 import 'package:flutter/cupertino.dart';
 
 enum MaterialType{
-  gold24,
-  gold22,
+  gold,
   silver
 }
 

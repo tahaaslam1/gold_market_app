@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'text_key.dart';
-import 'package:gold_zoid/widgets/trading_screen_widgets/backspace_key.dart';
+import 'package:gold_zoid/views/widgets/trading_screen_widgets/backspace_key.dart';
 
 class CustomKeyboard extends StatelessWidget {
   CustomKeyboard({ this.onTextInput,  this.onBackspace });

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:gold_zoid/constants.dart';
-import 'package:gold_zoid/titles/common_title.dart';
-import 'package:gold_zoid/titles/common_title.dart';
-import 'package:gold_zoid/widgets/inventoryScreenWidgets/ItemTypeWidget.dart';
+import 'package:gold_zoid/views/titles/common_title.dart';
+import 'package:gold_zoid/views/titles/common_title.dart';
+import 'package:gold_zoid/views/widgets/inventoryScreenWidgets/ItemTypeWidget.dart';
 
 class Inventory_Page extends StatelessWidget {
   @override

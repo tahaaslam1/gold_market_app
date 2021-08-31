@@ -9,3 +9,4 @@ class Market {
   Market({this.time,this.materials});
 
 }
+

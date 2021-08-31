@@ -1,54 +1,29 @@
 import 'dart:convert';
+import 'dart:ffi';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:gold_zoid/models/materialModel.dart';
 import 'package:gold_zoid/models/marketModel.dart';
+import 'package:gold_zoid/repositries/marketInterface.dart';
+import 'package:gold_zoid/repositries/marketRepositry.dart';
 import 'dart:math';
 import 'package:http/http.dart' as http;
 
-class MarketController extends ChangeNotifier{
-  
-  List<Market> markets = [];
+class MarketController extends ChangeNotifier {
+  final IMarketRepositry _marketRepositry = MarketRepositry();
 
-   getCurrentMarket() async {
-     double goldRate;
-     double silverRate;
-    //get data from api
-    //store in market
-    http.Response response = await http.get('https://www.metals-api.com/api/latest?access_key=krnr20cobh816f9ssjxuqn9nib23fq4j30v87fi29f43vu0qd53lc6fqe49n&base=USD&symbols=XAU%2CXAG%2CXPD%2CXPT%2CXRH');
-    
-    if(response.statusCode == 200){
-      String data = response.body;
-      var decodedData = jsonDecode(data);
+  Future<List<Market>> fetchMaterialPrice() {
+    return _marketRepositry.getCurrentMarket();
+  }
 
-      goldRate = decodedData['rates']['XAU'];
-      silverRate = decodedData['rates']['XAG'];
-      
-      notifyListeners();
+  double getCurrentPrice(MaterialType materialType, List<Market> markets) {
+    return getPriceFromMarket(materialType, markets.last);
+  }
 
-    }
-    else{
-      print(response.statusCode);
-    }
-    final Market market = Market(
-      time : DateTime.now(),
-      materials : [Material(MaterialType.gold22,goldRate),Material(MaterialType.gold24,goldRate),Material(MaterialType.silver,silverRate)],
-      
-    );
-     
-    markets.add(market);
+  double getPriceFromMarket(MaterialType materialType, Market market) {
+    double valuePerOunce = market.materials.firstWhere((e) => e.materialType == materialType).valuePerOunce;
+    notifyListeners(); 
+    return (1 / valuePerOunce) / 31.1035; //We return the values based on the base currency. For example, for 1 USD the return is a number like 0.000634 for Gold (XAU).To get the gold rate per troy ounce in USD: 1/0.000634= 1577.28 USD
   }
-  
-  double getCurrentPrice(MaterialType materialType){
-    return getPriceFromMarket(materialType,markets.last);
-  }
-  
-  double getPriceFromMarket(MaterialType materialType,Market market){
-    return market.materials.firstWhere((e)=>e.materialType==materialType).valuePerOunce;
-  }
-  
-  double getPriceChange(MaterialType materialType){
-    return getCurrentPrice(materialType) - getPriceFromMarket(materialType,markets[markets.length-2]);
-  }
-  
 }
