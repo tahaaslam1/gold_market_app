@@ -1,9 +1,7 @@
 import 'package:gold_zoid/repositries/marketInterface.dart';
 import 'dart:convert';
-import 'package:flutter/foundation.dart';
 import 'package:gold_zoid/models/materialModel.dart';
 import 'package:gold_zoid/models/marketModel.dart';
-import 'dart:math';
 import 'package:http/http.dart' as http;
 
 class MarketRepositry implements IMarketRepositry {

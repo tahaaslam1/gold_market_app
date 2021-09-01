@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:gold_zoid/constants.dart';
-import 'package:gold_zoid/views/widgets/commonWidgets/drawer_button.dart';
 import 'package:gold_zoid/views/titles/common_title.dart';
 import 'package:gold_zoid/views/widgets/trading_screen_widgets/residual.dart';
 import 'package:gold_zoid/views/widgets/trading_screen_widgets/customKeyPad.dart';

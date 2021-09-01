@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:gold_zoid/constants.dart';
 
 class TradeOption extends StatelessWidget {
   const TradeOption({ @required this.tradeOption,@required this.color});

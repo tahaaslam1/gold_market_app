@@ -6,6 +6,7 @@ enum InventoryManagementType{
 }
 
 class Inventory{
+  
   String totalGold;
   double totalGoldValue;
   List<Transaction> transactions;

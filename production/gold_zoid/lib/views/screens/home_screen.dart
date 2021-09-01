@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:gold_zoid/constants.dart';
 import 'package:gold_zoid/views/titles/home_page_title.dart';
-import 'package:gold_zoid/views/titles/home_page_title.dart';
 import 'package:gold_zoid/views/widgets/homeScreenWidgets/current_metal_prices.dart';
 import 'package:gold_zoid/views/widgets/homeScreenWidgets/gold_value_widget.dart';
 import 'package:gold_zoid/views/widgets/homeScreenWidgets/graph_selector_widget.dart';
 import 'package:provider/provider.dart';
 import 'package:gold_zoid/controllers/marketController.dart';
 import 'package:gold_zoid/models/materialModel.dart' as material;
-import 'package:gold_zoid/controllers/marketController.dart';
 import 'package:gold_zoid/models/marketModel.dart';
 
 class Home_Page extends StatelessWidget {
@@ -79,7 +77,7 @@ class Home_Page extends StatelessWidget {
                                     '${context.watch<MarketController>().getCurrentPrice(material.MaterialType.gold, markets).toStringAsPrecision(4)}',
                                 avg_quality_metal_grade: '22K',
                                 avg_quality_metal_price:
-                                    '${context.watch<MarketController>().getCurrentPrice(material.MaterialType.gold, markets)}',
+                                    '${context.watch<MarketController>().getCurrentPrice(material.MaterialType.gold, markets).toStringAsPrecision(4)}',
                               ),
                               SizedBox(
                                 width: 20.0,
@@ -88,7 +86,7 @@ class Home_Page extends StatelessWidget {
                                 metal_image: 'assets/images/silver_icon.png',
                                 metal_name: 'Silver',
                                 high_quality_metal_grade: '999',
-                                high_quality_metal_price: '${context.watch<MarketController>().getCurrentPrice(material.MaterialType.silver, markets).toStringAsPrecision(4)}',
+                                high_quality_metal_price: '${context.watch<MarketController>().getCurrentPrice(material.MaterialType.silver, markets).toStringAsPrecision(3)}',
                                 avg_quality_metal_grade: '960',
                                 avg_quality_metal_price: '500',
                               ),

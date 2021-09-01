@@ -1,13 +1,7 @@
-import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:gold_zoid/controllers/marketController.dart';
-import 'package:gold_zoid/screens/inventory_screen.dart';
-import 'package:gold_zoid/views/screens/login_screen.dart';
-import 'package:gold_zoid/views/screens/registration_screen.dart';
 import 'views/screens/home_screen.dart';
-import 'package:gold_zoid/views/screens/trading_screen.dart';
-import 'package:gold_zoid/views/screens/account_screen.dart';
 import 'package:provider/provider.dart';
 
 

@@ -1,5 +1,3 @@
-import 'dart:convert';
-import 'dart:ffi';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
@@ -7,8 +5,6 @@ import 'package:gold_zoid/models/materialModel.dart';
 import 'package:gold_zoid/models/marketModel.dart';
 import 'package:gold_zoid/repositries/marketInterface.dart';
 import 'package:gold_zoid/repositries/marketRepositry.dart';
-import 'dart:math';
-import 'package:http/http.dart' as http;
 
 class MarketController extends ChangeNotifier {
   final IMarketRepositry _marketRepositry = MarketRepositry();
