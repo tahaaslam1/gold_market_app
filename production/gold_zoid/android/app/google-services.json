@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "123459672764",
+    "project_id": "goldzoid",
+    "storage_bucket": "goldzoid.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:123459672764:android:ab179cc125e395b4edceb9",
+        "android_client_info": {
+          "package_name": "com.example.gold_zoid"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "123459672764-gq2ofbb5e30ft1bo7rjleuiklqo4ktnu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBH2OiHI3OE59buumA-EdCBQdb-BbRYKlY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "123459672764-gq2ofbb5e30ft1bo7rjleuiklqo4ktnu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -9,7 +9,7 @@ class Material{
  
   MaterialType materialType;
   
-  double valuePerOunce;
+  double valuePerOunce; 
   
   Material( this.materialType , this.valuePerOunce ); 
 

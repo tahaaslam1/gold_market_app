@@ -6,7 +6,7 @@ class User {
   String name;
   String phone;
   String profileUrl;
-  List<Inventory> inventory;
+  Inventory inventory;
 
   User({this.id, this.name, this.phone, this.profileUrl, this.inventory});
 

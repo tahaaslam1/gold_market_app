@@ -11,8 +11,8 @@ class Transaction{
   TransactionType type;
   int wastage;
   int labour;
-  Item item;
+  List<Item> items;
   
-  Transaction({ this.id , this.type ,this.wastage, this.labour, this.item});
+  Transaction({ this.id , this.type ,this.wastage, this.labour, this.items});
   
 }

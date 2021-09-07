@@ -74,10 +74,10 @@ class Home_Page extends StatelessWidget {
                                 metal_name: 'Gold',
                                 high_quality_metal_grade: '24K',
                                 high_quality_metal_price:
-                                    '${context.watch<MarketController>().getCurrentPrice(material.MaterialType.gold, markets).toStringAsPrecision(4)}',
+                                    '${context.watch<MarketController>().getPriceFromMarket(material.MaterialType.gold, markets.last,24).toStringAsPrecision(4)}',
                                 avg_quality_metal_grade: '22K',
                                 avg_quality_metal_price:
-                                    '${context.watch<MarketController>().getCurrentPrice(material.MaterialType.gold, markets).toStringAsPrecision(4)}',
+                                    '${context.watch<MarketController>().getPriceFromMarket(material.MaterialType.gold, markets.last,22).toStringAsPrecision(4)}',
                               ),
                               SizedBox(
                                 width: 20.0,
@@ -86,9 +86,9 @@ class Home_Page extends StatelessWidget {
                                 metal_image: 'assets/images/silver_icon.png',
                                 metal_name: 'Silver',
                                 high_quality_metal_grade: '999',
-                                high_quality_metal_price: '${context.watch<MarketController>().getCurrentPrice(material.MaterialType.silver, markets).toStringAsPrecision(3)}',
+                                high_quality_metal_price: '${context.watch<MarketController>().getPriceFromMarket(material.MaterialType.silver, markets.last,999).toStringAsPrecision(2)}',
                                 avg_quality_metal_grade: '960',
-                                avg_quality_metal_price: '500',
+                                avg_quality_metal_price: '${context.watch<MarketController>().getPriceFromMarket(material.MaterialType.silver, markets.last,960).toStringAsPrecision(2)}',
                               ),
                             ],
                           );
