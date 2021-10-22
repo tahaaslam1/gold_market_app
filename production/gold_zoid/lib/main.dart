@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:gold_zoid/controllers/marketController.dart';
+import 'package:gold_zoid/views/screens/inventory_screen.dart';
 import 'package:gold_zoid/views/screens/login_screen.dart';
 import 'package:gold_zoid/views/titles/home_page_title.dart';
 import 'views/screens/home_screen.dart';
@@ -17,10 +18,7 @@ class Gold_Zoid extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(fontFamily: 'Avenir',scaffoldBackgroundColor: Colors.white),
-      home: ListenableProvider(
-        create:(context) => MarketController(),
-        child: Home_Page(),
-        ),
+      home: Home_Page(),
     );
   }
 }

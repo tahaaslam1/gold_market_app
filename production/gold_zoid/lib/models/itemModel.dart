@@ -17,7 +17,14 @@ class Item {
   MaterialType materialType;
   int qty;
   int weightInGramsPerUnit;
-  double itemValue; 
+  double itemValue;
 
-  Item({ this.itemId , this.type , this.materialType , this.qty , this.weightInGramsPerUnit , this.itemValue });
+  Item({
+    this.itemId,
+    this.type,
+    this.materialType,
+    this.qty,
+    this.weightInGramsPerUnit,
+    this.itemValue,
+  });
 }

@@ -10,6 +10,7 @@ import 'package:gold_zoid/models/materialModel.dart' as material;
 import 'package:gold_zoid/models/marketModel.dart';
 
 class Home_Page extends StatelessWidget {
+  
   final MarketController _marketController = MarketController();
 
   @override
@@ -54,17 +55,19 @@ class Home_Page extends StatelessWidget {
                           var markets = snapshot.data;
                           if (snapshot.data == null) {
                             return Center(
-                                child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                CircularProgressIndicator(
-                                  backgroundColor: kPrimaryColor,
-                                ),
-                                CircularProgressIndicator(
-                                  backgroundColor: kPrimaryColor,
-                                ),
-                              ],
-                            ));
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  CircularProgressIndicator(
+                                    backgroundColor: kPrimaryColor,
+                                  ),
+                                  CircularProgressIndicator(
+                                    backgroundColor: kPrimaryColor,
+                                  ),
+                                ],
+                              ),
+                            );
                           }
                           return Row(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -73,12 +76,10 @@ class Home_Page extends StatelessWidget {
                                 metal_image: 'assets/images/gold_icon.png',
                                 metal_name: 'Gold',
                                 high_quality_metal_grade: '24K',
-                                high_quality_metal_price:
-                                    '${context.watch<MarketController>().getPriceFromMarket(material.MaterialType.gold, markets.last,24).toStringAsPrecision(4)}',
-                                avg_quality_metal_grade: '22K',
-                                avg_quality_metal_price:
-                                    '${context.watch<MarketController>().getPriceFromMarket(material.MaterialType.gold, markets.last,22).toStringAsPrecision(4)}',
-                              ),
+                                high_quality_metal_price: '${_marketController.getPriceFromMarket(material.MaterialType.gold, markets.last,24).toStringAsPrecision(4)}', 
+                                   avg_quality_metal_grade: '22K',
+                                avg_quality_metal_price: '${_marketController.getPriceFromMarket(material.MaterialType.gold, markets.last,22).toStringAsPrecision(4)}',
+                                    ),
                               SizedBox(
                                 width: 20.0,
                               ),
@@ -86,9 +87,9 @@ class Home_Page extends StatelessWidget {
                                 metal_image: 'assets/images/silver_icon.png',
                                 metal_name: 'Silver',
                                 high_quality_metal_grade: '999',
-                                high_quality_metal_price: '${context.watch<MarketController>().getPriceFromMarket(material.MaterialType.silver, markets.last,999).toStringAsPrecision(2)}',
+                                high_quality_metal_price: '${_marketController.getPriceFromMarket(material.MaterialType.silver, markets.last,999).toStringAsPrecision(2)}',
                                 avg_quality_metal_grade: '960',
-                                avg_quality_metal_price: '${context.watch<MarketController>().getPriceFromMarket(material.MaterialType.silver, markets.last,960).toStringAsPrecision(2)}',
+                                avg_quality_metal_price:'${_marketController.getPriceFromMarket(material.MaterialType.silver, markets.last,960).toStringAsPrecision(2)}',
                               ),
                             ],
                           );

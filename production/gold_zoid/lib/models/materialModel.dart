@@ -1,5 +1,3 @@
-
-
 enum MaterialType{
   gold,
   silver
