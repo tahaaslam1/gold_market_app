@@ -10,7 +10,6 @@ const kTitleIconColor = Color(0xFF1E1909);
 const kInventoryBoxColor = Color(0xFFC8C8C8);
 const kDrawerHeight = 120.0;
 
-
 const kSideTextStyle = TextStyle(
   color: kPrimaryTextColor,
   fontSize: 17.0,
@@ -34,4 +33,10 @@ const kYellowDivider = Divider(
   thickness: 1.0,
   indent: 50.0,
   endIndent: 50.0,
+);
+
+const kGreyDivider = Divider(
+  color: kSecondaryTextColor,
+  thickness: 5.0,
+  indent: 50.0,
 );

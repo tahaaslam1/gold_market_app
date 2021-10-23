@@ -6,7 +6,7 @@ import 'package:gold_zoid/views/screens/login_screen.dart';
 import 'package:gold_zoid/views/titles/home_page_title.dart';
 import 'views/screens/home_screen.dart';
 import 'package:provider/provider.dart';
-
+import 'package:gold_zoid/views/widgets/drawer/drawer.dart';
 
 void main() {
   runApp(Gold_Zoid());
@@ -18,7 +18,7 @@ class Gold_Zoid extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(fontFamily: 'Avenir',scaffoldBackgroundColor: Colors.white),
-      home: Home_Page(),
+      home: CustomDrawer(),
     );
   }
 }
