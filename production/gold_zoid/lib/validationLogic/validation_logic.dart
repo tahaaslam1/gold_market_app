@@ -1,6 +1,8 @@
 class ValidationLogic{
-  
+  var _confrimPass;
+
   String validatePassword(value) {
+    _confrimPass = value;
     String pattern = r'(^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,12}$)';  //Minimum 6 characters, at least one letter, one number and one special character:
     RegExp regExp = new RegExp(pattern);
     if (value.isEmpty)
@@ -28,6 +30,19 @@ String validatePhoneNumber(value) {
     else 
       return null;
   }
-
+String validateConfrimPassword(value) {
+    String pattern = r'(^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,12}$)';  //Minimum 6 characters, at least one letter, one number and one special character:
+    RegExp regExp = new RegExp(pattern);
+    if (value.isEmpty)
+      return "Password required";
+    else if(!regExp.hasMatch(value)){
+      return "Enter a valid password";
+    }
+    else if(value != _confrimPass){
+      return "Password must be same as above";
+    }
+    else 
+      return null;
+  }
 
 }

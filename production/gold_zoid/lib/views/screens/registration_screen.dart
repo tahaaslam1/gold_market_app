@@ -96,6 +96,7 @@ class Registration_Page extends StatelessWidget {
                   height: 30.0,
                 ),
                 CustomTextField(
+                  validate: validate.validateConfrimPassword,
                   obscureText: true,
                   maxLength: null,
                   keyboardType: TextInputType.name,
