@@ -7,6 +7,7 @@ class CustomTextField extends StatelessWidget {
   final TextInputType keyboardType; 
   final Widget icon;
   final String hintText;
+  //final StringCallBack<String> onTap;
 
   CustomTextField({@required this.obscureText,@required this.maxLength,@required this.keyboardType,@required this.icon,@required this.hintText});
 
@@ -17,7 +18,8 @@ class CustomTextField extends StatelessWidget {
         left: 15.0,
         right: 15.0,
       ),
-      child: TextField(
+      child: TextFormField(
+       // validator: ,
         obscureText: obscureText,
         style: TextStyle(
           fontSize: 15.0,

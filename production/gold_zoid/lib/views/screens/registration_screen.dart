@@ -136,9 +136,14 @@ class Registration_Page extends StatelessWidget {
                 height: 25.0,
               ),
               Center(
-                child: LoginSignUpNavigator(
-                  text1: 'Already have an account?',
-                  text2: 'Login here',
+                child: InkWell(
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
+                  child: LoginSignUpNavigator(
+                    text1: 'Already have an account?',
+                    text2: 'Login here',
+                  ),
                 ),
               ),
             ],

@@ -5,6 +5,7 @@ import 'package:gold_zoid/models/marketModel.dart';
 import 'package:http/http.dart' as http;
 
 class MarketRepositry implements IMarketRepositry {
+  
   Future<List<Market>> getCurrentMarket() async {
     List<Market> markets = [];
     var goldRate;
@@ -21,6 +22,7 @@ class MarketRepositry implements IMarketRepositry {
       silverRate = decodedData['rates']['XAG'];
     } else {
       print(response.statusCode);
+      throw Exception('Failed to load Gold,Silver Rates'); 
     }
     final Market market = Market(
       time: DateTime.now(),
