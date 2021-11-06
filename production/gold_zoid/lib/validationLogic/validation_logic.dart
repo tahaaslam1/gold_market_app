@@ -22,7 +22,12 @@ String validatePhoneNumber(value) {
     else 
       return null;
   }
-
+ String validateName(value) {
+    if (value.isEmpty)
+      return "Name required";
+    else 
+      return null;
+  }
 
 
 }
