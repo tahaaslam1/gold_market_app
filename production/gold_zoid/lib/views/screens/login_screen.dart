@@ -5,10 +5,14 @@ import 'package:gold_zoid/views/widgets/commonWidgets/custom_text_field.dart';
 import 'package:gold_zoid/views/titles/login_page_title.dart';
 import 'package:gold_zoid/views/widgets/commonWidgets/login_signup_navigator.dart';
 import 'package:provider/provider.dart';
+import 'package:gold_zoid/validationLogic/validation_logic.dart';
 
 // ignore: camel_case_types
 class Login_Page extends StatelessWidget {
   //bool rememberMeIcon = true;
+  GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  var validate = ValidationLogic();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,7 +21,8 @@ class Login_Page extends StatelessWidget {
         child: SingleChildScrollView(
           child: Center(
             child: Form(
-              //key: formKey,
+              autovalidateMode: AutovalidateMode.always,
+              key: formKey,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -30,6 +35,7 @@ class Login_Page extends StatelessWidget {
                     height: 100.0,
                   ),
                   CustomTextField(
+                    validate: validate.validatePhoneNumber,
                     obscureText: false,
                     keyboardType: TextInputType.phone,
                     maxLength: 13,
@@ -44,6 +50,7 @@ class Login_Page extends StatelessWidget {
                     height: 30.0,
                   ),
                   CustomTextField(
+                    validate: validate.validatePassword,
                     obscureText: true,
                     maxLength: null,
                     keyboardType: TextInputType.visiblePassword,
@@ -68,6 +75,7 @@ class Login_Page extends StatelessWidget {
                         child: Consumer<LoginController>(
                           builder: (context, provider, _) {
                             return InkWell(
+                              splashColor: Colors.white,
                               onTap: () => provider.changeIcon(),
                               child: Icon(
                                 provider.rememberMe
@@ -113,8 +121,8 @@ class Login_Page extends StatelessWidget {
                   ),
                   SizedBox(height: 45.0),
                   InkWell(
-                    onTap: () {
-                      // autenticate user and navigate to homePAge..
+                    onTap: (){
+                      // some logic...
                     },
                     child: Container(
                       child: Center(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:gold_zoid/constants.dart';
 
 class CustomTextField extends StatelessWidget {
@@ -7,9 +8,9 @@ class CustomTextField extends StatelessWidget {
   final TextInputType keyboardType; 
   final Widget icon;
   final String hintText;
-  //final StringCallBack<String> onTap;
+  final Function validate; 
 
-  CustomTextField({@required this.obscureText,@required this.maxLength,@required this.keyboardType,@required this.icon,@required this.hintText});
+  CustomTextField({@required this.obscureText,@required this.maxLength,@required this.keyboardType,@required this.icon,@required this.hintText,this.validate});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +20,7 @@ class CustomTextField extends StatelessWidget {
         right: 15.0,
       ),
       child: TextFormField(
-       // validator: ,
+        validator: validate,
         obscureText: obscureText,
         style: TextStyle(
           fontSize: 15.0,

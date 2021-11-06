@@ -3,6 +3,7 @@ import 'package:gold_zoid/views/widgets/commonWidgets/login_signup_navigator.dar
 import 'package:gold_zoid/constants.dart';
 import 'package:gold_zoid/views/widgets/commonWidgets/custom_text_field.dart';
 
+
 class Registration_Page extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
