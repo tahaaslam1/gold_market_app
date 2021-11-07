@@ -13,7 +13,7 @@ class HomePageTitle extends StatelessWidget {
     return Container(
       height: kDrawerHeight,
       color: Colors.white,
-      child: Row(
+      child: Row( 
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Padding(

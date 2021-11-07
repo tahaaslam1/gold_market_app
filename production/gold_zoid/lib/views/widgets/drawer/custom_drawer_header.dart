@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:gold_zoid/constants.dart';
 
 class CustomDrawerHeader extends StatelessWidget {
+  final Function onTap;
+  CustomDrawerHeader({@required this.onTap}); 
   @override
   Widget build(BuildContext context) {
     return DrawerHeader(
@@ -48,6 +50,7 @@ class CustomDrawerHeader extends StatelessWidget {
             ],
           ),
           InkWell(
+            onTap: onTap,
             child: Icon(
               Icons.close,
               color: Colors.white,

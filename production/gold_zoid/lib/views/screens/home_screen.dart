@@ -20,7 +20,9 @@ class Home_Page extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      endDrawer: CustomDrawer(),
+      endDrawer: CustomDrawer(
+        onTap: () => Navigator.pop(context),
+      ),
       key: _scaffoldKey,
       body: SingleChildScrollView(
         child: SafeArea(

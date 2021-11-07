@@ -2,15 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:gold_zoid/constants.dart';
 import 'package:gold_zoid/views/widgets/commonWidgets/drawer_button.dart';
 
-
 class CommonTitle extends StatelessWidget {
   final String mainTitleText;
   final String sideText;
   final Widget icon;
+  final Function onTap;
   CommonTitle(
       {@required this.mainTitleText,
       @required this.sideText,
-      @required this.icon});
+      @required this.icon,
+      this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -27,10 +28,7 @@ class CommonTitle extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    // Icon(
-                    icon, //   Icons.iconType,
-                    //   size: 35.0,
-                    // ),
+                    icon,
                     Text(
                       mainTitleText,
                       style: TextStyle(
@@ -51,7 +49,9 @@ class CommonTitle extends StatelessWidget {
               ],
             ),
           ),
-          DrawerButton(),
+          DrawerButton(
+            onTap: onTap,
+          ),
         ],
       ),
     );

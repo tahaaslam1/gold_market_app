@@ -1,17 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:gold_zoid/constants.dart';
 import 'package:gold_zoid/views/titles/common_title.dart';
+import 'package:gold_zoid/views/widgets/drawer/custom_drawer.dart';
 import 'package:gold_zoid/views/widgets/inventoryScreenWidgets/ItemTypeWidget.dart';
 
 class Inventory_Page extends StatelessWidget {
+  GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
+      endDrawer: CustomDrawer(
+        onTap: () => Navigator.pop(context),
+      ),
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             CommonTitle(
+              onTap: () => _scaffoldKey.currentState.openEndDrawer(),
               mainTitleText: 'My Inventory',
               sideText: 'manage your inventory',
               icon: Icon(

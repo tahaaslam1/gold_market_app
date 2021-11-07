@@ -1,20 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:gold_zoid/constants.dart';
 import 'package:gold_zoid/views/titles/common_title.dart';
+import 'package:gold_zoid/views/widgets/drawer/custom_drawer.dart';
 import 'package:gold_zoid/views/widgets/trading_screen_widgets/residual.dart';
 import 'package:gold_zoid/views/widgets/trading_screen_widgets/customKeyPad.dart';
 import 'package:gold_zoid/views/widgets/trading_screen_widgets/tradeOption.dart';
 import 'package:gold_zoid/views/widgets/trading_screen_widgets/bottom_trade_button.dart';
 
 class Trade_Page extends StatelessWidget {
+  GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
+      endDrawer: CustomDrawer(
+        onTap: () => Navigator.pop(context),
+      ),
       body: SingleChildScrollView(
         child: SafeArea(
           child: Column(
             children: [
               CommonTitle(
+                onTap: () => _scaffoldKey.currentState.openEndDrawer(),
                 mainTitleText: 'Buy / Sell',
                 icon: Icon(
                   Icons.monetization_on_rounded,
@@ -113,7 +120,9 @@ class Trade_Page extends StatelessWidget {
               ),
               //SizedBox(height: 10.0),
               CustomKeyboard(),
-              BottomTradeButton(finalTradeOption: 'Buy GOLD',),
+              BottomTradeButton(
+                finalTradeOption: 'Buy GOLD',
+              ),
             ],
           ),
         ),
@@ -121,4 +130,3 @@ class Trade_Page extends StatelessWidget {
     );
   }
 }
-
