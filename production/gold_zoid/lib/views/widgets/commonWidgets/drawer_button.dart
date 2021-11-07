@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 
 
 class DrawerButton extends StatelessWidget {
+  final Function onTap;
+  DrawerButton({this.onTap});
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: (){
-        print('drawer button is pressed');
-      },
+      onTap: onTap,
           child: Container(
           width: 80.0,
           height: kDrawerHeight,

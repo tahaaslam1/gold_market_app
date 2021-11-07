@@ -61,10 +61,15 @@ class CustomDrawer extends StatelessWidget {
                     ),
                     Padding(
                       padding: const EdgeInsets.only(right: 30.0),
-                      child: Icon(
-                        Icons.close,
-                        color: Colors.white,
-                        size: 30.0,
+                      child: InkWell(
+                        onTap: (){
+                          Navigator.pop(context);
+                        },
+                        child: Icon(
+                          Icons.close,
+                          color: Colors.white,
+                          size: 30.0,
+                        ),
                       ),
                     ),
                   ],

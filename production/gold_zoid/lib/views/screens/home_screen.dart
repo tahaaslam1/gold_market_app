@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gold_zoid/constants.dart';
 import 'package:gold_zoid/views/titles/home_page_title.dart';
+import 'package:gold_zoid/views/widgets/drawer/drawer.dart';
 import 'package:gold_zoid/views/widgets/homeScreenWidgets/current_metal_prices.dart';
 import 'package:gold_zoid/views/widgets/homeScreenWidgets/gold_value_widget.dart';
 import 'package:gold_zoid/views/widgets/homeScreenWidgets/graph_selector_widget.dart';
@@ -10,19 +11,22 @@ import 'package:gold_zoid/models/materialModel.dart' as material;
 import 'package:gold_zoid/models/marketModel.dart';
 import 'package:gold_zoid/views/widgets/commonWidgets/drawer_button.dart';
 
-
 class Home_Page extends StatelessWidget {
-  
   final MarketController _marketController = MarketController();
 
+  GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      endDrawer: CustomDrawer(), 
+      key: _scaffoldKey,
       body: SingleChildScrollView(
         child: SafeArea(
           child: Column(
             children: [
               HomePageTitle(
+                onTap: () => _scaffoldKey.currentState.openEndDrawer(),
                 side_text: 'explore your market',
               ),
               SizedBox(
@@ -55,7 +59,8 @@ class Home_Page extends StatelessWidget {
                         future: _marketController.fetchMaterialPrice(),
                         builder: (context, snapshot) {
                           var markets = snapshot.data;
-                          if (snapshot.data == null) {
+                          if (snapshot.connectionState ==
+                              ConnectionState.waiting) {
                             return Center(
                               child: Row(
                                 mainAxisAlignment:
@@ -70,31 +75,45 @@ class Home_Page extends StatelessWidget {
                                 ],
                               ),
                             );
-                          }
-                          return Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              CurrentMetalPriceWidget(
-                                metal_image: 'assets/images/gold_icon.png',
-                                metal_name: 'Gold',
-                                high_quality_metal_grade: '24K',
-                                high_quality_metal_price: '${_marketController.getPriceFromMarket(material.MaterialType.gold, markets.last,24).toStringAsPrecision(4)}', 
-                                   avg_quality_metal_grade: '22K',
-                                avg_quality_metal_price: '${_marketController.getPriceFromMarket(material.MaterialType.gold, markets.last,22).toStringAsPrecision(4)}',
-                                    ),
-                              SizedBox(
-                                width: 20.0,
+                          } else if (snapshot.hasError) {
+                            return Center(
+                              child: Text(
+                                'Unable to Fetch data!\n    Please try again',
+                                style: TextStyle(
+                                  color: Colors.red[400],
+                                  fontSize: 20.0,
+                                ),
                               ),
-                              CurrentMetalPriceWidget(
-                                metal_image: 'assets/images/silver_icon.png',
-                                metal_name: 'Silver',
-                                high_quality_metal_grade: '999',
-                                high_quality_metal_price: '${_marketController.getPriceFromMarket(material.MaterialType.silver, markets.last,999).toStringAsPrecision(2)}',
-                                avg_quality_metal_grade: '960',
-                                avg_quality_metal_price:'${_marketController.getPriceFromMarket(material.MaterialType.silver, markets.last,960).toStringAsPrecision(2)}',
-                              ),
-                            ],
-                          );
+                            );
+                          } else
+                            return Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                CurrentMetalPriceWidget(
+                                  metal_image: 'assets/images/gold_icon.png',
+                                  metal_name: 'Gold',
+                                  high_quality_metal_grade: '24K',
+                                  high_quality_metal_price:
+                                      '${_marketController.getPriceFromMarket(material.MaterialType.gold, markets.last, 24).toStringAsPrecision(4)}',
+                                  avg_quality_metal_grade: '22K',
+                                  avg_quality_metal_price:
+                                      '${_marketController.getPriceFromMarket(material.MaterialType.gold, markets.last, 22).toStringAsPrecision(4)}',
+                                ),
+                                SizedBox(
+                                  width: 20.0,
+                                ),
+                                CurrentMetalPriceWidget(
+                                  metal_image: 'assets/images/silver_icon.png',
+                                  metal_name: 'Silver',
+                                  high_quality_metal_grade: '999',
+                                  high_quality_metal_price:
+                                      '${_marketController.getPriceFromMarket(material.MaterialType.silver, markets.last, 999).toStringAsPrecision(2)}',
+                                  avg_quality_metal_grade: '960',
+                                  avg_quality_metal_price:
+                                      '${_marketController.getPriceFromMarket(material.MaterialType.silver, markets.last, 960).toStringAsPrecision(2)}',
+                                ),
+                              ],
+                            );
                         },
                       ),
                     ),

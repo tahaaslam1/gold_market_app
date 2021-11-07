@@ -5,9 +5,9 @@ import 'package:gold_zoid/views/widgets/commonWidgets/drawer_button.dart';
 class HomePageTitle extends StatelessWidget {
   // ignore: non_constant_identifier_names
   final String side_text;
-
+  final Function onTap; 
   // ignore: non_constant_identifier_names
-  const HomePageTitle({@required this.side_text});
+  const HomePageTitle({@required this.side_text,this.onTap});
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -58,7 +58,9 @@ class HomePageTitle extends StatelessWidget {
               ],
             ),
           ),
-          DrawerButton(),
+          DrawerButton(
+            onTap: onTap,
+          ),
         ],
       ),
     );

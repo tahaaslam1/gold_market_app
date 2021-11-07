@@ -27,7 +27,7 @@ class Gold_Zoid extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      initialRoute: '/loginScreen',
+      initialRoute: '/homeScreen',
       routes: {
         '/loginScreen': (context) => Login_Page(),
         '/registrationScreen': (context) => Registration_Page(),
@@ -35,6 +35,7 @@ class Gold_Zoid extends StatelessWidget {
         '/tradingScreen': (context) => Trade_Page(),
         '/accountScreen': (context) => Account_Page(),
         '/inventoryScreen': (context) => Inventory_Page(),
+        '/drawerScreen': (context) => CustomDrawer(),
       },
       theme: ThemeData(
           fontFamily: 'Avenir', scaffoldBackgroundColor: Colors.white),
