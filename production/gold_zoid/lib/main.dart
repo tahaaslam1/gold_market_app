@@ -8,7 +8,7 @@ import 'package:gold_zoid/views/screens/trading_screen.dart';
 import 'package:gold_zoid/views/titles/home_page_title.dart';
 import 'views/screens/home_screen.dart';
 import 'package:provider/provider.dart';
-import 'package:gold_zoid/views/widgets/drawer/drawer.dart';
+
 import 'controllers/login_controller.dart';
 
 void main() {
@@ -35,7 +35,6 @@ class Gold_Zoid extends StatelessWidget {
         '/tradingScreen': (context) => Trade_Page(),
         '/accountScreen': (context) => Account_Page(),
         '/inventoryScreen': (context) => Inventory_Page(),
-        '/drawerScreen': (context) => CustomDrawer(),
       },
       theme: ThemeData(
           fontFamily: 'Avenir', scaffoldBackgroundColor: Colors.white),
