@@ -9,10 +9,12 @@ class Transaction{
   
   String id;
   TransactionType type;
-  int wastage;
-  int labour;
+  double wastage;
+  double labour;
   Item item;
+  DateTime dateTime; 
+  double transactionFinalAmount;
   
-  Transaction({ this.id , this.type ,this.wastage, this.labour, this.item});
+  Transaction({ this.id , this.type ,this.wastage, this.labour, this.item,this.dateTime,this.transactionFinalAmount});
   
 }

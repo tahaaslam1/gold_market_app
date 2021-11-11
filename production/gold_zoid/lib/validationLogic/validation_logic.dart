@@ -44,5 +44,17 @@ String validateConfrimPassword(value) {
     else 
       return null;
   }
+ // emailValid = RegExp(r'^.+@[a-zA-Z]+\.{1}[a-zA-Z]+(\.{0,1}[a-zA-Z]+)$').hasMatch(email);
+ String validateEmail(value) {
+    String pattern = r'^.+@[a-zA-Z]+\.{1}[a-zA-Z]+(\.{0,1}[a-zA-Z]+)$';  //Minimum 6 characters, at least one letter, one number and one special character:
+    RegExp regExp = new RegExp(pattern);
+    if (value.isEmpty)
+      return "Email required";
+    else if(!regExp.hasMatch(value)){
+      return "Enter a valid email";
+    }
+    else 
+      return null;
+  }
 
 }

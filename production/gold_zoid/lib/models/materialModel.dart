@@ -1,6 +1,6 @@
 enum MaterialType{
   gold,
-  silver
+  silver,
 }
 
 class Material{

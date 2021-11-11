@@ -35,6 +35,7 @@ class Login_Page extends StatelessWidget {
                     height: 100.0,
                   ),
                   CustomTextField(
+                    textAlign: TextAlign.start,
                     validate: validate.validatePhoneNumber,
                     obscureText: false,
                     keyboardType: TextInputType.phone,
@@ -50,6 +51,8 @@ class Login_Page extends StatelessWidget {
                     height: 30.0,
                   ),
                   CustomTextField(
+                    textAlign: TextAlign.start,
+                    
                     validate: validate.validatePassword,
                     obscureText: true,
                     maxLength: null,
@@ -107,6 +110,7 @@ class Login_Page extends StatelessWidget {
                           onTap: () {
                             print('Navigate to Forgot Password Screen');
                             // Navigate to Forgot Password Screen
+                            Navigator.pushNamed(context, '/forgetPasswordScreen');
                           },
                           child: Text(
                             'Forgot password ?',
@@ -121,8 +125,13 @@ class Login_Page extends StatelessWidget {
                   ),
                   SizedBox(height: 45.0),
                   InkWell(
-                    onTap: (){
+                    onTap: () {
+                      //TODO: check validation and check password and navigate to home screen
                       // some logic...
+                      Navigator.pushNamed(
+                        context,
+                        '/homeScreen',
+                      ); //TODO: remove this after above is implemented..
                     },
                     child: Container(
                       child: Center(

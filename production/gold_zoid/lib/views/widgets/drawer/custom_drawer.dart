@@ -53,9 +53,10 @@ class CustomDrawer extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(left: 25.0),
                 child: InkWell(
-                  onTap: () {
-                    print(
-                        'logout of application'); //TODO: logout functionality..
+                  onTap: () => {
+                    print('logout app'),                         //TODO: logout functionalty .. 
+                    Navigator.pop(context), 
+                    Navigator.popAndPushNamed(context, '/loginScreen'),
                   },
                   child: Text(
                     'Logout',

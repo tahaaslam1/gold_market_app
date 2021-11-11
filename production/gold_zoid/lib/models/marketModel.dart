@@ -7,6 +7,5 @@ class Market {
   List<Material> materials;
   
   Market({this.time,this.materials});
-
 } 
 

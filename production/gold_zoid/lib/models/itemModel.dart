@@ -14,7 +14,7 @@ enum ItemType {
 class Item {
   String itemId;
   ItemType type;
-  MaterialType materialType;
+  Material material;
   int qty;
   int weightInGramsPerUnit;
   double itemValue;
@@ -22,7 +22,7 @@ class Item {
   Item({
     this.itemId,
     this.type,
-    this.materialType,
+    this.material,
     this.qty,
     this.weightInGramsPerUnit,
     this.itemValue,

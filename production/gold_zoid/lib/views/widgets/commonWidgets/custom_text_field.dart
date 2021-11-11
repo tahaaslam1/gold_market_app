@@ -8,9 +8,10 @@ class CustomTextField extends StatelessWidget {
   final TextInputType keyboardType; 
   final Widget icon;
   final String hintText;
-  final Function validate; 
+  final Function validate;
+  final TextAlign textAlign; 
 
-  CustomTextField({@required this.obscureText,@required this.maxLength,@required this.keyboardType,@required this.icon,@required this.hintText,this.validate});
+  CustomTextField({@required this.obscureText,@required this.maxLength,@required this.keyboardType,@required this.icon,@required this.hintText,this.validate,this.textAlign});
 
   @override
   Widget build(BuildContext context) {
@@ -20,6 +21,7 @@ class CustomTextField extends StatelessWidget {
         right: 15.0,
       ),
       child: TextFormField(
+        textAlign: textAlign,
         validator: validate,
         obscureText: obscureText,
         style: TextStyle(

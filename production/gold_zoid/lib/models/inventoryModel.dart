@@ -1,19 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:gold_zoid/models/transactionModel.dart';
-
-enum InventoryManagementType{
-  manual, 
-  byTransaction,
-}
+import 'itemModel.dart';
 
 class Inventory{
-  
   String totalGold;
   double totalGoldValue;
-  List<Transaction> transactions;
-  InventoryManagementType modeOfInventory;   // manually change krni he inentory ya buy sell se huga 
-  
-  
-  Inventory({this.totalGold,this.totalGoldValue,this.transactions,this.modeOfInventory});
+  List<Item> items; 
+
+  Inventory({this.totalGold,this.totalGoldValue,this.items});
 
 }

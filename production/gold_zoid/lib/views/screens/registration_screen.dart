@@ -51,6 +51,7 @@ class Registration_Page extends StatelessWidget {
                   height: 70.0,
                 ),
                 CustomTextField(
+                  textAlign: TextAlign.start,
                   validate: validate.validateName,
                   obscureText: false,
                   maxLength: null,
@@ -66,6 +67,7 @@ class Registration_Page extends StatelessWidget {
                   height: 30.0,
                 ),
                 CustomTextField(
+                  textAlign: TextAlign.start,
                   validate: validate.validatePhoneNumber,
                   obscureText: false,
                   maxLength: 13,
@@ -81,6 +83,7 @@ class Registration_Page extends StatelessWidget {
                   height: 30.0,
                 ),
                 CustomTextField(
+                  textAlign: TextAlign.start,
                   validate: validate.validatePassword,
                   obscureText: true,
                   maxLength: null,
@@ -96,6 +99,7 @@ class Registration_Page extends StatelessWidget {
                   height: 30.0,
                 ),
                 CustomTextField(
+                  textAlign: TextAlign.start,
                   validate: validate.validateConfrimPassword,
                   obscureText: true,
                   maxLength: null,

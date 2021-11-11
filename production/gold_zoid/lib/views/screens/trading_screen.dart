@@ -101,6 +101,10 @@ class Trade_Page extends StatelessWidget {
                       residualName: 'Labor :',
                       residualValue: null,
                     ),
+                    Residual(
+                      residualName: 'Item :',
+                      residualValue: null,
+                    ),
                   ],
                 ),
                 height: 200.0,

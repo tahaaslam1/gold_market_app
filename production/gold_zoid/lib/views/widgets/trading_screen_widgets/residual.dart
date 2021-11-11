@@ -20,9 +20,7 @@ class Residual extends StatelessWidget {
               color: kPrimaryTextColor,
             ),
           ),
-          // SizedBox(
-          //   width: 40.0,
-          // ),
+        
           Container(
             height: 15.0,
             width: 50.0,
