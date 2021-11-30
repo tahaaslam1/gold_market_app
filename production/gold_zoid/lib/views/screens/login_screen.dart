@@ -52,7 +52,6 @@ class Login_Page extends StatelessWidget {
                   ),
                   CustomTextField(
                     textAlign: TextAlign.start,
-                    
                     validate: validate.validatePassword,
                     obscureText: true,
                     maxLength: null,
@@ -68,49 +67,41 @@ class Login_Page extends StatelessWidget {
                     height: 25.0,
                   ),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       SizedBox(
                         width: 5.0,
                       ),
-                      Expanded(
-                        flex: 1,
-                        child: Consumer<LoginController>(
-                          builder: (context, provider, _) {
-                            return InkWell(
-                              splashColor: Colors.white,
-                              onTap: () => provider.changeIcon(),
-                              child: Icon(
-                                provider.rememberMe
-                                    ? Icons.check_circle_outline
-                                    : Icons
-                                        .circle_notifications, //TODO: change icon to something "only a circle";
-                                color: kPrimaryColor,
-                              ),
-                            );
-                          },
-                        ),
-                      ),
-                      Expanded(
-                        flex: 3,
-                        child: Text(
-                          'Remember me',
-                          style: TextStyle(
-                            fontSize: 14.0,
-                            color: kSecondaryTextColor,
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        width: 20.0,
-                      ),
-                      Expanded(
-                        flex: 3,
+                      // Expanded(
+                      //   child: Consumer<LoginController>(
+                      //     builder: (context, provider, _) {
+                      //       return InkWell(
+                      //         splashColor: Colors.white,
+                      //         onTap: () => provider.changeIcon(),
+                      //         child: Icon(
+                      //           provider.rememberMe
+                      //               ? Icons.check_circle_outline
+                      //               : Icons
+                      //                   .circle_notifications, //TODO: change icon to something "only a circle";
+                      //           color: kPrimaryColor,
+                      //         ),
+                      //       );
+                      //     },
+                      //   ),
+                      // ),
+                      // SizedBox(
+                      //   width: 20.0,
+                      // ),
+                      Padding(
+                        padding: const EdgeInsets.only(
+                            right:
+                                15.0), //TODO: sett accordingly on seeing in mobitle
                         child: InkWell(
                           onTap: () {
                             print('Navigate to Forgot Password Screen');
                             // Navigate to Forgot Password Screen
-                            Navigator.pushNamed(context, '/forgetPasswordScreen');
+                            Navigator.pushNamed(
+                                context, '/forgetPasswordScreen');
                           },
                           child: Text(
                             'Forgot password ?',
@@ -123,7 +114,7 @@ class Login_Page extends StatelessWidget {
                       ),
                     ],
                   ),
-                  SizedBox(height: 45.0),
+                  SizedBox(height: 30.0),
                   InkWell(
                     onTap: () {
                       //TODO: check validation and check password and navigate to home screen

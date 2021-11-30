@@ -19,7 +19,7 @@ String validatePhoneNumber(value) {
     if (value.isEmpty)
       return "Phone number required";
     else if(!regExp.hasMatch(value)){
-      return "Enter a valid password";
+      return "Enter a valid phone number";
     }
     else 
       return null;

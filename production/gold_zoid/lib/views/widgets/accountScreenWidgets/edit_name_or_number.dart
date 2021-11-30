@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gold_zoid/constants.dart';
 
-
 class EditNameOrNumber extends StatelessWidget {
   final Widget icon;
   final String type;
@@ -54,10 +53,15 @@ class EditNameOrNumber extends StatelessWidget {
         ), // media query  daaalo idher ....... ... . . .. . . . .. . . . . . .here . . .. . . . .. .
         Expanded(
           flex: 2,
-          child: Icon(
-            Icons.edit,
-            size: 25.0,
-            color: kPrimaryColor,
+          child: InkWell(
+            onTap: () {
+              //TODO: open a bottom sheet for changing name of user
+            },
+            child: Icon(
+              Icons.edit,
+              size: 25.0,
+              color: kPrimaryColor,
+            ),
           ),
         ),
       ],

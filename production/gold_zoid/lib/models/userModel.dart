@@ -3,13 +3,14 @@ import 'package:gold_zoid/models/transactionModel.dart';
 
 class User {
   
-  String id;
+  String userId;
+  String emailId; 
   String name;
   String phone;
   String profileUrl;
   Inventory inventory;
   List<Transaction> transactions;
 
-  User({this.id, this.name, this.phone, this.profileUrl, this.inventory,this.transactions});
+  User({this.userId, this.name, this.phone, this.profileUrl, this.inventory,this.transactions,this.emailId});
 
 }

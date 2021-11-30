@@ -7,7 +7,7 @@ enum TransactionType{
 
 class Transaction{
   
-  String id;
+  String transactionId;
   TransactionType type;
   double wastage;
   double labour;
@@ -15,6 +15,6 @@ class Transaction{
   DateTime dateTime; 
   double transactionFinalAmount;
   
-  Transaction({ this.id , this.type ,this.wastage, this.labour, this.item,this.dateTime,this.transactionFinalAmount});
+  Transaction({ this.transactionId , this.type ,this.wastage, this.labour, this.item,this.dateTime,this.transactionFinalAmount});
   
 }
