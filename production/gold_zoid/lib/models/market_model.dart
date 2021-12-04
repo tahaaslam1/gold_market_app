@@ -1,4 +1,4 @@
-import 'package:gold_zoid/models/materialModel.dart';
+import 'package:gold_zoid/models/material_model.dart';
 
 class Market {
   
@@ -8,4 +8,4 @@ class Market {
   
   Market({this.time,this.materials});
 } 
-
+ 

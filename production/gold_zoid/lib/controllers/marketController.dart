@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
-import 'package:gold_zoid/models/materialModel.dart';
-import 'package:gold_zoid/models/marketModel.dart';
+import 'package:gold_zoid/models/material_model.dart';
+import 'package:gold_zoid/models/market_model.dart';
 import 'package:gold_zoid/repositries/marketInterface.dart';
 import 'package:gold_zoid/repositries/marketRepositry.dart';
 import 'package:provider/provider.dart';

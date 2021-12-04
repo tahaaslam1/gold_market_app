@@ -5,7 +5,7 @@ import 'package:gold_zoid/views/widgets/commonWidgets/custom_text_field.dart';
 import 'package:gold_zoid/views/titles/login_page_title.dart';
 import 'package:gold_zoid/views/widgets/commonWidgets/login_signup_navigator.dart';
 import 'package:provider/provider.dart';
-import 'package:gold_zoid/validationLogic/validation_logic.dart';
+import 'package:gold_zoid/controllers/validation_logic.dart';
 
 // ignore: camel_case_types
 class ForgetPassword extends StatelessWidget {

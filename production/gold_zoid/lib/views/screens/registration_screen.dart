@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gold_zoid/views/widgets/commonWidgets/login_signup_navigator.dart';
 import 'package:gold_zoid/constants.dart';
 import 'package:gold_zoid/views/widgets/commonWidgets/custom_text_field.dart';
-import 'package:gold_zoid/validationLogic/validation_logic.dart';
+import 'package:gold_zoid/controllers/validation_logic.dart';
 
 class Registration_Page extends StatelessWidget {
   GlobalKey<FormState> formKey = GlobalKey<FormState>();

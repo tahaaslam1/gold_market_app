@@ -1,0 +1,91 @@
+[
+    {
+        "userid": "U-485",
+        "name": "Taha",
+        "phone": "03035435444",
+        "email": "taha@gmail.com",
+        "profileUrl": "xyz",
+        "inventory": {
+            "totalGold": "20",
+            "totalGoldValue": 3534.45,
+            "items": [
+                {
+                    "itemId": "L-4545",
+                    "type": "ring",
+                    "material": {
+                        "materialType": "gold",
+                        "valuePerOunce": 4564.445
+                    },
+                    "qty": 4,
+                    "weightIngramsPerUnit": 5,
+                    "itemValue": 444.5
+                }
+            ]
+        },
+        "transactions": [
+            {
+                "transactionid": "T-453",
+                "type": "buy",
+                "wastage": 45.44,
+                "labour": 69.63,
+                "transactionFinalAmount": 4636.4,
+                "item": {
+                    "itemId": "I-909",
+                    "type": "chain",
+                    "material": {
+                        "materialType": "gold",
+                        "valuePerOunce": 4635.4
+                    },
+                    "qty": 5,
+                    "weightIngramsPerUnit": 35,
+                    "itemValue": 424.55
+                }
+            }
+        ]
+    },
+    {
+        "userid": "U-485",
+        "name": "Taha",
+        "phone": "03035435444",
+        "email": "taha@gmail.com",
+        "profileUrl": "xyz",
+        "inventory": {
+            "totalGold": "20",
+            "totalGoldValue": 3534.45,
+            "items": [
+                {
+                    "itemId": "L-4545",
+                    "type": "ring",
+                    "material": {
+                        "materialType": "gold",
+                        "valuePerOunce": 4564.445
+                    },
+                    "qty": 4,
+                    "weightIngramsPerUnit": 5,
+                    "itemValue": 444.5
+                }
+            ]
+        },
+        "transactions": [
+            {
+                "transactionid": "T-453",
+                "type": "buy",
+                "wastage": 45.44,
+                "labour": 69.63,
+                "transactionFinalAmount": 4636.4,
+                "item": {
+                    "itemId": "I-909",
+                    "type": "chain",
+                    "material": {
+                        "materialType": "gold",
+                        "valuePerOunce": 4635.4
+                    },
+                    "qty": 5,
+                    "weightIngramsPerUnit": 35,
+                    "itemValue": 424.55
+                }
+               
+            }
+        ]
+    }
+]

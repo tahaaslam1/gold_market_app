@@ -7,8 +7,8 @@ import 'package:gold_zoid/views/widgets/homeScreenWidgets/gold_value_widget.dart
 import 'package:gold_zoid/views/widgets/homeScreenWidgets/graph_selector_widget.dart';
 import 'package:provider/provider.dart';
 import 'package:gold_zoid/controllers/marketController.dart';
-import 'package:gold_zoid/models/materialModel.dart' as material;
-import 'package:gold_zoid/models/marketModel.dart';
+import 'package:gold_zoid/models/material_model.dart' as material;
+import 'package:gold_zoid/models/market_model.dart';
 import 'package:gold_zoid/views/widgets/commonWidgets/drawer_button.dart';
 import 'package:gold_zoid/views/widgets/drawer/custom_drawer.dart';
 
