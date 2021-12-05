@@ -28,7 +28,7 @@ const kBlackDivider2 = VerticalDivider(
 );
 
 const kBlackDivider = Divider(
-  color: kPrimaryTextColor,
+  color: kSecondaryTextColor,
   thickness: 2.0,
   indent: 40.0,
   endIndent: 40.0,
