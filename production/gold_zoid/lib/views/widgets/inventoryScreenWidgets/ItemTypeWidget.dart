@@ -17,7 +17,7 @@ class ItemTypeWidget extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(left: 35.0),
                 child: Text(
-                  'Item Name',
+                  'Item Type',
                   style: TextStyle(
                     fontSize: 15.0,
                     color: kPrimaryTextColor,
@@ -28,6 +28,8 @@ class ItemTypeWidget extends StatelessWidget {
                 padding: const EdgeInsets.only(right: 20.0),
                 child: InkWell(
                   onTap: () {
+                    
+                    Navigator.pushNamed(context,'/itemListScreen');
                     print(
                       'view all (for particular item)',
                     );

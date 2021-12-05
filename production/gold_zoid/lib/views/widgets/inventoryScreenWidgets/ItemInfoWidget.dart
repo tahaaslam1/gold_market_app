@@ -12,7 +12,7 @@ class ItemInfoWidget extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Container(
-              child: Column(
+              child: Column( 
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Image.asset(

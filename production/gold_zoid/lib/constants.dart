@@ -20,6 +20,12 @@ const kGoldValueTextTextStyle = TextStyle(
   color: kPrimaryTextColor,
   fontFamily: 'Avenir-Light',
 );
+const kBlackDivider2 = VerticalDivider(
+  color: kPrimaryTextColor,
+  thickness: 2.0,
+  indent: 15.0,
+  endIndent: 15.0,
+);
 
 const kBlackDivider = Divider(
   color: kPrimaryTextColor,

@@ -18,6 +18,7 @@ class Item {
   int qty;
   int weightInGramsPerUnit;
   double itemValue;
+  int karrot;
 
   Item({
     this.itemId,
@@ -26,6 +27,7 @@ class Item {
     this.qty,
     this.weightInGramsPerUnit,
     this.itemValue,
+    this.karrot
   });
 
 factory Item.fromJson(Map<String, dynamic> json) {
@@ -36,6 +38,7 @@ factory Item.fromJson(Map<String, dynamic> json) {
             qty: json['qty'],
             type: json['type'],
             weightInGramsPerUnit: json['weightIngramsPerUnit'],
+            karrot: json['karrot'],
         );
     }
 
