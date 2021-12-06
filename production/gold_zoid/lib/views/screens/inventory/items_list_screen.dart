@@ -13,7 +13,7 @@ class ItemListScreen extends StatelessWidget {
         backgroundColor: kPrimaryColor,
         splashColor: Colors.amber[800],
         onPressed: () {
-          _showAddNewItemTypeBottomSheet(context);
+          _showAddNewItemBottomSheet(context);
         },
         child: Icon(
           Icons.add,
@@ -80,7 +80,7 @@ class ItemListScreen extends StatelessWidget {
   }
 }
 
-void _showAddNewItemTypeBottomSheet(context) {
+void _showAddNewItemBottomSheet(context) {
   showModalBottomSheet(
     shape: RoundedRectangleBorder(
       borderRadius:BorderRadius.only(topLeft: Radius.circular(15.0),topRight: Radius.circular(15.0),), 
@@ -115,7 +115,7 @@ Column addNewItemBottomSheetMenu() {
             Padding(
               padding: const EdgeInsets.only(left: 15.0),
               child: Text(
-                'Add New Gold Item',
+                'Add New Gold Item for (item type)',
                 style: TextStyle(
                   color: kSecondaryTextColor,
                   fontSize: 17.0,
