@@ -1,14 +1,14 @@
 import 'package:gold_zoid/models/item_model.dart';
 
-enum TransactionType{
-  buy,
-  sell,
-}
+// enum TransactionType{
+//   buy,
+//   sell,
+// }
 
 class Transaction{
    
   String transactionId;
-  TransactionType type;
+  String type;
   double wastage;
   double labour;
   Item item;
@@ -27,5 +27,14 @@ class Transaction{
             wastage: json['wastage'], 
         );
     }
+
+    Map<String, dynamic> toJson() => {
+				'transactionid': transactionId,
+				'type': type,
+				'wastage': wastage,
+				'labour': labour,
+				'transactionFinalAmount': transactionFinalAmount,
+				'item': item.toJson(),
+			};
   
 }

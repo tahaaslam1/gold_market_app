@@ -3,6 +3,8 @@ import 'package:gold_zoid/views/widgets/commonWidgets/login_signup_navigator.dar
 import 'package:gold_zoid/constants.dart';
 import 'package:gold_zoid/views/widgets/commonWidgets/custom_text_field.dart';
 import 'package:gold_zoid/controllers/validation_logic.dart';
+import 'package:provider/provider.dart';
+import 'package:gold_zoid/controllers/password_show_controller.dart';
 
 class Registration_Page extends StatelessWidget {
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
@@ -56,7 +58,7 @@ class Registration_Page extends StatelessWidget {
                   obscureText: false,
                   maxLength: null,
                   keyboardType: TextInputType.name,
-                  icon: Icon(
+                  prefixIcon: Icon(
                     Icons.person_outline,
                     color: kPrimaryColor,
                     size: 30.0,
@@ -72,7 +74,7 @@ class Registration_Page extends StatelessWidget {
                   obscureText: false,
                   maxLength: 13,
                   keyboardType: TextInputType.phone,
-                  icon: Icon(
+                  prefixIcon: Icon(
                     Icons.call_outlined,
                     color: kPrimaryColor,
                     size: 30.0,
@@ -82,35 +84,61 @@ class Registration_Page extends StatelessWidget {
                 SizedBox(
                   height: 30.0,
                 ),
-                CustomTextField(
-                  textAlign: TextAlign.start,
-                  validate: validate.validatePassword,
-                  obscureText: true,
-                  maxLength: null,
-                  keyboardType: TextInputType.visiblePassword,
-                  icon: Icon(
-                    Icons.lock_outline,
-                    color: kPrimaryColor,
-                    size: 30.0,
+                Consumer<PasswordShowController>(
+                    builder: (context, provider, _) {
+                      return CustomTextField(
+                        textAlign: TextAlign.start,
+                        validate: validate.validatePassword,
+                        maxLength: null,
+                        keyboardType: TextInputType.visiblePassword,
+                        prefixIcon: Icon(
+                          Icons.lock_outline,
+                          color: kPrimaryColor,
+                          size: 30.0,
+                        ),
+                        suffixIcon: InkWell(
+                          onTap: () => provider.changePasswordIcon(),
+                          child: Icon(
+                            provider.securetext ?
+                            Icons.remove_red_eye : Icons.remove_red_eye_outlined,
+                            color: kPrimaryColor,
+                            size: 30.0,
+                          ),
+                        ),
+                        obscureText: provider.securetext,
+                        hintText: 'Enter your password',
+                      );
+                    },
                   ),
-                  hintText: 'Enter your password',
-                ),
                 SizedBox(
                   height: 30.0,
                 ),
-                CustomTextField(
-                  textAlign: TextAlign.start,
-                  validate: validate.validateConfrimPassword,
-                  obscureText: true,
-                  maxLength: null,
-                  keyboardType: TextInputType.name,
-                  icon: Icon(
-                    Icons.lock_outline,
-                    color: kPrimaryColor,
-                    size: 30.0,
+                Consumer<PasswordShowController>(
+                    builder: (context, provider, _) {
+                      return CustomTextField(
+                        textAlign: TextAlign.start,
+                        validate: validate.validatePassword,
+                        maxLength: null,
+                        keyboardType: TextInputType.visiblePassword,
+                        prefixIcon: Icon(
+                          Icons.lock_outline,
+                          color: kPrimaryColor,
+                          size: 30.0,
+                        ),
+                        suffixIcon: InkWell(
+                          onTap: () => provider.changePasswordIcon(),
+                          child: Icon(
+                            provider.securetext ?
+                            Icons.remove_red_eye : Icons.remove_red_eye_outlined,
+                            color: kPrimaryColor,
+                            size: 30.0,
+                          ),
+                        ),
+                        obscureText: provider.securetext,
+                        hintText: 'Enter your password',
+                      );
+                    },
                   ),
-                  hintText: 'Confirm your password',
-                ),
                 SizedBox(
                   height: 40.0,
                 ),

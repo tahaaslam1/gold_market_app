@@ -58,7 +58,7 @@ flutter:
     - assets/images/gold_icon.png
     - assets/images/gold_icon2.png
     - assets/images/silver_icon.png
-
+    - assets/dummyData.json
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in

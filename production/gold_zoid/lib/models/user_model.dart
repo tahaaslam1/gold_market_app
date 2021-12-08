@@ -25,4 +25,14 @@ class User {
         );
     }
 
+    Map<String, dynamic> toJson() => {
+				'userid': userId,
+				'name': name,
+				'phone': phone,
+				'email': emailId,
+				'profileUrl': profileUrl,
+				'inventory': inventory.toJson(),
+				'transactions': transactions.map((e) => e.toJson()).toList(),
+			};
+
 }

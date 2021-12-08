@@ -12,4 +12,8 @@ class Application {
 
     return new Application(users: users);
   }
+
+  Map<String, dynamic> toJson() => {
+				'users': users.map((e) => e.toJson()).toList(),
+			};
 }

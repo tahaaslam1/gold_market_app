@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gold_zoid/controllers/marketController.dart';
+import 'package:gold_zoid/testservices.dart';
 import 'package:gold_zoid/views/screens/account_screen.dart';
 import 'package:gold_zoid/views/screens/forget_password_screen.dart';
 import 'package:gold_zoid/views/screens/inventory/inventory_screen.dart';
@@ -11,17 +12,18 @@ import 'package:gold_zoid/views/titles/home_page_title.dart';
 import 'views/screens/home_screen.dart';
 import 'package:provider/provider.dart';
 
-import 'controllers/login_controller.dart';
+import 'controllers/password_show_controller.dart';
 
 void main() {
   runApp(
     MultiProvider(
       providers: [
-        ChangeNotifierProvider(create : (_) => LoginController()),
+        ChangeNotifierProvider(create : (_) => PasswordShowController()),
       ],
       child: Gold_Zoid(),
     ),
   );
+  loadInventory('U-486');
 }
 
 // ignore: camel_case_types

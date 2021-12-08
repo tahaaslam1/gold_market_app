@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gold_zoid/constants.dart';
-import 'package:gold_zoid/controllers/login_controller.dart';
+import 'package:gold_zoid/controllers/password_show_controller.dart';
 import 'package:gold_zoid/views/widgets/commonWidgets/custom_text_field.dart';
 import 'package:gold_zoid/views/titles/login_page_title.dart';
 import 'package:gold_zoid/views/widgets/commonWidgets/login_signup_navigator.dart';
@@ -12,7 +12,6 @@ class Login_Page extends StatelessWidget {
   //bool rememberMeIcon = true;
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   var validate = ValidationLogic();
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,7 +39,7 @@ class Login_Page extends StatelessWidget {
                     obscureText: false,
                     keyboardType: TextInputType.phone,
                     maxLength: 13,
-                    icon: Icon(
+                    prefixIcon: Icon(
                       Icons.call_outlined,
                       color: kPrimaryColor,
                       size: 30.0,
@@ -50,18 +49,31 @@ class Login_Page extends StatelessWidget {
                   SizedBox(
                     height: 30.0,
                   ),
-                  CustomTextField(
-                    textAlign: TextAlign.start,
-                    validate: validate.validatePassword,
-                    obscureText: true,
-                    maxLength: null,
-                    keyboardType: TextInputType.visiblePassword,
-                    icon: Icon(
-                      Icons.lock_outline,
-                      color: kPrimaryColor,
-                      size: 30.0,
-                    ),
-                    hintText: 'Enter your password',
+                  Consumer<PasswordShowController>(
+                    builder: (context, provider, _) {
+                      return CustomTextField(
+                        textAlign: TextAlign.start,
+                        validate: validate.validatePassword,
+                        maxLength: null,
+                        keyboardType: TextInputType.visiblePassword,
+                        prefixIcon: Icon(
+                          Icons.lock_outline,
+                          color: kPrimaryColor,
+                          size: 30.0,
+                        ),
+                        suffixIcon: InkWell(
+                          onTap: () => provider.changePasswordIcon(),
+                          child: Icon(
+                            provider.securetext ?
+                            Icons.remove_red_eye : Icons.remove_red_eye_outlined,
+                            color: kPrimaryColor,
+                            size: 30.0,
+                          ),
+                        ),
+                        obscureText: provider.securetext,
+                        hintText: 'Enter your password',
+                      );
+                    },
                   ),
                   SizedBox(
                     height: 25.0,
@@ -72,26 +84,6 @@ class Login_Page extends StatelessWidget {
                       SizedBox(
                         width: 5.0,
                       ),
-                      // Expanded(
-                      //   child: Consumer<LoginController>(
-                      //     builder: (context, provider, _) {
-                      //       return InkWell(
-                      //         splashColor: Colors.white,
-                      //         onTap: () => provider.changeIcon(),
-                      //         child: Icon(
-                      //           provider.rememberMe
-                      //               ? Icons.check_circle_outline
-                      //               : Icons
-                      //                   .circle_notifications, //TODO: change icon to something "only a circle";
-                      //           color: kPrimaryColor,
-                      //         ),
-                      //       );
-                      //     },
-                      //   ),
-                      // ),
-                      // SizedBox(
-                      //   width: 20.0,
-                      // ),
                       Padding(
                         padding: const EdgeInsets.only(
                             right:

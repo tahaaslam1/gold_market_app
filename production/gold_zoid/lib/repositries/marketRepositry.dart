@@ -27,8 +27,8 @@ class MarketRepositry implements IMarketRepositry {
     final Market market = Market(
       time: DateTime.now(),
       materials: [
-        Material(materialType :MaterialType.gold,valuePerOunce: goldRate),
-        Material(materialType :MaterialType.silver,valuePerOunce:silverRate)
+        Material(materialType :'gold',valuePerOunce: goldRate),
+        Material(materialType :'silver',valuePerOunce:silverRate)
       ],
     );
     markets.add(market);

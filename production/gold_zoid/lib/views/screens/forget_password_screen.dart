@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gold_zoid/constants.dart';
-import 'package:gold_zoid/controllers/login_controller.dart';
+import 'package:gold_zoid/controllers/password_show_controller.dart';
 import 'package:gold_zoid/views/widgets/commonWidgets/custom_text_field.dart';
 import 'package:gold_zoid/views/titles/login_page_title.dart';
 import 'package:gold_zoid/views/widgets/commonWidgets/login_signup_navigator.dart';
@@ -52,7 +52,7 @@ class ForgetPassword extends StatelessWidget {
                   obscureText: false,
                   maxLength: null,
                   keyboardType: TextInputType.emailAddress,
-                  icon: null,
+                  prefixIcon: null,
                   hintText: 'Enter your email address',
                 ),
                 SizedBox(

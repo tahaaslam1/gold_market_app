@@ -1,19 +1,19 @@
 import 'package:gold_zoid/models/material_model.dart';
 
-enum ItemType {
-  ring,
-  earring,
-  pendant, 
-  chain,
-  bangle,
-  bracelet,
-  neklace,
-  nosepin,
-}
+// enum ItemType {
+//   ring,
+//   earring,
+//   pendant, 
+//   chain,
+//   bangle,
+//   bracelet,
+//   neklace,
+//   nosepin,
+// }
 
 class Item {
   String itemId;
-  ItemType type;
+  String type;
   Material material;
   int qty;
   int weightInGramsPerUnit;
@@ -41,6 +41,15 @@ factory Item.fromJson(Map<String, dynamic> json) {
             karrot: json['karrot'],
         );
     }
+
+    Map<String, dynamic> toJson() => {
+				'itemId': itemId,
+				'type': type,
+				'material': material.toJson(),
+				'qty': qty,
+				'weightIngramsPerUnit': weightInGramsPerUnit,
+				'itemValue': itemValue,
+			};
 
 }
 

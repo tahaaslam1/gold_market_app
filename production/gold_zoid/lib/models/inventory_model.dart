@@ -10,11 +10,19 @@ class Inventory{
   Inventory({this.totalGold,this.totalGoldValue,this.items});
 
   factory Inventory.fromJson(Map<String, dynamic> json) {
+    var list = json['items'] as List;
+    List<Item> itemsList = list.map((i) => Item.fromJson(i)).toList();
         return Inventory(
-            items: json['items'] != null ? (json['items'] as List).map((i) => Item.fromJson(i)).toList() : null,
+            items: itemsList,
             totalGold: json['totalGold'],
             totalGoldValue: json['totalGoldValue'],
         );
     }
+
+    Map<String, dynamic> toJson() => {
+				'totalGold': totalGold,
+				'totalGoldValue': totalGoldValue,
+				'items': items.map((e) => e.toJson()).toList(),
+			};
 
 }

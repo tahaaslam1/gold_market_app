@@ -19,6 +19,17 @@
                     "qty": 4,
                     "weightIngramsPerUnit": 5,
                     "itemValue": 444.5
+                },
+                {
+                    "itemId": "L-4544",
+                    "type": "ring",
+                    "material": {
+                        "materialType": "gold",
+                        "valuePerOunce": 4564.445
+                    },
+                    "qty": 4,
+                    "weightIngramsPerUnit": 5,
+                    "itemValue": 444.5
                 }
             ]
         },
@@ -44,7 +55,7 @@
         ]
     },
     {
-        "userid": "U-485",
+        "userid": "U-486",
         "name": "Taha",
         "phone": "03035435444",
         "email": "taha@gmail.com",
@@ -54,7 +65,18 @@
             "totalGoldValue": 3534.45,
             "items": [
                 {
-                    "itemId": "L-4545",
+                    "itemId": "L-4546",
+                    "type": "ring",
+                    "material": {
+                        "materialType": "gold",
+                        "valuePerOunce": 4564.445
+                    },
+                    "qty": 4,
+                    "weightIngramsPerUnit": 5,
+                    "itemValue": 444.5
+                },
+                {
+                    "itemId": "L-4547",
                     "type": "ring",
                     "material": {
                         "materialType": "gold",

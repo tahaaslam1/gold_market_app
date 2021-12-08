@@ -1,14 +1,14 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-enum MaterialType {
-  gold,
-  silver,
-}
+// enum MaterialType {
+//   gold,
+//   silver,
+// }
 
 class Material {
   
-  MaterialType materialType;
+  String materialType;
   double valuePerOunce;
 
   Material({this.materialType, this.valuePerOunce});
@@ -19,4 +19,9 @@ class Material {
             valuePerOunce: json['valuePerOunce'],
         );
     }
+
+    Map<String, dynamic> toJson() => {
+				'materialType': materialType,
+				'valuePerOunce': valuePerOunce,
+			};
 }
