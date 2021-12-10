@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:gold_zoid/controllers/user_login_signup_controller.dart';
+import 'package:gold_zoid/models/user_model.dart';
 import 'package:gold_zoid/views/widgets/commonWidgets/login_signup_navigator.dart';
 import 'package:gold_zoid/constants.dart';
 import 'package:gold_zoid/views/widgets/commonWidgets/custom_text_field.dart';
@@ -12,22 +14,62 @@ class Registration_Page extends StatefulWidget {
 }
 
 class _Registration_PageState extends State<Registration_Page> {
-
+  // User user = User(userId: '',password: '');
   final _name = TextEditingController();
   final _emailId = TextEditingController();
   final _password = TextEditingController();
   final _confirmPassword = TextEditingController();
 
+  bool isLogin = false;
+
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   var _validate = ValidationLogic();
+
+  UserLoginSignUpController signUp = UserLoginSignUpController();
+
+  Future<dynamic> _tryRegister(
+      String emailId, String password, String name) async {
+    final form = _formKey.currentState;
+    if (form.validate()) {
+      form.save();
+
+      var msg = await signUp.registerUser(emailId, password, name);
+      if (msg == '') {
+        // msg update huga
+        print('Register Successfull');
+
+        return true;
+        //
+      } else {
+        print('Invalid Entry');
+
+        return msg;
+      }
+    }
+  }
+
+  void _showFailSnackBar(var errorMsg, BuildContext context) {
+    final scaffold = Scaffold.of(context);
+    scaffold.showSnackBar(
+      SnackBar(
+        behavior: SnackBarBehavior.floating,
+        content: Text(
+          errorMsg,
+          textAlign: TextAlign.center,
+          style: TextStyle(),
+        ),
+      ),
+    );
+  }
 
   @override
   void dispose() {
     _name.dispose();
     _emailId.dispose();
     _password.dispose();
-    _confirmPassword.dispose(); 
+    _confirmPassword.dispose();
 
     super.dispose();
   }
@@ -35,6 +77,7 @@ class _Registration_PageState extends State<Registration_Page> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Form(
@@ -109,72 +152,92 @@ class _Registration_PageState extends State<Registration_Page> {
                   height: 30.0,
                 ),
                 Consumer<PasswordShowController>(
-                    builder: (context, provider, _) {
-                      return CustomTextField(
-                        controller: _password,
-                        textAlign: TextAlign.start,
-                        validate: _validate.validatePassword,
-                        maxLength: null,
-                        keyboardType: TextInputType.visiblePassword,
-                        prefixIcon: Icon(
-                          Icons.lock_outline,
+                  builder: (context, provider, _) {
+                    return CustomTextField(
+                      controller: _password,
+                      textAlign: TextAlign.start,
+                      validate: _validate.validatePassword,
+                      maxLength: null,
+                      keyboardType: TextInputType.visiblePassword,
+                      prefixIcon: Icon(
+                        Icons.lock_outline,
+                        color: kPrimaryColor,
+                        size: 30.0,
+                      ),
+                      suffixIcon: InkWell(
+                        onTap: () => provider.changePasswordIcon(),
+                        child: Icon(
+                          provider.securetext
+                              ? Icons.remove_red_eye
+                              : Icons.remove_red_eye_outlined,
                           color: kPrimaryColor,
                           size: 30.0,
                         ),
-                        suffixIcon: InkWell(
-                          onTap: () => provider.changePasswordIcon(),
-                          child: Icon(
-                            provider.securetext ?
-                            Icons.remove_red_eye : Icons.remove_red_eye_outlined,
-                            color: kPrimaryColor,
-                            size: 30.0,
-                          ),
-                        ),
-                        obscureText: provider.securetext,
-                        hintText: 'Enter your password',
-                      );
-                    },
-                  ),
+                      ),
+                      obscureText: provider.securetext,
+                      hintText: 'Enter your password',
+                    );
+                  },
+                ),
                 SizedBox(
                   height: 30.0,
                 ),
                 Consumer<PasswordShowController>(
-                    builder: (context, provider, _) {
-                      return CustomTextField(
-                        controller: _confirmPassword,
-                        textAlign: TextAlign.start,
-                        validate: _validate.validatePassword,
-                        maxLength: null,
-                        keyboardType: TextInputType.visiblePassword,
-                        prefixIcon: Icon(
-                          Icons.lock_outline,
+                  builder: (context, provider, _) {
+                    return CustomTextField(
+                      controller: _confirmPassword,
+                      textAlign: TextAlign.start,
+                      validate: _validate.validateConfrimPassword,
+                      maxLength: null,
+                      keyboardType: TextInputType.visiblePassword,
+                      prefixIcon: Icon(
+                        Icons.lock_outline,
+                        color: kPrimaryColor,
+                        size: 30.0,
+                      ),
+                      suffixIcon: InkWell(
+                        onTap: () => provider.changePasswordIcon(),
+                        child: Icon(
+                          provider.securetext
+                              ? Icons.remove_red_eye
+                              : Icons.remove_red_eye_outlined,
                           color: kPrimaryColor,
                           size: 30.0,
                         ),
-                        suffixIcon: InkWell(
-                          onTap: () => provider.changePasswordIcon(),
-                          child: Icon(
-                            provider.securetext ?
-                            Icons.remove_red_eye : Icons.remove_red_eye_outlined,
-                            color: kPrimaryColor,
-                            size: 30.0,
-                          ),
-                        ),
-                        obscureText: provider.securetext,
-                        hintText: 'Enter your password',
-                      );
-                    },
-                  ),
+                      ),
+                      obscureText: provider.securetext,
+                      hintText: 'Enter your password',
+                    );
+                  },
+                ),
                 SizedBox(
                   height: 40.0,
                 ),
                 Center(
                   child: InkWell(
                     onTap: () {
-                      if(_name == null && _emailId == null && _password == null && _confirmPassword == null && _password!=_confirmPassword ) 
-                      print("enter fields correctly");
-
-                      // autenticate user and navigate to homePAge..
+                      var checkSignup = _tryRegister(
+                          _emailId.text, _password.text, _name.text);
+                      if (checkSignup == true) {
+                        Navigator.pushReplacementNamed(context, '/homeScreen');
+                      } else {
+                        FutureBuilder(
+                          future: checkSignup,
+                          builder: (context, snapshot) {
+                           _scaffoldKey.currentState.showSnackBar(
+                            SnackBar(
+                                behavior: SnackBarBehavior.floating,
+                                content: Text(
+                                  snapshot.data,
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(),
+                                ),
+                              ),
+                            );
+                          },
+                        );
+                        // autenticate user and navigate to homePAge..
+                      }
                     },
                     child: Container(
                       child: Center(

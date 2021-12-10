@@ -4,6 +4,7 @@ import 'package:gold_zoid/models/transaction_model.dart';
 class User {
   
   String userId;
+  String password;
   String emailId; 
   String name;
   String phone;
@@ -11,11 +12,12 @@ class User {
   Inventory inventory;
   List<Transaction> transactions;
  
-  User({this.userId, this.name, this.phone, this.profileUrl, this.inventory,this.transactions,this.emailId});
+  User({this.userId, this.name, this.phone, this.profileUrl, this.inventory,this.transactions,this.emailId,this.password});
 
   factory User.fromJson(Map<String, dynamic> json) {
         return User(
             emailId: json['email'], 
+            password : json['password'],
             inventory: json['inventory'] != null ? Inventory.fromJson(json['inventory']) : null, 
             name: json['name'], 
             phone: json['phone'], 

@@ -23,7 +23,7 @@ void main() {
       child: Gold_Zoid(),
     ),
   );
-  loadInventory('U-486');
+  //loadInventory('U-486');
 }
 
 // ignore: camel_case_types
