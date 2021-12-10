@@ -6,9 +6,31 @@ import 'package:gold_zoid/controllers/validation_logic.dart';
 import 'package:provider/provider.dart';
 import 'package:gold_zoid/controllers/password_show_controller.dart';
 
-class Registration_Page extends StatelessWidget {
-  GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  var validate = ValidationLogic();
+class Registration_Page extends StatefulWidget {
+  @override
+  _Registration_PageState createState() => _Registration_PageState();
+}
+
+class _Registration_PageState extends State<Registration_Page> {
+
+  final _name = TextEditingController();
+  final _emailId = TextEditingController();
+  final _password = TextEditingController();
+  final _confirmPassword = TextEditingController();
+
+  GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  var _validate = ValidationLogic();
+
+  @override
+  void dispose() {
+    _name.dispose();
+    _emailId.dispose();
+    _password.dispose();
+    _confirmPassword.dispose(); 
+
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +39,7 @@ class Registration_Page extends StatelessWidget {
         child: SingleChildScrollView(
           child: Form(
             autovalidateMode: AutovalidateMode.always,
-            key: formKey,
+            key: _formKey,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.center,
@@ -53,8 +75,9 @@ class Registration_Page extends StatelessWidget {
                   height: 70.0,
                 ),
                 CustomTextField(
+                  controller: _name,
                   textAlign: TextAlign.start,
-                  validate: validate.validateName,
+                  validate: _validate.validateName,
                   obscureText: false,
                   maxLength: null,
                   keyboardType: TextInputType.name,
@@ -69,8 +92,9 @@ class Registration_Page extends StatelessWidget {
                   height: 30.0,
                 ),
                 CustomTextField(
+                  controller: _emailId,
                   textAlign: TextAlign.start,
-                  validate: validate.validatePhoneNumber,
+                  validate: _validate.validatePhoneNumber,
                   obscureText: false,
                   maxLength: 13,
                   keyboardType: TextInputType.phone,
@@ -87,8 +111,9 @@ class Registration_Page extends StatelessWidget {
                 Consumer<PasswordShowController>(
                     builder: (context, provider, _) {
                       return CustomTextField(
+                        controller: _password,
                         textAlign: TextAlign.start,
-                        validate: validate.validatePassword,
+                        validate: _validate.validatePassword,
                         maxLength: null,
                         keyboardType: TextInputType.visiblePassword,
                         prefixIcon: Icon(
@@ -116,8 +141,9 @@ class Registration_Page extends StatelessWidget {
                 Consumer<PasswordShowController>(
                     builder: (context, provider, _) {
                       return CustomTextField(
+                        controller: _confirmPassword,
                         textAlign: TextAlign.start,
-                        validate: validate.validatePassword,
+                        validate: _validate.validatePassword,
                         maxLength: null,
                         keyboardType: TextInputType.visiblePassword,
                         prefixIcon: Icon(
@@ -145,6 +171,9 @@ class Registration_Page extends StatelessWidget {
                 Center(
                   child: InkWell(
                     onTap: () {
+                      if(_name == null && _emailId == null && _password == null && _confirmPassword == null && _password!=_confirmPassword ) 
+                      print("enter fields correctly");
+
                       // autenticate user and navigate to homePAge..
                     },
                     child: Container(
