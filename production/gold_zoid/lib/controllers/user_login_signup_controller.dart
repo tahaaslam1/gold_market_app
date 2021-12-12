@@ -1,18 +1,26 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:gold_zoid/repositries/user_login_signup_repositry.dart';
 import 'package:http/http.dart' as http;
+import 'package:gold_zoid/controllers/custom_exception_handler.dart';
 
-class UserLoginSignUpController{
 
+class UserLoginSignUpController {
+  
   UserLoginSignupRepositry signUp = UserLoginSignupRepositry();
   
-  Future<String> registerUser(String emailId,String password,String name) async {
-    var msg = '';
-
-    msg = await signUp.registerUser(emailId,password,name);
-
-    print('after sign up msg : $msg');
-    return msg;
+  registerUser(String emailId,String password,String name) async {
+    
+    try{
+    var responseRespositry = await signUp.registerUser(emailId,password,name);
+    print('2: after sign up msg : $responseRespositry');
+    return responseRespositry; 
+    }
+    catch (e){
+      print('exception 2 : $e');
+    }
+    
   }
     
 }

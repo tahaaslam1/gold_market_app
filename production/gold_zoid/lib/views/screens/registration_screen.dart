@@ -7,6 +7,7 @@ import 'package:gold_zoid/views/widgets/commonWidgets/custom_text_field.dart';
 import 'package:gold_zoid/controllers/validation_logic.dart';
 import 'package:provider/provider.dart';
 import 'package:gold_zoid/controllers/password_show_controller.dart';
+import 'package:gold_zoid/controllers/custom_exception_handler.dart';
 
 class Registration_Page extends StatefulWidget {
   @override
@@ -19,7 +20,8 @@ class _Registration_PageState extends State<Registration_Page> {
   final _emailId = TextEditingController();
   final _password = TextEditingController();
   final _confirmPassword = TextEditingController();
-
+  String _registrationText;
+  bool _customSnackbar;
   bool isLogin = false;
 
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
@@ -34,34 +36,20 @@ class _Registration_PageState extends State<Registration_Page> {
     final form = _formKey.currentState;
     if (form.validate()) {
       form.save();
-
-      var msg = await signUp.registerUser(emailId, password, name);
-      if (msg == '') {
-        // msg update huga
-        print('Register Successfull');
-
-        return true;
-        //
-      } else {
-        print('Invalid Entry');
-
-        return msg;
+      try {
+        var resgistrationResponse =
+            await signUp.registerUser(emailId, password, name);
+        if (resgistrationResponse == 'Successfully signed up') {
+          print('Register Successfull');
+          Navigator.pushReplacementNamed(context, '/homeScreen');
+          return resgistrationResponse;
+        } else {
+          return false;
+        }
+      } catch (SocketException) {
+        return false;
       }
     }
-  }
-
-  void _showFailSnackBar(var errorMsg, BuildContext context) {
-    final scaffold = Scaffold.of(context);
-    scaffold.showSnackBar(
-      SnackBar(
-        behavior: SnackBarBehavior.floating,
-        content: Text(
-          errorMsg,
-          textAlign: TextAlign.center,
-          style: TextStyle(),
-        ),
-      ),
-    );
   }
 
   @override
@@ -137,16 +125,16 @@ class _Registration_PageState extends State<Registration_Page> {
                 CustomTextField(
                   controller: _emailId,
                   textAlign: TextAlign.start,
-                  validate: _validate.validatePhoneNumber,
+                  validate: _validate.validateEmail,
                   obscureText: false,
-                  maxLength: 13,
-                  keyboardType: TextInputType.phone,
+                  maxLength: null,
+                  keyboardType: TextInputType.emailAddress,
                   prefixIcon: Icon(
-                    Icons.call_outlined,
+                    Icons.email_outlined,
                     color: kPrimaryColor,
                     size: 30.0,
                   ),
-                  hintText: 'Enter your phone number',
+                  hintText: 'Enter your email address',
                 ),
                 SizedBox(
                   height: 30.0,
@@ -216,26 +204,43 @@ class _Registration_PageState extends State<Registration_Page> {
                 Center(
                   child: InkWell(
                     onTap: () {
-                      var checkSignup = _tryRegister(
-                          _emailId.text, _password.text, _name.text);
-                      if (checkSignup == true) {
-                        Navigator.pushReplacementNamed(context, '/homeScreen');
-                      } else {
-                        FutureBuilder(
-                          future: checkSignup,
-                          builder: (context, snapshot) {
-                           _scaffoldKey.currentState.showSnackBar(
-                            SnackBar(
-                                behavior: SnackBarBehavior.floating,
-                                content: Text(
-                                  snapshot.data,
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(),
-                                ),
-                              ),
-                            );
-                          },
+                      if (!_formKey.currentState.validate()) {
+                        _scaffoldKey.currentState.showSnackBar(
+                          SnackBar(
+                            behavior: SnackBarBehavior.floating,
+                            content: Text(
+                              'Enter Correct Credentials',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(),
+                            ),
+                          ),
                         );
+                      } else {
+                        if (_tryRegister(
+                                _emailId.text, _password.text, _name.text) ==
+                            'Successfully signed up') {
+                          _scaffoldKey.currentState.showSnackBar(
+                            SnackBar(
+                              behavior: SnackBarBehavior.floating,
+                              content: Text(
+                                'Registration successfull',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(),
+                              ),
+                            ),
+                          );
+                        } else {
+                          _scaffoldKey.currentState.showSnackBar(
+                            SnackBar(
+                              behavior: SnackBarBehavior.floating,
+                              content: Text(
+                                'User Already Registred with provided email',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(),
+                              ),
+                            ),
+                          );
+                        }
                         // autenticate user and navigate to homePAge..
                       }
                     },
