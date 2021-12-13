@@ -60,7 +60,6 @@ class _Registration_PageState extends State<Registration_Page> {
         var resgistrationResponse = await Provider.of<UserLoginSignUpController>(context,listen: false).registerUser(emailId, password, name);
         if (resgistrationResponse == 'Successfully signed up') {
           _passSnackbar(resgistrationResponse);
-          print('Register Successfull');
           Navigator.pushReplacementNamed(context, '/homeScreen');
         } else if (resgistrationResponse == 'User Already Registered') {
           _failSnackbar(resgistrationResponse);
@@ -237,10 +236,8 @@ class _Registration_PageState extends State<Registration_Page> {
                           ),
                         );
                       } else {
-                        print('yahan');
                         _tryRegister(_emailId.text, _password.text, _name.text);
-                        print('yahan2');
-                      }
+                       }
                     },
                     child: Container(
                       child: Center(

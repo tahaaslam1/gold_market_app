@@ -10,22 +10,18 @@ import 'package:provider/provider.dart';
 
 class UserLoginSignUpController extends ChangeNotifier{
 
-  bool userIsLoggedIn = false;
+  bool _userIsLoggedIn = false;
   User user = new User();
 
-  UserLoginSignupRepositry signUp = UserLoginSignupRepositry();
+  UserLoginSignupRepositry reachRepositry = UserLoginSignupRepositry();
   
   registerUser(String emailId,String password,String name) async {
     var msg = '';
     try{
-    var response = await signUp.registerUser(emailId,password,name);
-    var data = _response(response); 
-    var responseRepositry = data['Response']; 
-    var automatedUserId = data['userId'];
-    if(automatedUserId.toString() == null){
-      print('haha');
-    }
-    print('userid : $automatedUserId');
+    var response = await reachRepositry.registerUser(emailId,password,name);
+    var decodedData = _response(response); 
+    var responseRepositry = decodedData['Response']; 
+    var automatedUserId = decodedData['userId'];
     if(responseRepositry == 'Successfully signed up')
     {
       user.userId = automatedUserId;
@@ -36,7 +32,7 @@ class UserLoginSignUpController extends ChangeNotifier{
       user.inventory = null;
       user.transactions = null; 
 
-      userIsLoggedIn = true;
+      _userIsLoggedIn = true;
       msg = responseRepositry; 
     }
     else if( responseRepositry == 'User Already Registered'){
@@ -50,6 +46,31 @@ class UserLoginSignUpController extends ChangeNotifier{
     
     return msg; 
   }
+      
+   loginUser(String emailId,String password) async {
+    var msg = '';
+    try{
+    var response = await reachRepositry.loginUser(emailId,password);
+    var decodedData = _response(response); 
+    var responseRepositry = decodedData['Response']; 
+    if(responseRepositry == 'Successfully Logged In')
+    {
+      User.fromJson(decodedData);       // parsing user data ... .... .
+      _userIsLoggedIn = true;
+      msg = responseRepositry; 
+    }
+    else if( responseRepositry == 'Invalid Email or Password'){
+      msg = responseRepositry;
+    }
+      }
+    catch (e){
+      msg = '${e.toString()}';
+      print(e);
+    }
+    
+    return msg; 
+  }   
+      
       dynamic _response(http.Response response) {
     switch (response.statusCode) {
       case 200:

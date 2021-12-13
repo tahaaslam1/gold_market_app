@@ -15,13 +15,12 @@ class User {
 
   factory User.fromJson(Map<String, dynamic> json) {
         return User(
-            emailId: json['email'], 
-            password : json['password'],
-            inventory: json['inventory'] != null ? Inventory.fromJson(json['inventory']) : null, 
+            emailId: json['emailId'], 
+            //inventory: json['inventory'] != null ? Inventory.fromJson(json['inventory']) : null, 
             name: json['name'],  
             profileUrl: json['profileUrl'], 
-            transactions: json['transactions'] != null ? (json['transactions'] as List).map((i) => Transaction.fromJson(i)).toList() : null, 
-            userId: json['userid'], 
+            //transactions: json['transactions'] != null ? (json['transactions'] as List).map((i) => Transaction.fromJson(i)).toList() : null, 
+            userId: json['userId'], 
         );
     }
 

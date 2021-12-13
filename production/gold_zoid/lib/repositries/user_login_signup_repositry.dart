@@ -7,7 +7,8 @@ import 'package:http/http.dart' as http;
 import 'package:gold_zoid/controllers/custom_exception_handler.dart';
 
 class UserLoginSignupRepositry implements IUserLoginSignupRepositry {
-  
+
+ @override 
   registerUser(String userEmailId, String userPassword, String userName) async {
     try {
       var response = await http.post(
@@ -16,6 +17,24 @@ class UserLoginSignupRepositry implements IUserLoginSignupRepositry {
         body: jsonEncode(
           <String, String>{
             "name": userName,
+            "emailId": userEmailId,
+            "password": userPassword,
+          },
+        ),
+      );
+      return response;  
+    } catch (e) {
+      return e;
+    }
+  }
+  @override
+  loginUser(String userEmailId, String userPassword) async {
+    try {
+      var response = await http.post(
+        "http://192.168.0.112:7000/api/user/login",
+        headers: <String, String>{'Content-Type': 'application/json;charset=UTF-8','Charset': 'utf-8'},
+        body: jsonEncode(
+          <String, String>{
             "emailId": userEmailId,
             "password": userPassword,
           },
