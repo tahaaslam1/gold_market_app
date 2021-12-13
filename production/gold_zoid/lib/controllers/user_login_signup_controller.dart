@@ -11,7 +11,7 @@ import 'package:provider/provider.dart';
 class UserLoginSignUpController extends ChangeNotifier{
 
   bool _userIsLoggedIn = false;
-  User user = new User();
+  //User user = new User();
 
   UserLoginSignupRepositry reachRepositry = UserLoginSignupRepositry();
   
@@ -19,18 +19,13 @@ class UserLoginSignUpController extends ChangeNotifier{
     var msg = '';
     try{
     var response = await reachRepositry.registerUser(emailId,password,name);
+    print(response.body);
     var decodedData = _response(response); 
     var responseRepositry = decodedData['Response']; 
-    var automatedUserId = decodedData['userId'];
     if(responseRepositry == 'Successfully signed up')
     {
-      user.userId = automatedUserId;
-      user.emailId = emailId;
-      user.name = name; 
-      user.password = password;
-      user.profileUrl = "https://cdn4.iconfinder.com/data/icons/small-n-flat/24/user-alt-512.png"; 
-      user.inventory = null;
-      user.transactions = null; 
+      User.fromJson(decodedData);
+
 
       _userIsLoggedIn = true;
       msg = responseRepositry; 
@@ -51,6 +46,7 @@ class UserLoginSignUpController extends ChangeNotifier{
     var msg = '';
     try{
     var response = await reachRepositry.loginUser(emailId,password);
+    print(response.body);
     var decodedData = _response(response); 
     var responseRepositry = decodedData['Response']; 
     if(responseRepositry == 'Successfully Logged In')
