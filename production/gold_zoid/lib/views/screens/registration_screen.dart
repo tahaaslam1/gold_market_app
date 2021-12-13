@@ -20,34 +20,55 @@ class _Registration_PageState extends State<Registration_Page> {
   final _emailId = TextEditingController();
   final _password = TextEditingController();
   final _confirmPassword = TextEditingController();
-  String _registrationText;
-  bool _customSnackbar;
-  bool isLogin = false;
 
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   var _validate = ValidationLogic();
 
-  UserLoginSignUpController signUp = UserLoginSignUpController();
+  void _failSnackbar(String error) {
+    final snackBar = SnackBar(
+      behavior: SnackBarBehavior.floating,
+      content: Text(
+        error,
+        textAlign: TextAlign.center,
+        style: TextStyle(),
+      ),
+    );
+    //_scaffoldKey.currentState.showSnackBar(snackBar);
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  }
 
-  Future<dynamic> _tryRegister(
-      String emailId, String password, String name) async {
+  void _passSnackbar(String msg) {
+    final snackBar = SnackBar(
+      behavior: SnackBarBehavior.floating,
+      content: Text(
+        msg,
+        textAlign: TextAlign.center,
+        style: TextStyle(),
+      ),
+    );
+    //_scaffoldKey.currentState.showSnackBar(snackBar);
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  }
+
+  void _tryRegister(String emailId, String password, String name) async {
     final form = _formKey.currentState;
     if (form.validate()) {
       form.save();
       try {
-        var resgistrationResponse =
-            await signUp.registerUser(emailId, password, name);
+        var resgistrationResponse = await Provider.of<UserLoginSignUpController>(context,listen: false).registerUser(emailId, password, name);
         if (resgistrationResponse == 'Successfully signed up') {
+          _passSnackbar(resgistrationResponse);
           print('Register Successfull');
           Navigator.pushReplacementNamed(context, '/homeScreen');
-          return resgistrationResponse;
+        } else if (resgistrationResponse == 'User Already Registered') {
+          _failSnackbar(resgistrationResponse);
         } else {
-          return false;
+          _failSnackbar(resgistrationResponse);
         }
-      } catch (SocketException) {
-        return false;
+      } catch (e) {
+        _failSnackbar(e.toString());
       }
     }
   }
@@ -205,43 +226,20 @@ class _Registration_PageState extends State<Registration_Page> {
                   child: InkWell(
                     onTap: () {
                       if (!_formKey.currentState.validate()) {
-                        _scaffoldKey.currentState.showSnackBar(
+                        ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
                             behavior: SnackBarBehavior.floating,
                             content: Text(
-                              'Enter Correct Credentials',
+                              'Enter Correct crendentials',
                               textAlign: TextAlign.center,
                               style: TextStyle(),
                             ),
                           ),
                         );
                       } else {
-                        if (_tryRegister(
-                                _emailId.text, _password.text, _name.text) ==
-                            'Successfully signed up') {
-                          _scaffoldKey.currentState.showSnackBar(
-                            SnackBar(
-                              behavior: SnackBarBehavior.floating,
-                              content: Text(
-                                'Registration successfull',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(),
-                              ),
-                            ),
-                          );
-                        } else {
-                          _scaffoldKey.currentState.showSnackBar(
-                            SnackBar(
-                              behavior: SnackBarBehavior.floating,
-                              content: Text(
-                                'User Already Registred with provided email',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(),
-                              ),
-                            ),
-                          );
-                        }
-                        // autenticate user and navigate to homePAge..
+                        print('yahan');
+                        _tryRegister(_emailId.text, _password.text, _name.text);
+                        print('yahan2');
                       }
                     },
                     child: Container(

@@ -9,10 +9,9 @@ import 'package:gold_zoid/controllers/custom_exception_handler.dart';
 class UserLoginSignupRepositry implements IUserLoginSignupRepositry {
   
   registerUser(String userEmailId, String userPassword, String userName) async {
-    var responseJson;
     try {
       var response = await http.post(
-        "http://192.168.0.105:3000/api/signup",
+        "http://192.168.0.112:7000/api/user/signup",
         headers: <String, String>{'Content-Type': 'application/json;charset=UTF-8','Charset': 'utf-8'},
         body: jsonEncode(
           <String, String>{
@@ -22,26 +21,9 @@ class UserLoginSignupRepositry implements IUserLoginSignupRepositry {
           },
         ),
       );
-      responseJson = _response(response);
-    } catch (SocketException) {
-      throw FetchDataException('No Internet connection');
-    }
-    return responseJson;
-  }
-
-  dynamic _response(http.Response response) {
-    switch (response.statusCode) {
-      case 200:
-        var responseJson = json.decode(response.body.toString());
-        return responseJson;
-      case 400:
-        throw BadRequestException(response.body.toString());
-      case 401:
-      case 403:
-        throw UnauthorisedException(response.body.toString());
-      case 500:
-      default:
-        throw FetchDataException('No Internet Connection');
+      return response;  
+    } catch (e) {
+      return e;
     }
   }
-}
+ }

@@ -11,7 +11,7 @@ import 'package:gold_zoid/views/screens/trading_screen.dart';
 import 'package:gold_zoid/views/titles/home_page_title.dart';
 import 'views/screens/home_screen.dart';
 import 'package:provider/provider.dart';
-
+import 'controllers/user_login_signup_controller.dart';
 import 'controllers/password_show_controller.dart';
 
 void main() {
@@ -19,6 +19,7 @@ void main() {
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create : (_) => PasswordShowController()),
+        ChangeNotifierProvider(create: (_) => UserLoginSignUpController()),
       ],
       child: Gold_Zoid(),
     ),
