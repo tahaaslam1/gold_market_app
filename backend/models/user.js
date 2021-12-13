@@ -4,6 +4,7 @@ const Joi = require('joi');
 //const config = require('config');
 const passwordComplexity = require('joi-password-complexity');
 
+
 const userSchema = new mongoose.Schema({
 
    
@@ -26,18 +27,11 @@ const userSchema = new mongoose.Schema({
         min :5,
         max : 255
 
-    }
-    // phone : {
-    //     type : String,
-    //     required : true,
-    //     min : 11,
-    //     max : 13,
-
-    // }
-    // profileUrl : {
-    //     type : String,
-        
-    // }
+    },
+    profileUrl : {
+        type : String,
+        default : 'https://cdn4.iconfinder.com/data/icons/small-n-flat/24/user-alt-512.png'  
+    },
     // inventory : {
     //     type : inventorySchema,
     //     required : true

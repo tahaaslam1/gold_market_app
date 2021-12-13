@@ -5,22 +5,22 @@ const _ = require('lodash');
 const bcrypt = require('bcrypt');
 
 
-router.post('/', async (req,res) =>{
+router.post('/login', async (req,res) =>{
 
     //authenticating email
 
     let user = await User.findOne({emailId : req.body.emailId});
 
-    if(!user) return res.status(400).json('Invalid Email or Password');
+    if(!user) return res.status(400).json({"Response" : 'Invalid Email or Password', "userId" : null, "emailId" : null, "name" : null, "profileUrl" : null});
 
     //authenticating password
 
     const validPassword = await bcrypt.compare(req.body.password, user.password);
 
-    if(!validPassword) return res.status(400).json('Invalid Email or Password');
+    if(!validPassword) return res.status(400).json({"Response" : 'Invalid Email or Password', "userId" : null, "emailId" : null, "name" : null, "profileUrl" : null});
 
-    res.json('Login Success!');
+    res.json({"Response" : 'Successfully Logged In', "userId" : user._id, "emailId" : user.emailId, "name" : user.name, "profileUrl" : user.profileUrl});
 
-});
+});  
 
 module.exports = router;
