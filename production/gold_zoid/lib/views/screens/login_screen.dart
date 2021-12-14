@@ -72,6 +72,12 @@ class _Login_PageState extends State<Login_Page> {
       }
     }
   }
+  @override
+  void dispose() {
+    _emailId.dispose();
+    _password.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {

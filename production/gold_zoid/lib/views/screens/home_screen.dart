@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gold_zoid/constants.dart';
+import 'package:gold_zoid/models/user_model.dart';
 import 'package:gold_zoid/views/titles/home_page_title.dart';
 
 import 'package:gold_zoid/views/widgets/homeScreenWidgets/current_metal_prices.dart';
@@ -11,11 +12,26 @@ import 'package:gold_zoid/models/material_model.dart' as material;
 import 'package:gold_zoid/models/market_model.dart';
 import 'package:gold_zoid/views/widgets/commonWidgets/drawer_button.dart';
 import 'package:gold_zoid/views/widgets/drawer/custom_drawer.dart';
+import 'package:gold_zoid/controllers/user_login_signup_controller.dart';
 
-class Home_Page extends StatelessWidget {
+class Home_Page extends StatefulWidget {
+  @override
+  State<Home_Page> createState() => _Home_PageState();
+}
+
+class _Home_PageState extends State<Home_Page> {
+
+
   final MarketController _marketController = MarketController();
 
   GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+@override
+  void initState() {
+    // TODO: implement initState
+    var test = Provider.of<UserLoginSignUpController>(context,listen: false).getLoggedInUser;
+    print(test.name);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

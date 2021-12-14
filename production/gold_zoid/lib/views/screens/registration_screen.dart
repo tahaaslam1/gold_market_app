@@ -225,16 +225,7 @@ class _Registration_PageState extends State<Registration_Page> {
                   child: InkWell(
                     onTap: () {
                       if (!_formKey.currentState.validate()) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            behavior: SnackBarBehavior.floating,
-                            content: Text(
-                              'Enter Correct crendentials',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(),
-                            ),
-                          ),
-                        );
+                        _failSnackbar('Enter Correct crendentials');
                       } else {
                         _tryRegister(_emailId.text, _password.text, _name.text);
                        }
