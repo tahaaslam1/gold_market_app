@@ -13,6 +13,8 @@ import 'views/screens/home_screen.dart';
 import 'package:provider/provider.dart';
 import 'controllers/user_login_signup_controller.dart';
 import 'controllers/password_show_controller.dart';
+import 'package:gold_zoid/views/screens/transaction_screen.dart';
+import 'package:gold_zoid/controllers/user_controller.dart';
 
 void main() {
   runApp(
@@ -20,6 +22,8 @@ void main() {
       providers: [
         ChangeNotifierProvider(create : (_) => PasswordShowController()),
         ChangeNotifierProvider(create: (_) => UserLoginSignUpController()),
+        ChangeNotifierProvider(create: (_) => UserController()),
+        
       ],
       child: Gold_Zoid(),
     ),
@@ -32,7 +36,7 @@ class Gold_Zoid extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      initialRoute: '/loginScreen',
+      initialRoute: '/accountScreen',
       routes: {
         '/loginScreen': (context) => Login_Page(),
         '/registrationScreen': (context) => Registration_Page(),
@@ -42,6 +46,7 @@ class Gold_Zoid extends StatelessWidget {
         '/inventoryScreen': (context) => Inventory_Page(),
         '/forgetPasswordScreen' :(context) => ForgetPassword(),
         '/itemListScreen': (context) => ItemListScreen(),
+        '/transactionScreen': (context) => TransactionScreen(),
       },
       theme: ThemeData(
           fontFamily: 'Avenir', scaffoldBackgroundColor: Colors.white),

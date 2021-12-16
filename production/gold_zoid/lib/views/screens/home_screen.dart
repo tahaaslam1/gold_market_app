@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gold_zoid/constants.dart';
+import 'package:gold_zoid/controllers/user_controller.dart';
 import 'package:gold_zoid/models/user_model.dart';
 import 'package:gold_zoid/views/titles/home_page_title.dart';
 
@@ -13,6 +14,8 @@ import 'package:gold_zoid/models/market_model.dart';
 import 'package:gold_zoid/views/widgets/commonWidgets/drawer_button.dart';
 import 'package:gold_zoid/views/widgets/drawer/custom_drawer.dart';
 import 'package:gold_zoid/controllers/user_login_signup_controller.dart';
+import 'package:gold_zoid/controllers/user_controller.dart';
+
 
 class Home_Page extends StatefulWidget {
   @override
@@ -25,13 +28,14 @@ class _Home_PageState extends State<Home_Page> {
   final MarketController _marketController = MarketController();
 
   GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-@override
+
+  @override
   void initState() {
-    // TODO: implement initState
-    var test = Provider.of<UserLoginSignUpController>(context,listen: false).getLoggedInUser;
-    print(test.name);
+    Provider.of<UserController>(context,listen: false).getAllUserDetails(userEmailId: Provider.of<UserLoginSignUpController>(context,listen: false).getLoggedInUser.emailId.toString()); 
+    //Provider.of<UserController>(context,listen:false).getAllUserDetails(userEmailId: 'tahaaslam@gmail.com');
     super.initState();
   }
+
 
   @override
   Widget build(BuildContext context) {

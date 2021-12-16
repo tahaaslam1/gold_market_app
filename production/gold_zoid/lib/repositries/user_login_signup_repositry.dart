@@ -7,12 +7,14 @@ import 'package:http/http.dart' as http;
 import 'package:gold_zoid/controllers/custom_exception_handler.dart';
 
 class UserLoginSignupRepositry implements IUserLoginSignupRepositry {
- 
   registerUser(String userEmailId, String userPassword, String userName) async {
     try {
       var response = await http.post(
-        "http://192.168.0.105:7000/api/user/signup",
-        headers: <String, String>{'Content-Type': 'application/json;charset=UTF-8','Charset': 'utf-8'},
+        Uri.parse('http://192.168.0.108:7000/api/user/signup'),
+        headers: <String, String>{
+          'Content-Type': 'application/json;charset=UTF-8',
+          'Charset': 'utf-8'
+        },
         body: jsonEncode(
           <String, String>{
             "name": userName,
@@ -21,17 +23,23 @@ class UserLoginSignupRepositry implements IUserLoginSignupRepositry {
           },
         ),
       );
-      return response;  
+      print('Registration response status code:  ${response.statusCode}');
+      print('Registration response.body :  ${response.body}');
+      return response;
     } catch (e) {
-      return e;
+      print('registration exception: ${e}');
+      throw 'No internet Connection';
     }
   }
 
   loginUser(String userEmailId, String userPassword) async {
     try {
       var response = await http.post(
-        "http://192.168.0.105:7000/api/user/login",
-        headers: <String, String>{'Content-Type': 'application/json;charset=UTF-8','Charset': 'utf-8'},
+        Uri.parse('http://192.168.0.108:7000/api/user/login'),
+        headers: <String, String>{
+          'Content-Type': 'application/json;charset=UTF-8',
+          'Charset': 'utf-8'
+        },
         body: jsonEncode(
           <String, String>{
             "emailId": userEmailId,
@@ -39,9 +47,12 @@ class UserLoginSignupRepositry implements IUserLoginSignupRepositry {
           },
         ),
       );
-      return response;  
+      print('login response status code:  ${response.statusCode}');
+      print('login response.body :  ${response.body}');
+      return response;
     } catch (e) {
-      return e;
+      print('login exception: ${e}');
+      throw 'No internet Connection';
     }
   }
- }
+}

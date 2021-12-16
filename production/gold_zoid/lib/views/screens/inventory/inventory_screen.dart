@@ -23,7 +23,7 @@ class Inventory_Page extends StatelessWidget {
               mainTitleText: 'My Inventory',
               sideText: 'manage your inventory',
               icon: Icon(
-                Icons.person_outline,
+                Icons.person_outline, 
                 size: 35.0,
                 color: kTitleIconColor,
               ),

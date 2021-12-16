@@ -9,12 +9,12 @@ import 'package:gold_zoid/controllers/custom_exception_handler.dart';
 import 'package:provider/provider.dart';
 
 class UserLoginSignUpController extends ChangeNotifier {
-  bool _userIsLoggedIn = false;
+  
   User _user;
 
   UserLoginSignupRepositry reachRepositry = UserLoginSignupRepositry();
 
-  User get getLoggedInUser => _user;
+  User get getLoggedInUser => _user;  //builder.name 
 
   registerUser(String emailId, String password, String name) async {
     var msg = '';
@@ -25,14 +25,12 @@ class UserLoginSignUpController extends ChangeNotifier {
       if (responseRepositry == 'Successfully signed up') {
         _user = User.fromJson(decodedData);
 
-        _userIsLoggedIn = true;
         msg = responseRepositry;
       } else if (responseRepositry == 'User Already Registered') {
         msg = responseRepositry;
       }
     } catch (e) {
       msg = '${e.toString()}';
-      print(e);
     }
 
     return msg;
@@ -42,20 +40,17 @@ class UserLoginSignUpController extends ChangeNotifier {
     var msg = '';
     try {
       var response = await reachRepositry.loginUser(emailId, password);
-      print(response.statuscode);
       var decodedData = _response(response);
       var responseRepositry = decodedData['Response'];
 
       if (responseRepositry == 'Successfully Logged In') {
         _user = User.fromJson(decodedData); // parsing user data ... .... .
-        _userIsLoggedIn = true;
         msg = responseRepositry;
       } else if (responseRepositry == 'Invalid Email or Password') {
         msg = responseRepositry;
       }
     } catch (e) {
       msg = '${e.toString()}';
-      print(e);
     }
 
     return msg;

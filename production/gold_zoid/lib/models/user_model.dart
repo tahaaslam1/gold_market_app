@@ -2,7 +2,6 @@ import 'package:gold_zoid/models/inventory_model.dart';
 import 'package:gold_zoid/models/transaction_model.dart';
 
 class User {
-  bool isLoggedin = false; 
   String userId;
   String password;
   String emailId; 
@@ -11,7 +10,7 @@ class User {
   Inventory inventory;
   List<Transaction> transactions;
  
-  User({this.userId, this.name,this.profileUrl, this.inventory,this.transactions,this.emailId,this.password,this.isLoggedin});
+  User({this.userId, this.name,this.profileUrl, this.inventory,this.transactions,this.emailId,this.password});
 
   factory User.fromJson(Map<String, dynamic> json) {
         return User(

@@ -191,8 +191,9 @@ class _Login_PageState extends State<Login_Page> {
                           ),
                         );
                       } else {
-                        _tryLogin(_emailId.text, _password.text);
-                       }
+                        //Navigator.pushReplacementNamed(context,'/homeScreen');
+                         _tryLogin(_emailId.text, _password.text);
+                        }
                     },
                     child: Container(
                       child: Center(
