@@ -21,12 +21,19 @@ class UserController extends ChangeNotifier {
     _user = User.fromJson(decodedData);
   }
 
-  void editUserName({String newUserName}) {
-    _user.name = newUserName; 
+  Future<dynamic> editUserName({String newUserName}) async {
+   // _user.name = newUserName; 
+    var response = await reachRepositry.editUserName(updatedName: newUserName,userEmailId: _user.emailId);
 
-
-
-    notifyListeners();
+    var decodedData = json.decode(response);
+    if(decodedData['Response'] == 'Updated User Name')
+    {
+      _user.name = newUserName;
+      notifyListeners();
+    }
+    else{
+      return 'User Name Not Updated';
+    }
   }
 
   void editUserEmailAddress() {}

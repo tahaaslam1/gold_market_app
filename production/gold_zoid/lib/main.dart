@@ -36,7 +36,7 @@ class Gold_Zoid extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      initialRoute: '/accountScreen',
+      initialRoute: '/loginScreen',
       routes: {
         '/loginScreen': (context) => Login_Page(),
         '/registrationScreen': (context) => Registration_Page(),

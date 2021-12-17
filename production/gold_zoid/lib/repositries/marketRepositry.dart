@@ -1,4 +1,4 @@
-import 'package:gold_zoid/repositries/marketInterface.dart';
+import 'package:gold_zoid/repositries/interfaces/marketInterface.dart';
 import 'dart:convert';
 import 'package:gold_zoid/models/material_model.dart';
 import 'package:gold_zoid/models/market_model.dart';

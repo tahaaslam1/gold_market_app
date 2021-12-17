@@ -58,13 +58,13 @@ class _Account_PageState extends State<Account_Page> {
               ),
               SizedBox(height: 10.0),
               ProfilePicture(
-                //image :
-                //image: context.read<UserController>().getLoggedInUser.profileUrl == 'https://cdn4.iconfinder.com/data/icons/small-n-flat/24/user-alt-512.png' ? NetworkImage('${context.watch<UserController>().getLoggedInUser.profileUrl}') : FileImage('${context.watch<UserController>().getLoggedInUser.profileUrl}'),
+                ////image :
+                ////image: context.read<UserController>().getLoggedInUser.profileUrl == 'https://cdn4.iconfinder.com/data/icons/small-n-flat/24/user-alt-512.png' ? NetworkImage('${context.watch<UserController>().getLoggedInUser.profileUrl}') : FileImage('${context.watch<UserController>().getLoggedInUser.profileUrl}'),
                 image: _pickedImage != null
                     ? FileImage(_pickedImage)
                     : NetworkImage(
                         '${context.watch<UserController>().getLoggedInUser.profileUrl}'),
-                //'${context.watch<UserController>().getLoggedInUser.profileUrl}', //TODO: display users picture
+                // //'${context.watch<UserController>().getLoggedInUser.profileUrl}', //TODO: display users picture
                 onClicked: () async {
                   await _pickImage();
                 },
@@ -98,14 +98,16 @@ class _Account_PageState extends State<Account_Page> {
               ),
               EditNameOrNumber(
                 onTap: () {
-                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
                       behavior: SnackBarBehavior.floating,
                       content: Text(
                         'Cannot Update Email Address at the moment',
                         textAlign: TextAlign.center,
                         style: TextStyle(),
                       ),
-                    ),);
+                    ),
+                  );
                   //TODO: email edit krne k liye gmail se connection krna parega..
                   //_showEditEmailBottomSheet(context);
                 },
