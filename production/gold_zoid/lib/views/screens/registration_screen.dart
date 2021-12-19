@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:gold_zoid/controllers/user_controller.dart';
+import 'package:gold_zoid/controllers/user_inventory_controller.dart';
 import 'package:gold_zoid/controllers/user_login_signup_controller.dart';
 import 'package:gold_zoid/models/user_model.dart';
 import 'package:gold_zoid/views/widgets/commonWidgets/login_signup_navigator.dart';
@@ -25,6 +27,8 @@ class _Registration_PageState extends State<Registration_Page> {
   GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   var _validate = ValidationLogic();
+
+  
 
   void _failSnackbar(String error) {
     final snackBar = SnackBar(
@@ -78,7 +82,7 @@ class _Registration_PageState extends State<Registration_Page> {
     _emailId.dispose();
     _password.dispose();
     _confirmPassword.dispose();
-
+    
     super.dispose();
   }
 

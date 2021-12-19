@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gold_zoid/constants.dart';
 import 'package:gold_zoid/controllers/user_controller.dart';
+import 'package:gold_zoid/controllers/user_inventory_controller.dart';
 import 'package:gold_zoid/models/user_model.dart';
 import 'package:gold_zoid/views/titles/home_page_title.dart';
 
@@ -16,29 +17,56 @@ import 'package:gold_zoid/views/widgets/drawer/custom_drawer.dart';
 import 'package:gold_zoid/controllers/user_login_signup_controller.dart';
 import 'package:gold_zoid/controllers/user_controller.dart';
 
-
 class Home_Page extends StatefulWidget {
   @override
   State<Home_Page> createState() => _Home_PageState();
 }
 
 class _Home_PageState extends State<Home_Page> {
-
-
   final MarketController _marketController = MarketController();
 
   GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
+  var _userInfoStatus;
+
   @override
   void initState() {
-    Provider.of<UserController>(context,listen: false).getAllUserDetails(userEmailId: Provider.of<UserLoginSignUpController>(context,listen: false).getLoggedInUser.emailId.toString()); 
-    //Provider.of<UserController>(context,listen:false).getAllUserDetails(userEmailId: 'tahaaslam@gmail.com');
     super.initState();
+    setUser().then((value) => setState(() {}));
   }
+  Future setUser() async {
+    await Provider.of<UserController>(context, listen: false).getAllUserDetails(
+        userEmailId:
+            Provider.of<UserLoginSignUpController>(context, listen: false)
+                .getLoggedInUser
+                .emailId
+                .toString());
 
+    await Provider.of<UserInventoryController>(context, listen: false)
+        .getUserInventory(
+      userId: Provider.of<UserLoginSignUpController>(context, listen: false)
+          .getLoggedInUser
+          .userId
+          .toString(),
+    );
+
+    _userInfoStatus = 'gotten';
+  }
 
   @override
   Widget build(BuildContext context) {
+    if (_userInfoStatus == null) {
+      return Scaffold(
+        body: SafeArea(
+          child: Column(
+            children: [
+              HomePageTitle(side_text: 'explore your market'),
+              Expanded(child: Center(child:CircularProgressIndicator(backgroundColor: kPrimaryColor,) ,)),
+            ],
+          ),
+        ),
+      );
+    }
     return Scaffold(
       endDrawer: CustomDrawer(
         onTap: () => Navigator.pop(context),
@@ -56,8 +84,10 @@ class _Home_PageState extends State<Home_Page> {
                 height: 5.0, // dhek lou abhi agar bachti he jagah tu bhara dena
               ),
               GoldValueWidget(
-                gold_in_grams: 450.toString(),
-                gold_value: 17000.00.toString(),
+                gold_in_grams:
+                    '${context.watch<UserInventoryController>().getLoggedInUserInventory.totalGold}',
+                gold_value:
+                    '${context.watch<UserInventoryController>().getLoggedInUserInventory.totalGoldValue}',
               ),
               kYellowDivider,
               Container(

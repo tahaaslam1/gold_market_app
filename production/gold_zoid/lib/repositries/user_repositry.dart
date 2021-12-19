@@ -7,11 +7,12 @@ import 'package:gold_zoid/models/user_model.dart';
 import 'package:http/http.dart' as http;
 
 class UserRepositry implements IUserRepositry {
+  
   Future<dynamic> getAllUserDetails({String userEmailId}) async {
     // post req aegi idher...
     try {
       var response = await http.post(
-        Uri.parse('http://192.168.0.113:7000/api/user/getuserdetails'),
+        Uri.parse('http://192.168.0.109:7000/api/user/getuserdetails'),
         headers: <String, String>{
           'Content-Type': 'application/json;charset=UTF-8',
           'Charset': 'utf-8'
@@ -35,12 +36,13 @@ class UserRepositry implements IUserRepositry {
   Future<dynamic> editUserName({String userEmailId, String updatedName}) async {
     // post req aegi idher...
     try {
+      print('user whose name is being updated : $userEmailId');
+      print('updated name : $updatedName');     
       var response = await http.put(
         Uri.parse(
-            'http://192.168.0.113:7000/api/user/editUserName/${userEmailId}'),
+            'http://192.168.0.109:7000/api/user/updateUserName/$userEmailId'),
         headers: <String, String>{
-          'Content-Type': 'application/json;charset=UTF-8',
-          'Charset': 'utf-8'
+          'Content-Type': 'application/json; charset=UTF-8',
         },
         body: jsonEncode(
           <String, String>{
@@ -50,6 +52,30 @@ class UserRepositry implements IUserRepositry {
       );
       print('edit name response status: ${response.statusCode}');
       print('edit name response: ${response.body}');
+      var responseJson = _response(response);
+      return responseJson;
+    } on SocketException {
+      //print(e);
+      throw FetchDataException('No Internet Connection');
+    }
+  }
+  Future<dynamic> editUserProfileUrl({String userEmailId, String updatedProfileUrl}) async {
+    // post req aegi idher...
+    try {
+      var response = await http.put(
+        Uri.parse(
+            'http://192.168.0.109:7000/api/user/updateProfileUrl/$userEmailId'),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: jsonEncode(
+          <String, String>{
+            "profileUrl": updatedProfileUrl,
+          },
+        ),
+      );
+      print('edit url response status: ${response.statusCode}');
+      print('edit url response: ${response.body}');
       var responseJson = _response(response);
       return responseJson;
     } on SocketException {
@@ -70,6 +96,9 @@ class UserRepositry implements IUserRepositry {
       case 403:
         var responseJson = json.decode(response.body);
         throw UnauthorisedException(responseJson['Response'].toString());
+      case 404:
+        var responseJson = json.decode(response.body);
+        throw PageNotFoundException(responseJson['Response'].toString());  
       case 500:
       default:
         throw FetchDataException('No Internet Connection');

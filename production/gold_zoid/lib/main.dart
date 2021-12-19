@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gold_zoid/controllers/marketController.dart';
+import 'package:gold_zoid/controllers/user_inventory_controller.dart';
 import 'package:gold_zoid/testservices.dart';
 import 'package:gold_zoid/views/screens/account_screen.dart';
 import 'package:gold_zoid/views/screens/forget_password_screen.dart';
@@ -20,10 +21,10 @@ void main() {
   runApp(
     MultiProvider(
       providers: [
-        ChangeNotifierProvider(create : (_) => PasswordShowController()),
+        ChangeNotifierProvider(create: (_) => PasswordShowController()),
         ChangeNotifierProvider(create: (_) => UserLoginSignUpController()),
         ChangeNotifierProvider(create: (_) => UserController()),
-        
+        ChangeNotifierProvider(create: (_) => UserInventoryController()),
       ],
       child: Gold_Zoid(),
     ),
@@ -44,7 +45,7 @@ class Gold_Zoid extends StatelessWidget {
         '/tradingScreen': (context) => Trade_Page(),
         '/accountScreen': (context) => Account_Page(),
         '/inventoryScreen': (context) => Inventory_Page(),
-        '/forgetPasswordScreen' :(context) => ForgetPassword(),
+        '/forgetPasswordScreen': (context) => ForgetPassword(),
         '/itemListScreen': (context) => ItemListScreen(),
         '/transactionScreen': (context) => TransactionScreen(),
       },

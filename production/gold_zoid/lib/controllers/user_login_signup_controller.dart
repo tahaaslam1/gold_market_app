@@ -24,7 +24,7 @@ class UserLoginSignUpController extends ChangeNotifier {
       var responseRepositry = decodedData['Response'];
       if (responseRepositry == 'Successfully signed up') {
         _user = User.fromJson(decodedData);
-
+        print('in signup : ${_user.inventory.totalGold}');
         msg = responseRepositry;
       } else if (responseRepositry == 'User Already Registered') {
         msg = responseRepositry;

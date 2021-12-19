@@ -22,17 +22,51 @@ class _Account_PageState extends State<Account_Page> {
 
   ImagePicker _picker = ImagePicker();
   File _pickedImage;
+  File _userOwnImage;
+
+  @override
+  void initState() {
+    super.initState();
+    print('in init');
+        var test = Provider.of<UserController>(context,listen: false).getLoggedInUser.profileUrl;
+    if (Provider.of<UserController>(context, listen: false)
+            .getLoggedInUser
+            .profileUrl !=
+        'https://cdn4.iconfinder.com/data/icons/small-n-flat/24/user-alt-512.png') {
+      setState(() {
+        _userOwnImage = 
+            File(Provider.of<UserController>(context,listen:false).getLoggedInUser.profileUrl);
+      });
+    }
+  }
 
   Future _pickImage() async {
     var pickedImagePath = await _picker.pickImage(
       source: ImageSource.gallery,
-      imageQuality: 50,
-      maxWidth: 250,
+      imageQuality: 100,
+      maxWidth: 270,
     );
-    //print('selectedPicPath: ${pickedImagePath.toString()}');
-    _pickedImage = File(pickedImagePath.path);
-    print('selected picture: ${_pickedImage.toString()}');
-    context.read<UserController>().editUserProfileUrl(_pickedImage);
+    print('selected picture: ${pickedImagePath}');
+
+    setState(() {
+      _pickedImage = File(pickedImagePath.path);
+    });
+
+    context.read<UserController>().editUserProfileUrl(_pickedImage.toString());
+    // passing path of picked file
+  }
+
+  void _failSnackbar(String error) {
+    final snackBar = SnackBar(
+      behavior: SnackBarBehavior.floating,
+      content: Text(
+        error,
+        textAlign: TextAlign.center,
+        style: TextStyle(),
+      ),
+    );
+    //_scaffoldKey.currentState.showSnackBar(snackBar);
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 
   @override
@@ -58,12 +92,38 @@ class _Account_PageState extends State<Account_Page> {
               ),
               SizedBox(height: 10.0),
               ProfilePicture(
+                // image: _pickedImage != null
+                //     ? FileImage(_pickedImage)
+                //     : context
+                //                 .read<UserController>()
+                //                 .getLoggedInUser
+                //                 .profileUrl ==
+                //             'https://cdn4.iconfinder.com/data/icons/small-n-flat/24/user-alt-512.png'
+                //         ? NetworkImage(context
+                //             .watch<UserController>()
+                //             .getLoggedInUser
+                //             .profileUrl)
+                //         : FileImage(_userOwnImage),
+image: _pickedImage != null
+                    ? FileImage(_pickedImage)
+                    : _userOwnImage != null
+                        ? FileImage(_userOwnImage)
+                        : NetworkImage(context
+                             .watch<UserController>()
+                             .getLoggedInUser
+                             .profileUrl),
                 ////image :
                 ////image: context.read<UserController>().getLoggedInUser.profileUrl == 'https://cdn4.iconfinder.com/data/icons/small-n-flat/24/user-alt-512.png' ? NetworkImage('${context.watch<UserController>().getLoggedInUser.profileUrl}') : FileImage('${context.watch<UserController>().getLoggedInUser.profileUrl}'),
-                image: _pickedImage != null
-                    ? FileImage(_pickedImage)
-                    : NetworkImage(
-                        '${context.watch<UserController>().getLoggedInUser.profileUrl}'),
+                // image: _pickedImage != null
+                //     ? FileImage(_pickedImage)
+                //     : context
+                //                 .read<UserController>()
+                //                 .getLoggedInUser
+                //                 .profileUrl ==
+                //             'https://cdn4.iconfinder.com/data/icons/small-n-flat/24/user-alt-512.png'
+                //         ? NetworkImage(
+                //             '${context.read<UserController>().getLoggedInUser.profileUrl}')
+                //         : FileImage(_userOwnImage),
                 // //'${context.watch<UserController>().getLoggedInUser.profileUrl}', //TODO: display users picture
                 onClicked: () async {
                   await _pickImage();
@@ -158,7 +218,7 @@ Container editNameBottomSheetMenu(BuildContext context) {
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   var validate = ValidationLogic();
   return Container(
-    height: 400.0,
+    height: 00.0,
     child: Column(
       //mainAxisSize: MainAxisSize.min,
       children: [
@@ -230,13 +290,36 @@ Container editNameBottomSheetMenu(BuildContext context) {
               InkWell(
                 onTap: () {
                   //check user name if same so direct close..
-                  _nameController.text != null
-                      ? context
+                  if (context
                           .read<UserController>()
-                          .editUserName(newUserName: _nameController.text)
-                      : context
+                          .editUserName(newUserName: _nameController.text) ==
+                      'User Name Not Updated') {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        behavior: SnackBarBehavior.floating,
+                        content: Text(
+                          'Couldnt Update your name',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(),
+                        ),
+                      ),
+                    );
+                  }
+                  if (context
                           .read<UserController>()
-                          .editUserName(newUserName: 'Named not entered');
+                          .editUserName(newUserName: _nameController.text) ==
+                      'Text Field should not be empty') {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        behavior: SnackBarBehavior.floating,
+                        content: Text(
+                          'Text Field should not be empty',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(),
+                        ),
+                      ),
+                    );
+                  }
                   Navigator.of(context).pop();
                 },
                 child: Text(

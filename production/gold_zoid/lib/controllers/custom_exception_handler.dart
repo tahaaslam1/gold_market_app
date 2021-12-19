@@ -12,7 +12,7 @@ class CustomException implements Exception {
 
 class FetchDataException extends CustomException {
   FetchDataException([String message])
-  : super(message, "Error During Communication: $message ");
+  : super(message, "Error During Communication:");
 }
 
 class BadRequestException extends CustomException {
@@ -25,4 +25,7 @@ class UnauthorisedException extends CustomException {
 
 class InvalidInputException extends CustomException {
   InvalidInputException([String message]) : super(message, "Invalid Input: ");
+}
+class PageNotFoundException extends CustomException {
+  PageNotFoundException([String message]) : super(message, "Page not found: ");
 }
