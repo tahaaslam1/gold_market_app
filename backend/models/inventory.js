@@ -5,19 +5,21 @@ const inventorySchema = new mongoose.Schema({
 
     totalGold : {
 
-        type : String,
-        required : true
+        type : Number,
+        //required : true
+        default : null
     },
 
     totalGoldValue : {
 
         type : Number,
-        required : true
+        default : null
+        //required : true
     },
 
     items : {
-        type : [itemSchema],
-        required : true
+        type : [itemSchema]
+        //required : true
     }
 
 
@@ -27,4 +29,5 @@ const Inventory = mongoose.model('Inventory', inventorySchema);
 
 
 
-
+module.exports.Inventory = Inventory;
+module.exports.inventorySchema = inventorySchema;

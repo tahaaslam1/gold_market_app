@@ -1,47 +1,50 @@
 const mongoose = require('mongoose');
-const Joi = require('Joi');
 const {materialSchema} = require('./material');
+const Joi = require('Joi');
+
 
 
 const itemSchema = new mongoose.Schema({
 
     type : {
         type : String,
-        required : true
-    },
+        required : false
+    }, 
 
     material : {
         type : materialSchema,
-        required : true
+        required : false
+        
     },
 
     qty : {
         type : Number,
-        required : true
+        required : false
         
     },
     weightInGramsPerUnit : {
         type : Number,
-        required : true
+        required : false
     },
 
     itemValue : {
         type : Number,
-        required : true
+        required : false
     },
     karrot : {
         type : Number,
-        required : true
+        required : false
     }
 
 });
 
 const Item = mongoose.model('Item', itemSchema);
 
-function validateItem(item){
+// function validateItem(item){
 
 
 
-
+module.exports.Item = Item;
+module.exports.itemSchema = itemSchema;
     
-}
+// }

@@ -1,8 +1,11 @@
 const mongoose = require('mongoose')
+const {inventorySchema} = require('./inventory');
 const Joi = require('joi');
 //const jwt = require('jsonwebtoken');
 //const config = require('config');
 const passwordComplexity = require('joi-password-complexity');
+
+//const {transactionSchema} = require('./transaction');
 
 
 const userSchema = new mongoose.Schema({
@@ -32,11 +35,12 @@ const userSchema = new mongoose.Schema({
         type : String,
         default : 'https://cdn4.iconfinder.com/data/icons/small-n-flat/24/user-alt-512.png'  
     },
-    // inventory : {
-    //     type : inventorySchema,
-    //     required : true
+    inventory : {
+        type : inventorySchema,
+        //required : fale,
+        default : null
 
-    // },
+    }
 
     // transactions : {
     //     type : [transactionSchema],

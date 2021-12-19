@@ -5,19 +5,22 @@ const materialSchema = new mongoose.Schema({
 
     materialType : {
         type : String,
-        required : true
+        default : "gold"
     },
     valuePerOunce : {
         type : Number,
-        required : true
+        //default : null,
+        required : false
     }
 
 });
 
 const Material = mongoose.model('Material', materialSchema);
 
-function validateMaterial(material){
+// function validateMaterial(material){
 
+module.exports.Material = Material;
+module.exports.materialSchema = materialSchema;
     
-}
+// }
 

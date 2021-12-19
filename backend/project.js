@@ -4,6 +4,9 @@ const Joi = require('joi');
 const mongoose = require('mongoose');
 const users = require('./routes/users');
 const auth = require('./routes/auth');
+const items = require('./routes/items');
+const inventories = require('./routes/inventories');
+
 
 const app = express();
 
@@ -15,6 +18,8 @@ mongoose.connect('mongodb+srv://goldzoid:goldzoid1234@cluster0.oypzj.mongodb.net
 app.use(express.json());
 app.use('/api/user', users);
 app.use('/api/user', auth);
+app.use('/api/user', items);
+app.use('/api/user',inventories);
 //app.use('')
 
 
