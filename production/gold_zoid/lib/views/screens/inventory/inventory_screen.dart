@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:gold_zoid/constants.dart';
+import 'package:gold_zoid/controllers/inventory_item_controller.dart';
 import 'package:gold_zoid/views/titles/common_title.dart';
 import 'package:gold_zoid/views/widgets/drawer/custom_drawer.dart';
 import 'package:gold_zoid/views/widgets/inventoryScreenWidgets/ItemTypeWidget.dart';
 import 'package:gold_zoid/views/widgets/inventoryScreenWidgets/bottom_sheet_item_info_update.dart';
+import 'package:provider/provider.dart';
 
 class Inventory_Page extends StatelessWidget {
   GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
@@ -23,7 +25,7 @@ class Inventory_Page extends StatelessWidget {
               mainTitleText: 'My Inventory',
               sideText: 'manage your inventory',
               icon: Icon(
-                Icons.person_outline, 
+                Icons.person_outline,
                 size: 35.0,
                 color: kTitleIconColor,
               ),
@@ -50,14 +52,26 @@ class Inventory_Page extends StatelessWidget {
             SizedBox(
               height: 10.0,
             ),
-            Expanded(
-              child: ListView(
-                children: <Widget>[
-                  ItemTypeWidget(),
-                  ItemTypeWidget(),
-                  ItemTypeWidget(),
-                ],
-              ),
+            Consumer<ItemController>(
+              builder: (context, provider, _) {
+                return Expanded(
+                  child: ListView.builder(
+                    itemCount: provider.itemTypeList.length,
+                    itemBuilder: (BuildContext context, index) {
+                      return ItemTypeWidget(
+                        itemType: provider.itemTypeList[index].type,
+                      );
+                    },
+                  ),
+                  // child: ListView(
+                  //   children: <Widget>[
+                  //     ItemTypeWidget(),
+                  //     ItemTypeWidget(),
+                  //     ItemTypeWidget(),
+                  //   ],
+                  // ),
+                );
+              },
             ),
           ],
         ),
@@ -130,7 +144,7 @@ Column addNewItemTypeBottomSheetMenu() {
               ),
             ),
             DropdownButton(
-              elevation: 8,
+                elevation: 8,
                 hint: Text(
                   'select item',
                   style: TextStyle(

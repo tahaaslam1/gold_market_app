@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:gold_zoid/constants.dart';
+import 'package:gold_zoid/controllers/inventory_item_controller.dart';
 import 'package:gold_zoid/views/widgets/inventoryScreenWidgets/ItemInfoWidget.dart';
 import 'package:gold_zoid/views/widgets/inventoryScreenWidgets/ItemTypeWidget.dart';
 import 'package:gold_zoid/views/widgets/inventoryScreenWidgets/item_info_widget_2.dart';
 import 'package:gold_zoid/views/widgets/inventoryScreenWidgets/bottom_sheet_item_info_update.dart';
+import 'package:provider/provider.dart';
 
 class ItemListScreen extends StatelessWidget {
   @override
@@ -53,26 +55,38 @@ class ItemListScreen extends StatelessWidget {
                 ],
               ),
             ),
-            Expanded(
-              //color: Colors.red,
-              child: ListView(
-                //scrollDirection: Axis.horizontal,
-                children: <Widget>[
-                  ItemInfoWidget2(),
-                  ItemInfoWidget2(),
-                  ItemInfoWidget2(),
-                  ItemInfoWidget2(),
-                  ItemInfoWidget2(),
-                  ItemInfoWidget2(),
-                  ItemInfoWidget2(),
-                  ItemInfoWidget2(),
-                  ItemInfoWidget2(),
-                  ItemInfoWidget2(),
-                  ItemInfoWidget2(),
-                  ItemInfoWidget2(),
-                ],
-              ),
-            ),
+            Consumer<ItemController>(builder: (context, provider, _) {
+              return Expanded(
+                child: ListView.builder(
+                  itemCount: 2,
+                    itemBuilder: (BuildContext context, index) {
+                  return ItemInfoWidget2(
+                    itemQty: 'asd' ,// provider.itemList[index].qty.toString(),
+                    itemValue: 'asd', //provider.itemList[index].itemValue.toString(),
+                    itemWeight: 'asda', //provider.itemList[index].weightInGramsPerUnit.toString(),
+                    itemKarrot: 'asd',//provider.itemList[index].karrot.toString(),
+                  );
+                }),
+                //color: Colors.red,
+                // child: ListView(
+                //   //scrollDirection: Axis.horizontal,
+                //   children: <Widget>[
+                //     ItemInfoWidget2(),
+                //     ItemInfoWidget2(),
+                //     ItemInfoWidget2(),
+                //     ItemInfoWidget2(),
+                //     ItemInfoWidget2(),
+                //     ItemInfoWidget2(),
+                //     ItemInfoWidget2(),
+                //     ItemInfoWidget2(),
+                //     ItemInfoWidget2(),
+                //     ItemInfoWidget2(),
+                //     ItemInfoWidget2(),
+                //     ItemInfoWidget2(),
+                //   ],
+                // ),
+              );
+            }),
           ],
         ),
       ),
@@ -83,7 +97,10 @@ class ItemListScreen extends StatelessWidget {
 void _showAddNewItemBottomSheet(context) {
   showModalBottomSheet(
     shape: RoundedRectangleBorder(
-      borderRadius:BorderRadius.only(topLeft: Radius.circular(15.0),topRight: Radius.circular(15.0),), 
+      borderRadius: BorderRadius.only(
+        topLeft: Radius.circular(15.0),
+        topRight: Radius.circular(15.0),
+      ),
     ),
     isScrollControlled: true,
     context: context,
@@ -95,95 +112,95 @@ void _showAddNewItemBottomSheet(context) {
 
 Column addNewItemBottomSheetMenu() {
   return Column(
-      children: [
-        SizedBox(
-          height: 3.0,
-        ),
-        Divider(
-          height: 20.0,
-          color: kPrimaryTextColor,
-          thickness: 3.0,
-          endIndent: 160.0,
-          indent: 160.0,
-        ),
-        SizedBox(
-          height: 15.0,
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(left: 15.0),
-              child: Text(
-                'Add New Gold Item for (item type)',
-                style: TextStyle(
-                  color: kSecondaryTextColor,
-                  fontSize: 17.0,
-                ),
+    children: [
+      SizedBox(
+        height: 3.0,
+      ),
+      Divider(
+        height: 20.0,
+        color: kPrimaryTextColor,
+        thickness: 3.0,
+        endIndent: 160.0,
+        indent: 160.0,
+      ),
+      SizedBox(
+        height: 15.0,
+      ),
+      Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(left: 15.0),
+            child: Text(
+              'Add New Gold Item for (item type)',
+              style: TextStyle(
+                color: kSecondaryTextColor,
+                fontSize: 17.0,
               ),
             ),
-          ],
-        ),
-        SizedBox(
-          height: 40.0,
-        ),
-        BottomSheetItemInfoUpdate(
-          text: 'Weight',
-          quantity: '2',
-          onMinus: () {
-            print('decrement by 5');
-          },
-          onPlus: () {
-            print('increment by 5');
-          },
-        ),
-        SizedBox(height: 30.0),
-        BottomSheetItemInfoUpdate(
-          text: 'Quantity',
-          quantity: '2',
-          onMinus: () {
-            print('decrement by 1');
-          },
-          onPlus: () {
-            print('increment by 1');
-          },
-        ),
-        SizedBox(height: 30.0),
-        BottomSheetItemInfoUpdate(
-          text: 'Karrot',
-          quantity: '2',
-          onMinus: () {
-            print('decrement from 24 to miinmum karrot jou huta h');
-          },
-          onPlus: () {
-            print('increment from min karrot jou huta h to 24k ');
-          },
-        ),
-        SizedBox(
-          height: 20.0,
-        ),
-        Divider(
-          color: kPrimaryTextColor,
-          thickness: 1.0,
-        ),
-        SizedBox(height: 15.0),
-        Padding(
-          padding: const EdgeInsets.only(bottom: 15.0),
-          child: Center(
-            child: InkWell(
-              onTap: () {
-                print("add the new item");
-              },
-              child: Text(
-                'Add item',
-                style: TextStyle(
-                  color: kPrimaryTextColor,
-                  fontSize: 20.0,
-                ),
+          ),
+        ],
+      ),
+      SizedBox(
+        height: 40.0,
+      ),
+      BottomSheetItemInfoUpdate(
+        text: 'Weight',
+        quantity: '2',
+        onMinus: () {
+          print('decrement by 5');
+        },
+        onPlus: () {
+          print('increment by 5');
+        },
+      ),
+      SizedBox(height: 30.0),
+      BottomSheetItemInfoUpdate(
+        text: 'Quantity',
+        quantity: '2',
+        onMinus: () {
+          print('decrement by 1');
+        },
+        onPlus: () {
+          print('increment by 1');
+        },
+      ),
+      SizedBox(height: 30.0),
+      BottomSheetItemInfoUpdate(
+        text: 'Karrot',
+        quantity: '2',
+        onMinus: () {
+          print('decrement from 24 to miinmum karrot jou huta h');
+        },
+        onPlus: () {
+          print('increment from min karrot jou huta h to 24k ');
+        },
+      ),
+      SizedBox(
+        height: 20.0,
+      ),
+      Divider(
+        color: kPrimaryTextColor,
+        thickness: 1.0,
+      ),
+      SizedBox(height: 15.0),
+      Padding(
+        padding: const EdgeInsets.only(bottom: 15.0),
+        child: Center(
+          child: InkWell(
+            onTap: () {
+              print("add the new item");
+            },
+            child: Text(
+              'Add item',
+              style: TextStyle(
+                color: kPrimaryTextColor,
+                fontSize: 20.0,
               ),
             ),
           ),
         ),
-      ],
-    );
+      ),
+    ],
+  );
 }

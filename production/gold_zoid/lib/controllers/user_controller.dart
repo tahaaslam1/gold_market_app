@@ -21,7 +21,6 @@ class UserController extends ChangeNotifier {
         await reachRepositry.getAllUserDetails(userEmailId: userEmailId);
     var decodedData = json.decode(response.body);
     _user = User.fromJson(decodedData); 
-    print('in get user details: ${_user.inventory.totalGold}');
     return response;
     } on SocketException{
       throw FetchDataException('No Internet Connection');

@@ -12,8 +12,6 @@ class UserInventoryController extends ChangeNotifier {
   Inventory get getLoggedInUserInventory => userInventory;
 
   getUserInventory({String userId}) async {
-    print('user id going from inventory : $userId');
-
     var response = await reachRepositry.getUserInventory(userId: userId);
     var decodedData = json.decode(response.body);
 

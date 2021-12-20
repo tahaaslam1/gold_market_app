@@ -2,6 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:gold_zoid/constants.dart';
 
 class ItemInfoWidget extends StatelessWidget {
+
+  final String itemWeight;
+  final String itemQty;
+  final String itemKarrot;
+  final String itemValue;
+
+  ItemInfoWidget({@required this.itemKarrot,@required this.itemQty,@required this.itemWeight,@required this.itemValue});
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -21,7 +28,7 @@ class ItemInfoWidget extends StatelessWidget {
                     width: 25.0,
                   ),
                   Text(
-                    '40gr',
+                    '${itemWeight}',
                     style: TextStyle(color: kSecondaryTextColor, fontSize: 12.0),
                   ),
                 ],
@@ -46,7 +53,7 @@ class ItemInfoWidget extends StatelessWidget {
                 ),
                 children: <TextSpan>[
                   TextSpan(
-                    text: '2',
+                    text: itemQty,
                     style: TextStyle(
                       color: kSecondaryTextColor,
                       fontSize: 12.0,
@@ -59,7 +66,7 @@ class ItemInfoWidget extends StatelessWidget {
             kBlackDivider,
             RichText(                        // Karrot of gold item
               text: TextSpan(
-                text: '22 ',
+                text: '${itemKarrot} ',
                 style: TextStyle(
                   color: kPrimaryTextColor,
                   fontSize: 12.0,
@@ -88,7 +95,7 @@ class ItemInfoWidget extends StatelessWidget {
                 ),
                 children: <TextSpan>[
                   TextSpan(
-                    text: '75',
+                    text: itemValue,
                     style: TextStyle(
                       color: kSecondaryTextColor,
                       fontSize: 12.0,

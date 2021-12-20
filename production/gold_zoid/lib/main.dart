@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gold_zoid/controllers/inventory_item_controller.dart';
 import 'package:gold_zoid/controllers/marketController.dart';
 import 'package:gold_zoid/controllers/user_inventory_controller.dart';
 import 'package:gold_zoid/testservices.dart';
@@ -25,6 +26,7 @@ void main() {
         ChangeNotifierProvider(create: (_) => UserLoginSignUpController()),
         ChangeNotifierProvider(create: (_) => UserController()),
         ChangeNotifierProvider(create: (_) => UserInventoryController()),
+        ChangeNotifierProvider(create: (_) => ItemController()),
       ],
       child: Gold_Zoid(),
     ),

@@ -27,7 +27,6 @@ class _Account_PageState extends State<Account_Page> {
   @override
   void initState() {
     super.initState();
-    print('in init');
         var test = Provider.of<UserController>(context,listen: false).getLoggedInUser.profileUrl;
     if (Provider.of<UserController>(context, listen: false)
             .getLoggedInUser
@@ -218,7 +217,7 @@ Container editNameBottomSheetMenu(BuildContext context) {
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   var validate = ValidationLogic();
   return Container(
-    height: 00.0,
+    height: 500.0,
     child: Column(
       //mainAxisSize: MainAxisSize.min,
       children: [
