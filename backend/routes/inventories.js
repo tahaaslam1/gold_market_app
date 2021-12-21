@@ -14,8 +14,8 @@ router.get('/getinventory/:id', async(req,res)=>{
     if(!user) return res.status(400).json('user not found');
 
     const inventory = user.inventory;
-
-    res.status(200).json(inventory);
+ 
+    res.status(200).json({"_id" : inventory._id,"totalGold" : inventory.totalGold, "totalGoldValue" : inventory.totalGoldValue, "items" : inventory.items});
 
 });
 

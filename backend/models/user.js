@@ -37,15 +37,10 @@ const userSchema = new mongoose.Schema({
     },
     inventory : {
         type : inventorySchema,
+        default : mongoose.SchemaTypes
+        //default : null
         //required : fale,
-        default : null
-
-    }
-
-    // transactions : {
-    //     type : [transactionSchema],
-    //     required :true
-    // }
+     }
 });
 
 // userSchema.methods.generateAuthToken = function(){           //generate JWT

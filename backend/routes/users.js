@@ -14,7 +14,7 @@ router.post('/signup', async(req,res)=>{
     //for already registered user
 
     let user = await User.findOne({emailId : req.body.emailId});
-    if(user) return res.status(400).json({"Response" : 'User Already Registered', "userId" : null, "emailId" : null, "name" : null, "profileUrl" : null});
+    if(user) return res.status(400).json({"Response" : 'User Already Registered', "_id" : null, "emailId" : null, "name" : null, "profileUrl" : null});
 
     //if user not registered
     user = new User(_.pick(req.body,['name','emailId','password']));
@@ -24,7 +24,7 @@ router.post('/signup', async(req,res)=>{
 
     user = await user.save()
             .then(() => {
-                res.status(200).json({"Response" : 'Successfully signed up', "userId" : user._id, "emailId" : user.emailId, "name" : user.name, "profileUrl" : user.profileUrl, "inventory" : user.inventory});
+                res.status(200).json({"Response" : 'Successfully signed up', "_id" : user._id, "emailId" : user.emailId, "name" : user.name, "profileUrl" : user.profileUrl, "inventory" : user.inventory});
             })
             .catch((err) => {
                 res.status(400).json(err);

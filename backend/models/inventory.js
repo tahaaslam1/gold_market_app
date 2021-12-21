@@ -5,20 +5,20 @@ const inventorySchema = new mongoose.Schema({
 
     totalGold : {
 
-        type : Number,
+        type : String,
         //required : true
-        default : null
+        default : '0.0'
     },
 
     totalGoldValue : {
 
-        type : Number,
-        default : null
+        type : String,
+        default : '0.0'
         //required : true
     },
 
     items : {
-        type : [itemSchema]
+        type : [itemSchema],
         //required : true
     }
 

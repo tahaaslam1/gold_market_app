@@ -11,15 +11,15 @@ router.post('/login', async (req,res) =>{
 
     let user = await User.findOne({emailId : req.body.emailId});
 
-    if(!user) return res.status(400).json({"Response" : 'Invalid Email or Password', "userId" : null, "emailId" : null, "name" : null, "profileUrl" : null});
+    if(!user) return res.status(400).json({"Response" : 'Invalid Email or Password', "_id" : null, "emailId" : null, "name" : null, "profileUrl" : null});
 
     //authenticating password
 
     const validPassword = await bcrypt.compare(req.body.password, user.password);
 
-    if(!validPassword) return res.status(400).json({"Response" : 'Invalid Email or Password', "userId" : null, "emailId" : null, "name" : null, "profileUrl" : null});
+    if(!validPassword) return res.status(400).json({"Response" : 'Invalid Email or Password', "_id" : null, "emailId" : null, "name" : null, "profileUrl" : null});
 
-    res.json({"Response" : 'Successfully Logged In', "userId" : user._id, "emailId" : user.emailId, "name" : user.name, "profileUrl" : user.profileUrl});
+    res.json({"Response" : 'Successfully Logged In', "_id" : user._id, "emailId" : user.emailId, "name" : user.name, "profileUrl" : user.profileUrl, "inventory" : user.inventory});
 
 });  
 
