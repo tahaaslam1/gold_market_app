@@ -1,16 +1,86 @@
 import 'package:flutter/material.dart';
 import 'package:gold_zoid/constants.dart';
 import 'package:gold_zoid/controllers/inventory_item_controller.dart';
+import 'package:gold_zoid/controllers/user_login_signup_controller.dart';
+import 'package:gold_zoid/models/item_model.dart';
 import 'package:gold_zoid/views/titles/common_title.dart';
 import 'package:gold_zoid/views/widgets/drawer/custom_drawer.dart';
 import 'package:gold_zoid/views/widgets/inventoryScreenWidgets/ItemTypeWidget.dart';
 import 'package:gold_zoid/views/widgets/inventoryScreenWidgets/bottom_sheet_item_info_update.dart';
 import 'package:provider/provider.dart';
 
-class Inventory_Page extends StatelessWidget {
+class Inventory_Page extends StatefulWidget {
+  @override
+  State<Inventory_Page> createState() => _Inventory_PageState();
+}
+
+class _Inventory_PageState extends State<Inventory_Page> {
+  var _itemsInfoStatus;
+  List<Item> _ringList = [];
+  List<Item> _earringList = [];
+  List<Item> _pendantList = [];
+  List<Item> _nosepinList = [];
+  List<Item> _necklaceList = [];
+  List<Item> _bangleList = [];
+  List<Item> _braceletList = [];
+  List<Item> _chainList = [];
+
+  @override
+  void initState() {
+    getItems().then((value) => setState(() {}));
+    super.initState();
+  }
+
+  Future getItems() async {
+    await Provider.of<ItemController>(context, listen: false).getItemList(
+      userId: Provider.of<UserLoginSignUpController>(context, listen: false)
+          .getLoggedInUser
+          .userId
+          .toString(),
+    );
+
+    _itemsInfoStatus = 'gotten';
+  }
+
   GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
   @override
   Widget build(BuildContext context) {
+    _ringList = context.watch<ItemController>().getRingList;
+    _earringList = context.watch<ItemController>().getEarringList;
+    _pendantList = context.watch<ItemController>().getPendantList;
+    _nosepinList = context.watch<ItemController>().getNosepinList;
+    _necklaceList = context.watch<ItemController>().getNecklaceList;
+    _bangleList = context.watch<ItemController>().getBangleList;
+    _braceletList = context.watch<ItemController>().getBraceletList;
+    _chainList = context.watch<ItemController>().getChainList;
+
+    if (_itemsInfoStatus == null) {
+      return SafeArea(
+        child: Scaffold(
+          body: Column(
+            children: [
+              CommonTitle(
+                sideText: 'manage your inventory',
+                mainTitleText: 'My Inventory',
+                icon: Icon(
+                  Icons.person_outline,
+                  size: 35.0,
+                  color: kTitleIconColor,
+                ),
+              ),
+              Expanded(
+                  child: Center(
+                child: CircularProgressIndicator(
+                  backgroundColor: kPrimaryColor,
+                ),
+              )),
+            ],
+          ),
+        ),
+      );
+    }
+
     return Scaffold(
       key: _scaffoldKey,
       endDrawer: CustomDrawer(
@@ -52,26 +122,27 @@ class Inventory_Page extends StatelessWidget {
             SizedBox(
               height: 10.0,
             ),
-            Consumer<ItemController>(
-              builder: (context, provider, _) {
-                return Expanded(
-                  child: ListView.builder(
-                    itemCount: provider.itemTypeList.length,
-                    itemBuilder: (BuildContext context, index) {
-                      return ItemTypeWidget(
-                        itemType: provider.itemTypeList[index].type,
-                      );
-                    },
-                  ),
-                  // child: ListView(
-                  //   children: <Widget>[
-                  //     ItemTypeWidget(),
-                  //     ItemTypeWidget(),
-                  //     ItemTypeWidget(),
-                  //   ],
-                  // ),
-                );
-              },
+            Expanded(
+              child: ListView(
+                children: <Widget>[
+                  if (_ringList.isNotEmpty)
+                    ItemTypeWidget(itemType: _ringList.first.type),
+                  if (_earringList.isNotEmpty)
+                    ItemTypeWidget(itemType: _earringList.first.type),
+                  if (_pendantList.isNotEmpty)
+                    ItemTypeWidget(itemType: _pendantList.first.type),
+                  if (_nosepinList.isNotEmpty)
+                    ItemTypeWidget(itemType: _nosepinList.first.type),
+                  if (_necklaceList.isNotEmpty)
+                    ItemTypeWidget(itemType: _necklaceList.first.type),
+                  if (_bangleList.isNotEmpty)
+                    ItemTypeWidget(itemType: _bangleList.first.type),
+                  if (_braceletList.isNotEmpty)
+                    ItemTypeWidget(itemType: _braceletList.first.type),
+                  if (_chainList.isNotEmpty)
+                    ItemTypeWidget(itemType: _chainList.first.type),
+                ],
+              ),
             ),
           ],
         ),

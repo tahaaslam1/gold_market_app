@@ -36,13 +36,13 @@ class ItemInfoWidget2 extends StatelessWidget {
                       width: 25.0,
                     ),
                     Text(
-                      itemWeight,
+                      '${itemWeight}',
                       style:
                           TextStyle(color: kSecondaryTextColor, fontSize: 12.0),
                     ),
                   ],
                 ),
-                width: 60.0,
+                width: 70.0,
                 height: 55.0,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.all(
@@ -63,7 +63,7 @@ class ItemInfoWidget2 extends StatelessWidget {
                   ),
                   children: <TextSpan>[
                     TextSpan(
-                      text: itemQty,
+                      text: '$itemQty',
                       style: TextStyle(
                         color: kSecondaryTextColor,
                         fontSize: 12.0,
@@ -77,7 +77,7 @@ class ItemInfoWidget2 extends StatelessWidget {
               RichText(
                 // Karrot of gold item
                 text: TextSpan(
-                  text: '${itemKarrot} ',
+                  text: '$itemKarrot',
                   style: TextStyle(
                     color: kPrimaryTextColor,
                     fontSize: 12.0,
@@ -107,7 +107,7 @@ class ItemInfoWidget2 extends StatelessWidget {
                   ),
                   children: <TextSpan>[
                     TextSpan(
-                      text: itemValue,
+                      text: '$itemValue',
                       style: TextStyle(
                         color: kSecondaryTextColor,
                         fontSize: 12.0,

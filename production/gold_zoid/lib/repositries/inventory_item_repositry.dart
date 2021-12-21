@@ -10,7 +10,7 @@ class ItemRepositry{
   getItemList({String userId}) async {
     try {
       var response = await http.get(
-        Uri.parse('http://192.168.43.97:7000/api/user/getItemList/$userId'),
+        Uri.parse('http://192.168.0.109:7000/api/user/getItemList/$userId'),
         headers: <String, String>{
           'Content-Type': 'application/json;charset=UTF-8',
           'Charset': 'utf-8'
@@ -18,9 +18,9 @@ class ItemRepositry{
       );
       print('get item list response status : ${response.statusCode}');
       print('get item list response body: ${response.body}');
-      var responseJson = _response(response);
-      return responseJson;
-    } on SocketException{
+       var responseJson = _response(response);
+       return responseJson;
+      } on SocketException{
       throw FetchDataException('No Internet Connection');
     }
   }

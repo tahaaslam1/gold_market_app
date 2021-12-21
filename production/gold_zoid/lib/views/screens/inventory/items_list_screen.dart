@@ -1,21 +1,49 @@
 import 'package:flutter/material.dart';
 import 'package:gold_zoid/constants.dart';
 import 'package:gold_zoid/controllers/inventory_item_controller.dart';
+import 'package:gold_zoid/controllers/user_login_signup_controller.dart';
+import 'package:gold_zoid/models/item_model.dart';
 import 'package:gold_zoid/views/widgets/inventoryScreenWidgets/ItemInfoWidget.dart';
 import 'package:gold_zoid/views/widgets/inventoryScreenWidgets/ItemTypeWidget.dart';
 import 'package:gold_zoid/views/widgets/inventoryScreenWidgets/item_info_widget_2.dart';
 import 'package:gold_zoid/views/widgets/inventoryScreenWidgets/bottom_sheet_item_info_update.dart';
 import 'package:provider/provider.dart';
 
-class ItemListScreen extends StatelessWidget {
+class ItemListScreen extends StatefulWidget {
+  @override
+  State<ItemListScreen> createState() => _ItemListScreenState();
+}
+
+class _ItemListScreenState extends State<ItemListScreen> {
+  List<Item> ringList = [];
+  List<Item> earringList = [];
+  List<Item> pendantList = [];
+  List<Item> nosepinList = [];
+  List<Item> necklaceList = [];
+  List<Item> bangleList = [];
+  List<Item> braceletList = [];
+  List<Item> chainList = [];
+
   @override
   Widget build(BuildContext context) {
+    ringList = context.watch<ItemController>().getRingList;
+    earringList = context.watch<ItemController>().getEarringList;
+    pendantList = context.watch<ItemController>().getPendantList;
+    nosepinList = context.watch<ItemController>().getNosepinList;
+    necklaceList = context.watch<ItemController>().getNecklaceList;
+    bangleList = context.watch<ItemController>().getBangleList;
+    braceletList = context.watch<ItemController>().getBraceletList;
+    chainList = context.watch<ItemController>().getChainList;
+
+    var args = ModalRoute.of(context).settings.arguments;
+    print(args);
+
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         backgroundColor: kPrimaryColor,
         splashColor: Colors.amber[800],
         onPressed: () {
-          _showAddNewItemBottomSheet(context);
+          _showAddNewItemBottomSheet(context,args);
         },
         child: Icon(
           Icons.add,
@@ -45,7 +73,7 @@ class ItemListScreen extends StatelessWidget {
                   ),
                   Expanded(
                     child: Text(
-                      'Item Type', //TODO: yahan animation and provider se item name aega like bangle wagera
+                      args.toString(), //TODO: yahan animation and provider se item name aega like bangle wagera
                       style: TextStyle(
                         color: kPrimaryColor,
                         fontSize: 30.0,
@@ -55,38 +83,77 @@ class ItemListScreen extends StatelessWidget {
                 ],
               ),
             ),
-            Consumer<ItemController>(builder: (context, provider, _) {
-              return Expanded(
-                child: ListView.builder(
-                  itemCount: 2,
-                    itemBuilder: (BuildContext context, index) {
-                  return ItemInfoWidget2(
-                    itemQty: 'asd' ,// provider.itemList[index].qty.toString(),
-                    itemValue: 'asd', //provider.itemList[index].itemValue.toString(),
-                    itemWeight: 'asda', //provider.itemList[index].weightInGramsPerUnit.toString(),
-                    itemKarrot: 'asd',//provider.itemList[index].karrot.toString(),
-                  );
-                }),
-                //color: Colors.red,
-                // child: ListView(
-                //   //scrollDirection: Axis.horizontal,
-                //   children: <Widget>[
-                //     ItemInfoWidget2(),
-                //     ItemInfoWidget2(),
-                //     ItemInfoWidget2(),
-                //     ItemInfoWidget2(),
-                //     ItemInfoWidget2(),
-                //     ItemInfoWidget2(),
-                //     ItemInfoWidget2(),
-                //     ItemInfoWidget2(),
-                //     ItemInfoWidget2(),
-                //     ItemInfoWidget2(),
-                //     ItemInfoWidget2(),
-                //     ItemInfoWidget2(),
-                //   ],
-                // ),
-              );
-            }),
+            Expanded(
+              child: ListView(
+                //scrollDirection: Axis.horizontal,
+                children: <Widget>[
+                  if (args == 'ring')
+                    for (var item in ringList)
+                      ItemInfoWidget2(
+                        itemKarrot: item.karrot.toString(),
+                        itemQty: item.qty.toString(),
+                        itemValue: item.itemValue.toString(),
+                        itemWeight: item.weightInGramsPerUnit.toString(),
+                      ),
+                  if (args == 'pendant')
+                    for (var item in pendantList)
+                      ItemInfoWidget2(
+                        itemKarrot: item.karrot.toString(),
+                        itemQty: item.qty.toString(),
+                        itemValue: item.itemValue.toString(),
+                        itemWeight: item.weightInGramsPerUnit.toString(),
+                      ),
+                  if (args == 'chain')
+                    for (var item in chainList)
+                      ItemInfoWidget2(
+                        itemKarrot: item.karrot.toString(),
+                        itemQty: item.qty.toString(),
+                        itemValue: item.itemValue.toString(),
+                        itemWeight: item.weightInGramsPerUnit.toString(),
+                      ),
+                  if (args == 'bangle')
+                    for (var item in bangleList)
+                      ItemInfoWidget2(
+                        itemKarrot: item.karrot.toString(),
+                        itemQty: item.qty.toString(),
+                        itemValue: item.itemValue.toString(),
+                        itemWeight: item.weightInGramsPerUnit.toString(),
+                      ),
+                  if (args == 'bracelet')
+                    for (var item in braceletList)
+                      ItemInfoWidget2(
+                        itemKarrot: item.karrot.toString(),
+                        itemQty: item.qty.toString(),
+                        itemValue: item.itemValue.toString(),
+                        itemWeight: item.weightInGramsPerUnit.toString(),
+                      ),
+                  if (args == 'earring')
+                    for (var item in earringList)
+                      ItemInfoWidget2(
+                        itemKarrot: item.karrot.toString(),
+                        itemQty: item.qty.toString(),
+                        itemValue: item.itemValue.toString(),
+                        itemWeight: item.itemValue.toString(),
+                      ),
+                  if (args == 'necklace')
+                    for (var item in necklaceList)
+                      ItemInfoWidget2(
+                        itemKarrot: item.karrot.toString(),
+                        itemQty: item.qty.toString(),
+                        itemValue: item.itemValue.toString(),
+                        itemWeight: item.weightInGramsPerUnit.toString(),
+                      ),
+                  if (args == 'nosepin')
+                    for (var item in nosepinList)
+                      ItemInfoWidget2(
+                        itemKarrot: item.karrot.toString(),
+                        itemQty: item.qty.toString(),
+                        itemValue: item.itemValue.toString(),
+                        itemWeight: item.weightInGramsPerUnit.toString(),
+                      ),
+                ],
+              ),
+            ),
           ],
         ),
       ),
@@ -94,7 +161,7 @@ class ItemListScreen extends StatelessWidget {
   }
 }
 
-void _showAddNewItemBottomSheet(context) {
+void _showAddNewItemBottomSheet(context,Object args) {
   showModalBottomSheet(
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.only(
@@ -104,13 +171,13 @@ void _showAddNewItemBottomSheet(context) {
     ),
     isScrollControlled: true,
     context: context,
-    builder: (BuildContext bc) {
-      return Wrap(children: [addNewItemBottomSheetMenu()]);
+    builder: (BuildContext context) {
+      return Wrap(children: [addNewItemBottomSheetMenu(context,args)]);
     },
   );
 }
 
-Column addNewItemBottomSheetMenu() {
+Column addNewItemBottomSheetMenu(BuildContext context,Object args) {
   return Column(
     children: [
       SizedBox(
@@ -132,7 +199,7 @@ Column addNewItemBottomSheetMenu() {
           Padding(
             padding: const EdgeInsets.only(left: 15.0),
             child: Text(
-              'Add New Gold Item for (item type)',
+              'Add New Gold Item for ${args}',
               style: TextStyle(
                 color: kSecondaryTextColor,
                 fontSize: 17.0,
@@ -146,34 +213,34 @@ Column addNewItemBottomSheetMenu() {
       ),
       BottomSheetItemInfoUpdate(
         text: 'Weight',
-        quantity: '2',
+        quantity: '${context.watch<ItemController>().getWeight}',
         onMinus: () {
-          print('decrement by 5');
+          context.read<ItemController>().decrementWeight();
         },
         onPlus: () {
-          print('increment by 5');
+             context.read<ItemController>().incrementWeight(); 
         },
       ),
       SizedBox(height: 30.0),
       BottomSheetItemInfoUpdate(
         text: 'Quantity',
-        quantity: '2',
+        quantity: '${context.watch<ItemController>().getquantity}' ,
         onMinus: () {
-          print('decrement by 1');
+          context.read<ItemController>().decrementQuantity();
         },
         onPlus: () {
-          print('increment by 1');
+         context.read<ItemController>().incrementQuantity(); 
         },
       ),
       SizedBox(height: 30.0),
       BottomSheetItemInfoUpdate(
         text: 'Karrot',
-        quantity: '2',
+        quantity: '${context.watch<ItemController>().getkarrot}',
         onMinus: () {
-          print('decrement from 24 to miinmum karrot jou huta h');
+          context.read<ItemController>().decrementKarrot();
         },
         onPlus: () {
-          print('increment from min karrot jou huta h to 24k ');
+          context.read<ItemController>().incrementKarrot(); 
         },
       ),
       SizedBox(
