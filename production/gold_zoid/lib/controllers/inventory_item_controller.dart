@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:gold_zoid/controllers/marketController.dart';
 import 'package:gold_zoid/models/item_model.dart';
 import 'package:gold_zoid/repositries/inventory_item_repositry.dart';
 
@@ -120,8 +121,17 @@ class ItemController extends ChangeNotifier {
     }
   }
 
-  void addNewItem({String userEmailId}) {
-    var response = reachRepositry.addNewItem(userEmailId: userEmailId);
+  void addNewItem({String userEmailId,String itemType}) {
+    MarketController market = MarketController(); 
+    var valuePerOunce = market.getValuePerOunce; 
+    
+    var goldValue = market.getCurrentGoldRate;
+    
+    var itemValue = _quantity*_weight*((_karrot/24)*goldValue);
+
+    var response = reachRepositry.addNewItem(userEmailId: userEmailId,qty: _quantity,karrot: _karrot,weight: _weight,itemType: itemType,valuePerOunce: valuePerOunce,itemValue: itemValue);
+
+    
     
   }
   void addNewItemType() {}

@@ -4,9 +4,7 @@ import 'dart:io';
 import 'package:gold_zoid/controllers/custom_exception_handler.dart';
 import 'package:http/http.dart' as http;
 
-
-class ItemRepositry{
-
+class ItemRepositry {
   getItemList({String userId}) async {
     try {
       var response = await http.get(
@@ -18,12 +16,51 @@ class ItemRepositry{
       );
       print('get item list response status : ${response.statusCode}');
       print('get item list response body: ${response.body}');
-       var responseJson = _response(response);
-       return responseJson;
-      } on SocketException{
+      var responseJson = _response(response);
+      return responseJson;
+    } on SocketException {
       throw FetchDataException('No Internet Connection');
     }
   }
+
+  addNewItem(
+      {String userEmailId,
+      String itemType,
+      var valuePerOunce,
+      var qty,
+      var weight,
+      var itemValue,
+      var karrot}) async {
+    try {
+      var response = await http.post(
+        Uri.parse('http://192.168.0.109:7000/api/user/additems'),
+        headers: <String, String>{
+          'Content-Type': 'application/json;charset=UTF-8',
+          'Charset': 'utf-8'
+        },
+        body: jsonEncode(
+          <String, dynamic>{
+            "emailId": userEmailId,
+            "items": {
+              "type": itemType,
+              "material": {"valuePerOunce": valuePerOunce},
+              "qty": qty,
+              "weightInGramsPerUnit": weight,
+              "itemValue": itemValue,
+              "karrot": karrot,
+            }
+          },
+        ),
+      );
+      print('get item list response status : ${response.statusCode}');
+      print('get item list response body: ${response.body}');
+      var responseJson = _response(response);
+      return responseJson;
+    } on SocketException {
+      throw FetchDataException('No Internet Connection');
+    }
+  }
+
   dynamic _response(http.Response response) {
     switch (response.statusCode) {
       case 200:
@@ -38,11 +75,10 @@ class ItemRepositry{
         throw UnauthorisedException(responseJson['Response'].toString());
       case 404:
         var responseJson = json.decode(response.body);
-        throw PageNotFoundException(responseJson['Response'].toString());  
+        throw PageNotFoundException(responseJson['Response'].toString());
       case 500:
       default:
         throw FetchDataException('No Internet Connection');
     }
   }
-
 }

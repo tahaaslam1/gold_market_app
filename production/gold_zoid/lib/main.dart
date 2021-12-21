@@ -27,6 +27,7 @@ void main() {
         ChangeNotifierProvider(create: (_) => UserController()),
         ChangeNotifierProvider(create: (_) => UserInventoryController()),
         ChangeNotifierProvider(create: (_) => ItemController()),
+        ChangeNotifierProvider(create: (_) => MarketController()),
       ],
       child: Gold_Zoid(),
     ),

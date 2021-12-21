@@ -256,6 +256,7 @@ Column addNewItemBottomSheetMenu(BuildContext context,Object args) {
         child: Center(
           child: InkWell(
             onTap: () {
+              
               print("add the new item");
             },
             child: Text(
