@@ -3,14 +3,14 @@ const joi = require('Joi');
 
 const materialSchema = new mongoose.Schema({
 
-    materialType : {
-        type : String,
-        default : "gold"
+    materialType: {
+        type: String,
+        default: "gold"
     },
-    valuePerOunce : {
-        type : Number,
+    valuePerOunce: {
+        type: Number,
         //default : null,
-        required : false
+        required: false
     }
 
 });
@@ -21,6 +21,6 @@ const Material = mongoose.model('Material', materialSchema);
 
 module.exports.Material = Material;
 module.exports.materialSchema = materialSchema;
-    
+
 // }
 

@@ -1,34 +1,34 @@
 const mongoose = require('mongoose');
-const {itemSchema} = require('./item');
+const { itemSchema } = require('./item');
 
 const transactionSchema = mongoose.Schema({
 
-    type : {
-        type : String,
-        required : true
-    },
-
-    wastage : {
-        type : Number,
+    type: {
+        type: String,
         required: true
     },
-    labour : {
-        type : Number,
-        required : true
+
+    wastage: {
+        type: Number,
+        required: true
     },
-    item : {
-        type : itemSchema,
-        required : true
+    labour: {
+        type: Number,
+        required: true
+    },
+    item: {
+        type: itemSchema,
+        required: true
     },
 
-    dateTime : {
-        type : Date,
-        required : true
+    dateTime: {
+        type: Date,
+        required: true
     },
 
-    transactionFinalAmount : {
-        type : Number,
-        required : true
+    transactionFinalAmount: {
+        type: Number,
+        required: true
     }
 });
 

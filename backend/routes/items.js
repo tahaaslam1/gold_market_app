@@ -8,9 +8,9 @@ const _ = require('lodash');
 const { Mongoose } = require('mongoose');
 
 
-var a = [];    //items temp list
+//items temp list
 //console.log(a);
-
+var a = [];
 router.post('/additems', async (req, res) => {
 
 
@@ -18,8 +18,6 @@ router.post('/additems', async (req, res) => {
     if (!user) res.status(400).send('User not Found!');
 
     else {
-
-
         let items = new Item({
 
             type: req.body.items.type,
@@ -34,8 +32,6 @@ router.post('/additems', async (req, res) => {
             itemValue: req.body.items.itemValue,
             karrot: req.body.items.karrot
         });
-
-
         await items.save();
 
         a.push(items);
@@ -54,11 +50,8 @@ router.post('/additems', async (req, res) => {
         var sum_goldval = calculateTotalgoldValue(inventory.items);
         inventory.totalGoldValue = sum_goldval;
         await inventory.save();
-
         user.inventory = inventory;
-
         //console.log(inventory.items);
-
         await user.save();
         //res.status(200).json({"Response":"Item Added"});
         res.status(200).json({
@@ -72,11 +65,7 @@ router.post('/additems', async (req, res) => {
             "karrot": items.karrot
         })
         //res.json(user);
-
     }
-
-
-
 });
 
 //qty,weightInGramsPerUnit, karrot
@@ -96,14 +85,11 @@ router.put("/updateitem/:id1/:id2/:id3", async (req, res) => {
 
     for (var i in inventory) {
 
-
         if (id === inventory[i]._id.toString()) {
 
             inventory[i].qty = req.body.qty;
             inventory[i].weightInGramsPerUnit = req.body.weightInGramsPerUnit;
             inventory[i].karrot = req.body.karrot;
-
-
         }
     }
 
@@ -133,15 +119,12 @@ router.get('/getItemList/:id', async (req, res) => {
 
 router.delete('/deleteitem/:id1/:id2/:id3', async (req, res) => {
 
-
     let user = await User.findById(req.params.id1);
+    if (!user) res.status(200).json('User not found');
     var item_id = req.params.id3;
 
     var c = user.inventory.items;
     // console.log(c);
-
-
-
     for (var i = 0; i < c.length; i++) {  //removing from user schema
 
         if (c[i]._id.toString() === item_id)
@@ -153,14 +136,14 @@ router.delete('/deleteitem/:id1/:id2/:id3', async (req, res) => {
     var sum_totalgold = calculatetotalGold(user.inventory.items); // calculating totalGold updating user's inventory
     user.inventory.totalGold = sum_totalgold;
 
-    var sum_goldval = calculateTotalgoldValue(user.inventory.items); 
+    var sum_goldval = calculateTotalgoldValue(user.inventory.items);
     user.inventory.totalGoldValue = sum_goldval;
 
     await user.save();
 
 
     await Item.findByIdAndRemove(item_id); //removing from item schema
-
+    // if(!item) res.status(200).json('Item not Found');
     let inventory = await Inventory.findById(req.params.id2);
     var d = inventory.items;
 
@@ -174,11 +157,16 @@ router.delete('/deleteitem/:id1/:id2/:id3', async (req, res) => {
     inventory.totalGold = sum_totalgold;  //updating inventory schema
     inventory.totalGoldValue = sum_goldval;
     await inventory.save();
-
-
     //res.json(user);
     // res.send('ok');
     res.status(200).json({ "Response": "Item Deleted" });
+
+    var temp;
+    temp = a;
+    for (k in a) {
+        if (temp[k]._id.toString() === item_id)
+            a.splice(k, 1);
+    }
 });
 
 module.exports = router;

@@ -1,24 +1,24 @@
 const mongoose = require('mongoose');
-const {itemSchema} = require('./item');
+const { itemSchema } = require('./item');
 
 const inventorySchema = new mongoose.Schema({
 
-    totalGold : {
+    totalGold: {
 
-        type : Number,
+        type: Number,
         //required : true
-        default : 0.0
+        default: 0.0
     },
 
-    totalGoldValue : {
+    totalGoldValue: {
 
-        type : Number,
-        default : 0.0
+        type: Number,
+        default: 0.0
         //required : true
     },
 
-    items : {
-        type : [itemSchema],
+    items: {
+        type: [itemSchema],
         //required : true
     }
 
