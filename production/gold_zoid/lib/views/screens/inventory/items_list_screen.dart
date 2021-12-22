@@ -139,10 +139,12 @@ class _ItemListScreenState extends State<ItemListScreen> {
                   if (args == 'earring')
                     for (var item in earringList)
                       ItemInfoWidget2(
+                        itemId: item.itemId.toString(),
+                        itemType: item.type.toString(),
                         itemKarrot: item.karrot.toString(),
                         itemQty: item.qty.toString(),
                         itemValue: item.itemValue.toStringAsFixed(2),
-                        itemWeight: item.itemValue.toString(),
+                        itemWeight:  item.weightInGramsPerUnit.toString(),
                       ),
                   if (args == 'necklace')
                     for (var item in necklaceList)

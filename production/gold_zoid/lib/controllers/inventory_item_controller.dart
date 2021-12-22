@@ -11,13 +11,23 @@ import 'package:gold_zoid/repositries/marketRepositry.dart';
 class ItemController extends ChangeNotifier {
   IItemRepositry reachRepositry = ItemRepositry();
 
-  num _weight = 0.0;
-  num _quantity = 0;
+  num _weight = 0.5;
+  num _quantity = 1;
   num _karrot = 10;
+
+  String itemType = 'ring';
+
 
   num get getWeight => _weight;
   num get getquantity => _quantity;
   num get getkarrot => _karrot;
+
+  String get getItemType => itemType;
+
+
+  void selectItemType(String value){
+    itemType = value;
+  }
 
   void incrementWeight() {
     _weight = _weight + 0.5;
@@ -25,7 +35,7 @@ class ItemController extends ChangeNotifier {
   }
 
   void decrementWeight() {
-    if (_weight > 0) _weight = _weight - 0.5;
+    if (_weight > 0.5) _weight = _weight - 0.5;
     notifyListeners();
   }
 
@@ -35,7 +45,7 @@ class ItemController extends ChangeNotifier {
   }
 
   void decrementQuantity() {
-    if (_quantity > 0) --_quantity;
+    if (_quantity > 1) --_quantity;
     notifyListeners();
   }
 

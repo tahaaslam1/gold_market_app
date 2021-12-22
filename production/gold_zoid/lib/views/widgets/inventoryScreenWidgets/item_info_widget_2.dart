@@ -28,7 +28,7 @@ class ItemInfoWidget2 extends StatelessWidget {
       padding: const EdgeInsets.all(20.0),
       child: InkWell(
         onLongPress: () {
-          _showDeleteUpdateBottomSheet(context);
+          _showUpdateBottomSheet(context);
           print('item delete krne ki bottom sheet khul jae');
           // Navigator.pushNamed(context,'/inventoryScreen');
         },
@@ -206,7 +206,7 @@ class ItemInfoWidget2 extends StatelessWidget {
   }
 }
 
-void _showDeleteUpdateBottomSheet(context) {
+void _showUpdateBottomSheet(context) {
   showModalBottomSheet(
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.only(
@@ -217,12 +217,12 @@ void _showDeleteUpdateBottomSheet(context) {
     isScrollControlled: true,
     context: context,
     builder: (BuildContext bc) {
-      return Wrap(children: [_deleteUpdateBottomSheetMenu()]);
+      return Wrap(children: [_updateBottomSheetMenu()]);
     },
   );
 }
 
-Column _deleteUpdateBottomSheetMenu() {
+Column _updateBottomSheetMenu() {
   return Column(
     children: [
       SizedBox(
@@ -234,59 +234,6 @@ Column _deleteUpdateBottomSheetMenu() {
         thickness: 3.0,
         endIndent: 160.0,
         indent: 160.0,
-      ),
-      SizedBox(
-        height: 20.0,
-      ),
-      Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(left: 15.0),
-            child: Text(
-              'Delete Gold Item',
-              style: TextStyle(
-                color: kSecondaryTextColor,
-                fontSize: 17.0,
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(right: 15.0),
-            child: InkWell(
-              onTap: () {
-                //TODO: delete current selected item logic
-                // some logic...
-              },
-              child: Container(
-                child: Center(
-                  child: Text(
-                    'Delete item',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 15.0,
-                    ),
-                  ),
-                ),
-                height: 40.0,
-                width: 120.0,
-                decoration: BoxDecoration(
-                  color: Colors.red[400],
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(25.0),
-                  ),
-                ),
-              ),
-            ),
-          ),
-        ],
-      ),
-      SizedBox(
-        height: 20.0,
-      ),
-      Divider(
-        color: kPrimaryTextColor,
-        thickness: 1.0,
       ),
       SizedBox(
         height: 10.0,

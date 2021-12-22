@@ -12,14 +12,14 @@ class MarketRepositry implements IMarketRepositry {
     var silverRate;
 
     http.Response response = await http.get(
-        Uri.parse('https://www.metals-api.com/api/latest?access_key=krnr20cobh816f9ssjxuqn9nib23fq4j30v87fi29f43vu0qd53lc6fqe49n&base=USD&symbols=XAU%2CXAG%2CXPD%2CXPT%2CXRH'),
+        Uri.parse('https://www.metals-api.com/api/latest?access_key=ci2k8h0a51j3074t0l2dvy8821316f9v2cj63nh7h1drz4610l7aurj63539'),
         );
 // alternate api's: https://www.metals-api.com/api/latest?access_key=krnr20cobh816f9ssjxuqn9nib23fq4j30v87fi29f43vu0qd53lc6fqe49n&base=USD&symbols=XAU%2CXAG%2CXPD%2CXPT%2CXRH
 //       : https://www.metals-api.com/api/latest?access_key=dma3cp7whe9z7ya4xh3bhcj0hu8ay4qnfsj1dhd9dc7toybi5l8597lkuldt
     if (response.statusCode == 200) {
       String data = response.body;
       var decodedData = jsonDecode(data);
-
+     // if(decodedData['success'] == false)throw  Exception('Failed to load Gold,Silver Rates'); 
       goldRate = decodedData['rates']['XAU'];
       silverRate = decodedData['rates']['XAG'];
     } else {

@@ -56,8 +56,6 @@ class _Home_PageState extends State<Home_Page> {
     _userInfoStatus = 'gotten';
   }
 
-
-
   @override
   Widget build(BuildContext context) {
     if (_userInfoStatus == null) {
@@ -209,7 +207,8 @@ class _Home_PageState extends State<Home_Page> {
                         children: [
                           Expanded(
                             child: Container(
-                              color: Colors.black,
+                              child: Center(child: Text('Under Contruction')),
+                              color: Colors.white,
                               height: 200.0,
                             ),
                           ),
