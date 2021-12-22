@@ -1,4 +1,4 @@
 
-abstract class IUserInventoryRepositry{
+abstract class IUserInventoryRepository{
   Future<dynamic> getUserInventory({String userId}); 
 }

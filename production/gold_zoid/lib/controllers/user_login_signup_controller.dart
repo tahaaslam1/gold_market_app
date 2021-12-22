@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:gold_zoid/models/user_model.dart';
+import 'package:gold_zoid/repositries/interfaces/user_login_signup_interface.dart';
 import 'package:gold_zoid/repositries/user_login_signup_repositry.dart';
 import 'package:http/http.dart' as http;
 import 'package:gold_zoid/controllers/custom_exception_handler.dart';
@@ -12,7 +13,7 @@ class UserLoginSignUpController extends ChangeNotifier {
   
   User _user;
 
-  UserLoginSignupRepositry reachRepositry = UserLoginSignupRepositry();
+  final IUserLoginSignupRepositry reachRepositry = UserLoginSignupRepositry();
 
   User get getLoggedInUser => _user;  //builder.name 
 

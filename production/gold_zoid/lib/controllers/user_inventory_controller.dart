@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:gold_zoid/models/inventory_model.dart';
 import 'dart:convert';
 import 'package:gold_zoid/models/item_model.dart';
+import 'package:gold_zoid/repositries/interfaces/user_inventory_interface.dart';
 import 'package:gold_zoid/repositries/user_inventory_repositry.dart';
 
 Inventory userInventory;
 
 class UserInventoryController extends ChangeNotifier {
-  UserInventoryRepository reachRepositry = UserInventoryRepository();
+  final IUserInventoryRepository reachRepositry = UserInventoryRepository();
 
   Inventory get getLoggedInUserInventory => userInventory;
 

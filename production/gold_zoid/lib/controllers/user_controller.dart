@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:gold_zoid/models/user_model.dart';
+import 'package:gold_zoid/repositries/interfaces/user_interface.dart';
 import 'package:gold_zoid/repositries/user_repositry.dart';
 
 import 'package:provider/provider.dart';
@@ -10,7 +11,7 @@ import 'package:provider/provider.dart';
 import 'custom_exception_handler.dart';
 
 class UserController extends ChangeNotifier {
-  UserRepositry reachRepositry = UserRepositry();
+  final IUserRepositry reachRepositry = UserRepositry();
   User _user;
 
   User get getLoggedInUser => _user;

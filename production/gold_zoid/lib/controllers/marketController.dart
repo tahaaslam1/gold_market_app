@@ -1,20 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
-import 'package:gold_zoid/models/material_model.dart';
 import 'package:gold_zoid/models/market_model.dart';
 import 'package:gold_zoid/repositries/interfaces/marketInterface.dart';
 import 'package:gold_zoid/repositries/marketRepositry.dart';
-import 'package:provider/provider.dart';
 
 class MarketController extends ChangeNotifier {
+ 
   final IMarketRepositry _marketRepositry = MarketRepositry();
-
-  double _currentGoldValue; 
-  double _valuePerOunce;
-
-  double get getCurrentGoldRate => _currentGoldValue;
-    double get getValuePerOunce => _valuePerOunce;
-
 
   Future<List<Market>> fetchMaterialPrice() {
     return _marketRepositry.getCurrentMarket();
@@ -26,10 +18,7 @@ class MarketController extends ChangeNotifier {
 
   double getPriceFromMarket(String materialType, Market market, int purity) {   //TODO: change this String type of materialType to MaterialType after wards
     double valuePerOunce = market.materials.firstWhere((e) => e.materialType == materialType).valuePerOunce;
-    _valuePerOunce = valuePerOunce;
     double temp = (1 / valuePerOunce) / 31.1035; //We return the values based on the base currency. For example, for 1 USD the return is a number like 0.000634 for Gold (XAU).To get the gold rate per troy ounce in USD: 1/0.000634= 1577.28 USD
-    _currentGoldValue  = temp; 
-    notifyListeners();
     if(materialType == 'gold'){
       return (purity / 24) * temp;
     }

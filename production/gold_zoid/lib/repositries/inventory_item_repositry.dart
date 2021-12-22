@@ -2,9 +2,10 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:gold_zoid/controllers/custom_exception_handler.dart';
+import 'package:gold_zoid/repositries/interfaces/item_interface.dart';
 import 'package:http/http.dart' as http;
 
-class ItemRepositry {
+class ItemRepositry implements IItemRepositry {
   getItemList({String userId}) async {
     try {
       var response = await http.get(
@@ -52,8 +53,28 @@ class ItemRepositry {
           },
         ),
       );
-      print('get item list response status : ${response.statusCode}');
-      print('get item list response body: ${response.body}');
+      print('add new item response status : ${response.statusCode}');
+      print('add new item response body: ${response.body}');
+      var responseJson = _response(response);
+      return responseJson;
+    } on SocketException {
+      throw FetchDataException('No Internet Connection');
+    }
+  }
+
+  Future<dynamic> deleteItem(
+      {String userId, String inventoryId, String itemId}) async {
+    try {
+      var response = await http.delete(
+        Uri.parse(
+            'http://192.168.0.109:7000/api/user/deleteitem/$userId/$inventoryId/$itemId'),
+        headers: <String, String>{
+          'Content-Type': 'application/json;charset=UTF-8',
+          'Charset': 'utf-8'
+        },
+      );
+      print('delete item response status : ${response.statusCode}');
+      print('delete item response body: ${response.body}');
       var responseJson = _response(response);
       return responseJson;
     } on SocketException {

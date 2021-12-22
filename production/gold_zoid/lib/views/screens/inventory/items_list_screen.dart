@@ -36,14 +36,13 @@ class _ItemListScreenState extends State<ItemListScreen> {
     chainList = context.watch<ItemController>().getChainList;
 
     var args = ModalRoute.of(context).settings.arguments;
-    print(args);
 
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         backgroundColor: kPrimaryColor,
         splashColor: Colors.amber[800],
         onPressed: () {
-          _showAddNewItemBottomSheet(context,args);
+          _showAddNewItemBottomSheet(context, args);
         },
         child: Icon(
           Icons.add,
@@ -90,41 +89,51 @@ class _ItemListScreenState extends State<ItemListScreen> {
                   if (args == 'ring')
                     for (var item in ringList)
                       ItemInfoWidget2(
+                        itemType: item.type.toString(),
+                        itemId: item.itemId.toString(),
                         itemKarrot: item.karrot.toString(),
                         itemQty: item.qty.toString(),
-                        itemValue: item.itemValue.toString(),
+                        itemValue: item.itemValue.toStringAsFixed(2),
                         itemWeight: item.weightInGramsPerUnit.toString(),
                       ),
                   if (args == 'pendant')
                     for (var item in pendantList)
                       ItemInfoWidget2(
+                        itemId: item.itemId.toString(),
+                        itemType: item.type.toString(),
                         itemKarrot: item.karrot.toString(),
                         itemQty: item.qty.toString(),
-                        itemValue: item.itemValue.toString(),
+                        itemValue: item.itemValue.toStringAsFixed(2),
                         itemWeight: item.weightInGramsPerUnit.toString(),
                       ),
                   if (args == 'chain')
                     for (var item in chainList)
                       ItemInfoWidget2(
+                        itemId: item.itemId.toString(),
+                        itemType: item.type.toString(),
                         itemKarrot: item.karrot.toString(),
                         itemQty: item.qty.toString(),
-                        itemValue: item.itemValue.toString(),
+                        itemValue: item.itemValue.toStringAsFixed(2),
                         itemWeight: item.weightInGramsPerUnit.toString(),
                       ),
                   if (args == 'bangle')
                     for (var item in bangleList)
                       ItemInfoWidget2(
+                        itemId: item.itemId.toString(),
+                        itemType: item.type.toString(),
                         itemKarrot: item.karrot.toString(),
                         itemQty: item.qty.toString(),
-                        itemValue: item.itemValue.toString(),
+                        itemValue: item.itemValue.toStringAsFixed(2),
                         itemWeight: item.weightInGramsPerUnit.toString(),
                       ),
                   if (args == 'bracelet')
                     for (var item in braceletList)
                       ItemInfoWidget2(
+                        itemId: item.itemId.toString(),
+                        itemType: item.type.toString(),
                         itemKarrot: item.karrot.toString(),
                         itemQty: item.qty.toString(),
-                        itemValue: item.itemValue.toString(),
+                        itemValue: item.itemValue.toStringAsFixed(2),
                         itemWeight: item.weightInGramsPerUnit.toString(),
                       ),
                   if (args == 'earring')
@@ -132,23 +141,27 @@ class _ItemListScreenState extends State<ItemListScreen> {
                       ItemInfoWidget2(
                         itemKarrot: item.karrot.toString(),
                         itemQty: item.qty.toString(),
-                        itemValue: item.itemValue.toString(),
+                        itemValue: item.itemValue.toStringAsFixed(2),
                         itemWeight: item.itemValue.toString(),
                       ),
                   if (args == 'necklace')
                     for (var item in necklaceList)
                       ItemInfoWidget2(
+                        itemId: item.itemId.toString(),
+                        itemType: item.type.toString(),
                         itemKarrot: item.karrot.toString(),
                         itemQty: item.qty.toString(),
-                        itemValue: item.itemValue.toString(),
+                        itemValue: item.itemValue.toStringAsFixed(2),
                         itemWeight: item.weightInGramsPerUnit.toString(),
                       ),
                   if (args == 'nosepin')
                     for (var item in nosepinList)
                       ItemInfoWidget2(
+                        itemId: item.itemId.toString(),
+                        itemType: item.type.toString(),
                         itemKarrot: item.karrot.toString(),
                         itemQty: item.qty.toString(),
-                        itemValue: item.itemValue.toString(),
+                        itemValue: item.itemValue.toStringAsFixed(2),
                         itemWeight: item.weightInGramsPerUnit.toString(),
                       ),
                 ],
@@ -161,7 +174,7 @@ class _ItemListScreenState extends State<ItemListScreen> {
   }
 }
 
-void _showAddNewItemBottomSheet(context,Object args) {
+void _showAddNewItemBottomSheet(context, Object args) {
   showModalBottomSheet(
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.only(
@@ -172,12 +185,52 @@ void _showAddNewItemBottomSheet(context,Object args) {
     isScrollControlled: true,
     context: context,
     builder: (BuildContext context) {
-      return Wrap(children: [addNewItemBottomSheetMenu(context,args)]);
+      return Wrap(children: [addNewItemBottomSheetMenu(context, args)]);
     },
   );
 }
 
-Column addNewItemBottomSheetMenu(BuildContext context,Object args) {
+Column addNewItemBottomSheetMenu(BuildContext context, Object args) {
+  void _passSnackbar(String msg) {
+    final snackBar = SnackBar(
+      behavior: SnackBarBehavior.floating,
+      content: Text(
+        msg,
+        textAlign: TextAlign.center,
+        style: TextStyle(),
+      ),
+    );
+    //_scaffoldKey.currentState.showSnackBar(snackBar);
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  }
+
+  void _failSnackbar(String error) {
+    final snackBar = SnackBar(
+      behavior: SnackBarBehavior.floating,
+      content: Text(
+        error,
+        textAlign: TextAlign.center,
+        style: TextStyle(),
+      ),
+    );
+    //_scaffoldKey.currentState.showSnackBar(snackBar);
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  }
+
+  _tryAddNewItem() async {
+    var response = await context.read<ItemController>().addNewItem(
+        itemType: args,
+        userEmailId:
+            context.read<UserLoginSignUpController>().getLoggedInUser.emailId);
+
+    if (response == 'Item Added') {
+      _passSnackbar('Item Added');
+      Navigator.of(context).pop();
+    } else {
+      _failSnackbar('Item Not Added');
+    }
+  }
+
   return Column(
     children: [
       SizedBox(
@@ -218,18 +271,18 @@ Column addNewItemBottomSheetMenu(BuildContext context,Object args) {
           context.read<ItemController>().decrementWeight();
         },
         onPlus: () {
-             context.read<ItemController>().incrementWeight(); 
+          context.read<ItemController>().incrementWeight();
         },
       ),
       SizedBox(height: 30.0),
       BottomSheetItemInfoUpdate(
         text: 'Quantity',
-        quantity: '${context.watch<ItemController>().getquantity}' ,
+        quantity: '${context.watch<ItemController>().getquantity}',
         onMinus: () {
           context.read<ItemController>().decrementQuantity();
         },
         onPlus: () {
-         context.read<ItemController>().incrementQuantity(); 
+          context.read<ItemController>().incrementQuantity();
         },
       ),
       SizedBox(height: 30.0),
@@ -240,7 +293,7 @@ Column addNewItemBottomSheetMenu(BuildContext context,Object args) {
           context.read<ItemController>().decrementKarrot();
         },
         onPlus: () {
-          context.read<ItemController>().incrementKarrot(); 
+          context.read<ItemController>().incrementKarrot();
         },
       ),
       SizedBox(
@@ -256,7 +309,7 @@ Column addNewItemBottomSheetMenu(BuildContext context,Object args) {
         child: Center(
           child: InkWell(
             onTap: () {
-              
+              _tryAddNewItem();
               print("add the new item");
             },
             child: Text(

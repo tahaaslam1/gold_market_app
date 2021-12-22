@@ -15,10 +15,10 @@ class Item {
   String itemId;
   String type;
   Material material;
-  int qty;
-  double weightInGramsPerUnit;
-  double itemValue;
-  int karrot;
+  num qty;
+  num weightInGramsPerUnit;
+  num itemValue;
+  num karrot;
 
   Item({
     this.itemId,

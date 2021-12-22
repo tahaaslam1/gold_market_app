@@ -7,7 +7,7 @@ import 'package:gold_zoid/repositries/interfaces/user_inventory_interface.dart';
 import 'package:http/http.dart' as http;
 
 
-class UserInventoryRepository implements IUserInventoryRepositry {
+class UserInventoryRepository implements IUserInventoryRepository {
   getUserInventory({String userId}) async {
     try {
       var response = await http.get(

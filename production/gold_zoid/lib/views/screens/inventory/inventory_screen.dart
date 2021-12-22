@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gold_zoid/constants.dart';
 import 'package:gold_zoid/controllers/inventory_item_controller.dart';
+import 'package:gold_zoid/controllers/user_controller.dart';
 import 'package:gold_zoid/controllers/user_login_signup_controller.dart';
 import 'package:gold_zoid/models/item_model.dart';
 import 'package:gold_zoid/views/titles/common_title.dart';
@@ -25,6 +26,13 @@ class _Inventory_PageState extends State<Inventory_Page> {
   List<Item> _braceletList = [];
   List<Item> _chainList = [];
 
+  // @override
+  // void didChangeDependencies() {
+  //   getItems().then((value) => setState(() {}));
+
+  //   super.didChangeDependencies();
+  // }
+
   @override
   void initState() {
     getItems().then((value) => setState(() {}));
@@ -33,7 +41,7 @@ class _Inventory_PageState extends State<Inventory_Page> {
 
   Future getItems() async {
     await Provider.of<ItemController>(context, listen: false).getItemList(
-      userId: Provider.of<UserLoginSignUpController>(context, listen: false)
+      userId: Provider.of<UserController>(context, listen: false)
           .getLoggedInUser
           .userId
           .toString(),

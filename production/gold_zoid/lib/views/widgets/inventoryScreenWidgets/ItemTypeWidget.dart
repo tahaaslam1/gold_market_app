@@ -64,12 +64,8 @@ class _ItemTypeWidgetState extends State<ItemTypeWidget> {
                 padding: const EdgeInsets.only(right: 20.0),
                 child: InkWell(
                   onTap: () {
-                    Navigator.pushNamed(
-                      context,
-                      '/itemListScreen',
-                      arguments: widget.itemType
-                      
-                    );
+                    Navigator.pushNamed(context, '/itemListScreen',
+                        arguments: widget.itemType);
                     print(
                       'view all (for particular item)',
                     );
@@ -99,7 +95,7 @@ class _ItemTypeWidgetState extends State<ItemTypeWidget> {
                     ItemInfoWidget(
                       itemKarrot: item.karrot.toString(),
                       itemQty: item.qty.toString(),
-                      itemValue: item.itemValue.toString(),
+                      itemValue: item.itemValue.toStringAsFixed(2),
                       itemWeight: item.weightInGramsPerUnit.toString(),
                     ),
                 if (widget.itemType == 'bracelet')
@@ -107,7 +103,7 @@ class _ItemTypeWidgetState extends State<ItemTypeWidget> {
                     ItemInfoWidget(
                       itemKarrot: item.karrot.toString(),
                       itemQty: item.qty.toString(),
-                      itemValue: item.itemValue.toString(),
+                      itemValue: item.itemValue.toStringAsFixed(2),
                       itemWeight: item.weightInGramsPerUnit.toString(),
                     ),
                 if (widget.itemType == 'nosepin')
@@ -115,7 +111,7 @@ class _ItemTypeWidgetState extends State<ItemTypeWidget> {
                     ItemInfoWidget(
                       itemKarrot: item.karrot.toString(),
                       itemQty: item.qty.toString(),
-                      itemValue: item.itemValue.toString(),
+                      itemValue: item.itemValue.toStringAsFixed(2),
                       itemWeight: item.weightInGramsPerUnit.toString(),
                     ),
                 if (widget.itemType == 'necklace')
@@ -123,7 +119,7 @@ class _ItemTypeWidgetState extends State<ItemTypeWidget> {
                     ItemInfoWidget(
                       itemKarrot: item.karrot.toString(),
                       itemQty: item.qty.toString(),
-                      itemValue: item.itemValue.toString(),
+                      itemValue: item.itemValue.toStringAsFixed(2),
                       itemWeight: item.weightInGramsPerUnit.toString(),
                     ),
                 if (widget.itemType == 'chain')
@@ -131,7 +127,7 @@ class _ItemTypeWidgetState extends State<ItemTypeWidget> {
                     ItemInfoWidget(
                       itemKarrot: item.karrot.toString(),
                       itemQty: item.qty.toString(),
-                      itemValue: item.itemValue.toString(),
+                      itemValue: item.itemValue.toStringAsFixed(2),
                       itemWeight: item.weightInGramsPerUnit.toString(),
                     ),
                 if (widget.itemType == 'bangle')
@@ -139,7 +135,7 @@ class _ItemTypeWidgetState extends State<ItemTypeWidget> {
                     ItemInfoWidget(
                       itemKarrot: item.karrot.toString(),
                       itemQty: item.qty.toString(),
-                      itemValue: item.itemValue.toString(),
+                      itemValue: item.itemValue.toStringAsFixed(2),
                       itemWeight: item.weightInGramsPerUnit.toString(),
                     ),
                 if (widget.itemType == 'pendant')
@@ -147,7 +143,7 @@ class _ItemTypeWidgetState extends State<ItemTypeWidget> {
                     ItemInfoWidget(
                       itemKarrot: item.karrot.toString(),
                       itemQty: item.qty.toString(),
-                      itemValue: item.itemValue.toString(),
+                      itemValue: item.itemValue.toStringAsFixed(2),
                       itemWeight: item.weightInGramsPerUnit.toString(),
                     ),
                 if (widget.itemType == 'earring')
@@ -155,7 +151,7 @@ class _ItemTypeWidgetState extends State<ItemTypeWidget> {
                     ItemInfoWidget(
                       itemKarrot: item.karrot.toString(),
                       itemQty: item.qty.toString(),
-                      itemValue: item.itemValue.toString(),
+                      itemValue: item.itemValue.toStringAsFixed(2),
                       itemWeight: item.weightInGramsPerUnit.toString(),
                     ),
               ],
