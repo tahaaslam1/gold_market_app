@@ -142,9 +142,10 @@ router.delete('/deleteitem/:id1/:id2/:id3', async (req, res) => {
     await user.save();
 
 
-    await Item.findByIdAndRemove(item_id); //removing from item schema
-    // if(!item) res.status(200).json('Item not Found');
+    let item = await Item.findByIdAndRemove(item_id); //removing from item schema
+    if(!item) res.status(200).json('Item not Found');
     let inventory = await Inventory.findById(req.params.id2);
+    if(!inventory) res.status(200).json('User inventory not found');
     var d = inventory.items;
 
     for (var j = 0; j < d.length; j++) {        //removing from inventory schema
