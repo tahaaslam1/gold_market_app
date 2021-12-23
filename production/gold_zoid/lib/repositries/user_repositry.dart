@@ -12,7 +12,7 @@ class UserRepositry implements IUserRepositry {
     // post req aegi idher...
     try {
       var response = await http.post(
-        Uri.parse('http://192.168.18.55:7000/api/user/getuserdetails'),
+        Uri.parse('http://192.168.0.105:7000/api/user/getuserdetails'),
         headers: <String, String>{
           'Content-Type': 'application/json;charset=UTF-8',
           'Charset': 'utf-8'
@@ -40,7 +40,7 @@ class UserRepositry implements IUserRepositry {
       print('updated name : $updatedName');     
       var response = await http.put(
         Uri.parse(
-            'http://192.168.18.55:7000/api/user/updateUserName/$userEmailId'),
+            'http://192.168.0.105:7000/api/user/updateUserName/$userEmailId'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
@@ -64,7 +64,7 @@ class UserRepositry implements IUserRepositry {
     try {
       var response = await http.put(
         Uri.parse(
-            'http://192.168.18.55:7000/api/user/updateProfileUrl/$userEmailId'),
+            'http://192.168.0.105:7000/api/user/updateProfileUrl/$userEmailId'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },

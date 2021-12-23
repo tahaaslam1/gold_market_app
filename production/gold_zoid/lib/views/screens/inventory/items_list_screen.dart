@@ -116,7 +116,7 @@ class _ItemListScreenState extends State<ItemListScreen> {
                         itemValue: item.itemValue.toStringAsFixed(2),
                         itemWeight: item.weightInGramsPerUnit.toString(),
                       ),
-                  if (args == 'bangle')
+                  if (args == 'bangles')
                     for (var item in bangleList)
                       ItemInfoWidget2(
                         itemId: item.itemId.toString(),

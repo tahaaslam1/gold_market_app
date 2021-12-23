@@ -11,7 +11,7 @@ class UserInventoryRepository implements IUserInventoryRepository {
   getUserInventory({String userId}) async {
     try {
       var response = await http.get(
-        Uri.parse('http://192.168.18.55:7000/api/user/getinventory/$userId'),
+        Uri.parse('http://192.168.0.105:7000/api/user/getinventory/$userId'),
         headers: <String, String>{
           'Content-Type': 'application/json;charset=UTF-8',
           'Charset': 'utf-8'

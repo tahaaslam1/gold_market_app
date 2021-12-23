@@ -3,8 +3,8 @@ import 'package:gold_zoid/models/transaction_model.dart';
 import 'item_model.dart';
 
 class Inventory{ 
-  String totalGold;
-  String totalGoldValue;
+  num totalGold;
+  num totalGoldValue;
   List<dynamic> items; 
   String inventoryId;
 
