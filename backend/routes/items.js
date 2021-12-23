@@ -47,7 +47,7 @@ router.post('/additems', async (req, res) => {
         var sum_totalgold = calculatetotalGold(inventory.items); // calculating totalGold
         inventory.totalGold = sum_totalgold;
 
-        var sum_goldval = calculateTotalgoldValue(inventory.items);
+        var sum_goldval = calculateTotalgoldValue(inventory.items);  //calculating totalGoldValue
         inventory.totalGoldValue = sum_goldval;
         await inventory.save();
         user.inventory = inventory;
@@ -80,7 +80,7 @@ router.put("/updateitem/:id1/:id2/:id3", async (req, res) => {
         karrot: req.body.karrot
     });
     await item.save();
-    let inventory = user.inventory.items;   //updating in use schema
+    let inventory = user.inventory.items;   //updating in user schema
     var id = req.params.id3;  //item id
 
     for (var i in inventory) {
