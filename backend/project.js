@@ -10,7 +10,7 @@ const inventories = require('./routes/inventories');
 
 const app = express();
 
-mongoose.connect('mongodb+srv://goldzoid:goldzoid1234@cluster0.oypzj.mongodb.net/GoldZoid?retryWrites=true&w=majority')
+mongoose.connect('mongodb+srv://goldzoid:hassan1234@cluster0.oypzj.mongodb.net/?retryWrites=true&w=majority')
         .then(() => console.log('Successfully connected to the database!'))
         .catch(err => console.log('Couldnt connect'));
 
@@ -26,5 +26,6 @@ app.use('/api/user',inventories);
 const port = (process.env.PORT || 7000);
 app.listen(port, () =>{
     console.log(`Listening at port : ${port}`);
+    
 
 });
