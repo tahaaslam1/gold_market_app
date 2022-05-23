@@ -6,12 +6,79 @@ import 'package:gold_zoid/views/titles/login_page_title.dart';
 import 'package:gold_zoid/views/widgets/commonWidgets/login_signup_navigator.dart';
 import 'package:provider/provider.dart';
 import 'package:gold_zoid/controllers/validation_logic.dart';
+import 'package:provider/provider.dart';
+import 'package:gold_zoid/controllers/user_login_signup_controller.dart';
 
 // ignore: camel_case_types
-class Login_Page extends StatelessWidget {
+class Login_Page extends StatefulWidget {
   //bool rememberMeIcon = true;
-  GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  @override
+  State<Login_Page> createState() => _Login_PageState();
+}
+
+class _Login_PageState extends State<Login_Page> {
+  GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
   var validate = ValidationLogic();
+
+  final _emailId = TextEditingController();
+  final _password = TextEditingController();
+
+    void _failSnackbar(String error) {
+    final snackBar = SnackBar(
+      behavior: SnackBarBehavior.floating,
+      content: Text(
+        error,
+        textAlign: TextAlign.center,
+        style: TextStyle(),
+      ),
+    );
+    //_scaffoldKey.currentState.showSnackBar(snackBar);
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  }
+
+  void _passSnackbar(String msg) {
+    final snackBar = SnackBar(
+      behavior: SnackBarBehavior.floating,
+      content: Text(
+        msg,
+        textAlign: TextAlign.center,
+        style: TextStyle(),
+      ),
+    );
+    //_scaffoldKey.currentState.showSnackBar(snackBar);
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  }
+
+
+  void _tryLogin(String emailId, String password) async {
+    final form = _formKey.currentState;
+    if (form.validate()) {
+      form.save();
+      try {
+        var loginResponse =
+            await Provider.of<UserLoginSignUpController>(context, listen: false)
+                .loginUser(emailId, password);
+        if (loginResponse == 'Successfully Logged In') {
+          _passSnackbar(loginResponse);
+          Navigator.pushReplacementNamed(context, '/homeScreen');
+        } else if (loginResponse == 'Invalid Email or Password') {
+          _failSnackbar(loginResponse);
+        } else {
+          _failSnackbar(loginResponse);
+        }
+      } catch (e) {
+        _failSnackbar(e.toString());
+      }
+    }
+  }
+  @override
+  void dispose() {
+    _emailId.dispose();
+    _password.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,7 +88,7 @@ class Login_Page extends StatelessWidget {
           child: Center(
             child: Form(
               autovalidateMode: AutovalidateMode.always,
-              key: formKey,
+              key: _formKey,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -34,17 +101,18 @@ class Login_Page extends StatelessWidget {
                     height: 100.0,
                   ),
                   CustomTextField(
+                    controller: _emailId,
                     textAlign: TextAlign.start,
-                    validate: validate.validatePhoneNumber,
+                    validate: validate.validateEmail,
                     obscureText: false,
-                    keyboardType: TextInputType.phone,
-                    maxLength: 13,
+                    keyboardType: TextInputType.emailAddress,
+                    maxLength: null,
                     prefixIcon: Icon(
-                      Icons.call_outlined,
+                      Icons.email_outlined,
                       color: kPrimaryColor,
                       size: 30.0,
                     ),
-                    hintText: 'Enter your phone number',
+                    hintText: 'Enter your email address',
                   ),
                   SizedBox(
                     height: 30.0,
@@ -52,6 +120,7 @@ class Login_Page extends StatelessWidget {
                   Consumer<PasswordShowController>(
                     builder: (context, provider, _) {
                       return CustomTextField(
+                        controller: _password,
                         textAlign: TextAlign.start,
                         validate: validate.validatePassword,
                         maxLength: null,
@@ -64,8 +133,9 @@ class Login_Page extends StatelessWidget {
                         suffixIcon: InkWell(
                           onTap: () => provider.changePasswordIcon(),
                           child: Icon(
-                            provider.securetext ?
-                            Icons.remove_red_eye : Icons.remove_red_eye_outlined,
+                            provider.securetext
+                                ? Icons.remove_red_eye
+                                : Icons.remove_red_eye_outlined,
                             color: kPrimaryColor,
                             size: 30.0,
                           ),
@@ -109,12 +179,21 @@ class Login_Page extends StatelessWidget {
                   SizedBox(height: 30.0),
                   InkWell(
                     onTap: () {
-                      //TODO: check validation and check password and navigate to home screen
-                      // some logic...
-                      Navigator.pushNamed(
-                        context,
-                        '/homeScreen',
-                      ); //TODO: remove this after above is implemented..
+                      if (!_formKey.currentState.validate()) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            behavior: SnackBarBehavior.floating,
+                            content: Text(
+                              'Enter Correct crendentials',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(),
+                            ),
+                          ),
+                        );
+                      } else {
+                        //Navigator.pushReplacementNamed(context,'/homeScreen');
+                         _tryLogin(_emailId.text, _password.text);
+                        }
                     },
                     child: Container(
                       child: Center(

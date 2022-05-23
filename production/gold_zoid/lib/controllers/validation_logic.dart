@@ -3,7 +3,7 @@ class ValidationLogic{
 
   String validatePassword(value) {
     _confrimPass = value;
-    String pattern = r'(^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,12}$)';  //Minimum 6 characters, at least one letter, one number and one special character:
+    String pattern = r'(^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,12}$)';  //Minimum 8 characters, at least one letter, one number and one special character:
     RegExp regExp = new RegExp(pattern);
     if (value.isEmpty)
       return "Password required";

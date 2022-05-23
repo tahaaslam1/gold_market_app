@@ -1,23 +1,100 @@
 import 'package:flutter/material.dart';
+import 'package:gold_zoid/controllers/user_controller.dart';
+import 'package:gold_zoid/controllers/user_inventory_controller.dart';
+import 'package:gold_zoid/controllers/user_login_signup_controller.dart';
+import 'package:gold_zoid/models/user_model.dart';
 import 'package:gold_zoid/views/widgets/commonWidgets/login_signup_navigator.dart';
 import 'package:gold_zoid/constants.dart';
 import 'package:gold_zoid/views/widgets/commonWidgets/custom_text_field.dart';
 import 'package:gold_zoid/controllers/validation_logic.dart';
 import 'package:provider/provider.dart';
 import 'package:gold_zoid/controllers/password_show_controller.dart';
+import 'package:gold_zoid/controllers/custom_exception_handler.dart';
 
-class Registration_Page extends StatelessWidget {
-  GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  var validate = ValidationLogic();
+class Registration_Page extends StatefulWidget {
+  @override
+  _Registration_PageState createState() => _Registration_PageState();
+}
+
+class _Registration_PageState extends State<Registration_Page> {
+  // User user = User(userId: '',password: '');
+  final _name = TextEditingController();
+  final _emailId = TextEditingController();
+  final _password = TextEditingController();
+  final _confirmPassword = TextEditingController();
+
+  GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
+  var _validate = ValidationLogic();
+
+  
+
+  void _failSnackbar(String error) {
+    final snackBar = SnackBar(
+      behavior: SnackBarBehavior.floating,
+      content: Text(
+        error,
+        textAlign: TextAlign.center,
+        style: TextStyle(),
+      ),
+    );
+    //_scaffoldKey.currentState.showSnackBar(snackBar);
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  }
+
+  void _passSnackbar(String msg) {
+    final snackBar = SnackBar(
+      behavior: SnackBarBehavior.floating,
+      content: Text(
+        msg,
+        textAlign: TextAlign.center,
+        style: TextStyle(),
+      ),
+    );
+    //_scaffoldKey.currentState.showSnackBar(snackBar);
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  }
+
+  void _tryRegister(String emailId, String password, String name) async {
+    final form = _formKey.currentState;
+    if (form.validate()) {
+      form.save();
+      try {
+        var resgistrationResponse = await Provider.of<UserLoginSignUpController>(context,listen: false).registerUser(emailId, password, name);
+        if (resgistrationResponse == 'Successfully signed up') {
+          _passSnackbar(resgistrationResponse);
+          Navigator.pushReplacementNamed(context, '/homeScreen');
+        } else if (resgistrationResponse == 'User Already Registered') {
+          _failSnackbar(resgistrationResponse);
+        } else {
+          _failSnackbar(resgistrationResponse);
+        }
+      } catch (e) {
+        _failSnackbar(e.toString());
+      }
+    }
+  }
+
+  @override
+  void dispose() {
+    _name.dispose();
+    _emailId.dispose();
+    _password.dispose();
+    _confirmPassword.dispose();
+    
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Form(
             autovalidateMode: AutovalidateMode.always,
-            key: formKey,
+            key: _formKey,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.center,
@@ -53,8 +130,9 @@ class Registration_Page extends StatelessWidget {
                   height: 70.0,
                 ),
                 CustomTextField(
+                  controller: _name,
                   textAlign: TextAlign.start,
-                  validate: validate.validateName,
+                  validate: _validate.validateName,
                   obscureText: false,
                   maxLength: null,
                   keyboardType: TextInputType.name,
@@ -69,83 +147,92 @@ class Registration_Page extends StatelessWidget {
                   height: 30.0,
                 ),
                 CustomTextField(
+                  controller: _emailId,
                   textAlign: TextAlign.start,
-                  validate: validate.validatePhoneNumber,
+                  validate: _validate.validateEmail,
                   obscureText: false,
-                  maxLength: 13,
-                  keyboardType: TextInputType.phone,
+                  maxLength: null,
+                  keyboardType: TextInputType.emailAddress,
                   prefixIcon: Icon(
-                    Icons.call_outlined,
+                    Icons.email_outlined,
                     color: kPrimaryColor,
                     size: 30.0,
                   ),
-                  hintText: 'Enter your phone number',
+                  hintText: 'Enter your email address',
                 ),
                 SizedBox(
                   height: 30.0,
                 ),
                 Consumer<PasswordShowController>(
-                    builder: (context, provider, _) {
-                      return CustomTextField(
-                        textAlign: TextAlign.start,
-                        validate: validate.validatePassword,
-                        maxLength: null,
-                        keyboardType: TextInputType.visiblePassword,
-                        prefixIcon: Icon(
-                          Icons.lock_outline,
+                  builder: (context, provider, _) {
+                    return CustomTextField(
+                      controller: _password,
+                      textAlign: TextAlign.start,
+                      validate: _validate.validatePassword,
+                      maxLength: null,
+                      keyboardType: TextInputType.visiblePassword,
+                      prefixIcon: Icon(
+                        Icons.lock_outline,
+                        color: kPrimaryColor,
+                        size: 30.0,
+                      ),
+                      suffixIcon: InkWell(
+                        onTap: () => provider.changePasswordIcon(),
+                        child: Icon(
+                          provider.securetext
+                              ? Icons.remove_red_eye
+                              : Icons.remove_red_eye_outlined,
                           color: kPrimaryColor,
                           size: 30.0,
                         ),
-                        suffixIcon: InkWell(
-                          onTap: () => provider.changePasswordIcon(),
-                          child: Icon(
-                            provider.securetext ?
-                            Icons.remove_red_eye : Icons.remove_red_eye_outlined,
-                            color: kPrimaryColor,
-                            size: 30.0,
-                          ),
-                        ),
-                        obscureText: provider.securetext,
-                        hintText: 'Enter your password',
-                      );
-                    },
-                  ),
+                      ),
+                      obscureText: provider.securetext,
+                      hintText: 'Enter your password',
+                    );
+                  },
+                ),
                 SizedBox(
                   height: 30.0,
                 ),
                 Consumer<PasswordShowController>(
-                    builder: (context, provider, _) {
-                      return CustomTextField(
-                        textAlign: TextAlign.start,
-                        validate: validate.validatePassword,
-                        maxLength: null,
-                        keyboardType: TextInputType.visiblePassword,
-                        prefixIcon: Icon(
-                          Icons.lock_outline,
+                  builder: (context, provider, _) {
+                    return CustomTextField(
+                      controller: _confirmPassword,
+                      textAlign: TextAlign.start,
+                      validate: _validate.validateConfrimPassword,
+                      maxLength: null,
+                      keyboardType: TextInputType.visiblePassword,
+                      prefixIcon: Icon(
+                        Icons.lock_outline,
+                        color: kPrimaryColor,
+                        size: 30.0,
+                      ),
+                      suffixIcon: InkWell(
+                        onTap: () => provider.changePasswordIcon(),
+                        child: Icon(
+                          provider.securetext
+                              ? Icons.remove_red_eye
+                              : Icons.remove_red_eye_outlined,
                           color: kPrimaryColor,
                           size: 30.0,
                         ),
-                        suffixIcon: InkWell(
-                          onTap: () => provider.changePasswordIcon(),
-                          child: Icon(
-                            provider.securetext ?
-                            Icons.remove_red_eye : Icons.remove_red_eye_outlined,
-                            color: kPrimaryColor,
-                            size: 30.0,
-                          ),
-                        ),
-                        obscureText: provider.securetext,
-                        hintText: 'Enter your password',
-                      );
-                    },
-                  ),
+                      ),
+                      obscureText: provider.securetext,
+                      hintText: 'Enter your password',
+                    );
+                  },
+                ),
                 SizedBox(
                   height: 40.0,
                 ),
                 Center(
                   child: InkWell(
                     onTap: () {
-                      // autenticate user and navigate to homePAge..
+                      if (!_formKey.currentState.validate()) {
+                        _failSnackbar('Enter Correct crendentials');
+                      } else {
+                        _tryRegister(_emailId.text, _password.text, _name.text);
+                       }
                     },
                     child: Container(
                       child: Center(

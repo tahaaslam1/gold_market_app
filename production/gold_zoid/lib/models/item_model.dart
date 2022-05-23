@@ -15,10 +15,10 @@ class Item {
   String itemId;
   String type;
   Material material;
-  int qty;
-  int weightInGramsPerUnit;
-  double itemValue;
-  int karrot;
+  num qty;
+  num weightInGramsPerUnit;
+  num itemValue;
+  num karrot;
 
   Item({
     this.itemId,
@@ -32,12 +32,12 @@ class Item {
 
 factory Item.fromJson(Map<String, dynamic> json) {
         return Item(
-            itemId: json['itemId'],
+            itemId: json['_id'],
             itemValue: json['itemValue'],
             material: json['material'] != null ? Material.fromJson(json['material']) : null,
             qty: json['qty'],
             type: json['type'],
-            weightInGramsPerUnit: json['weightIngramsPerUnit'],
+            weightInGramsPerUnit: json['weightInGramsPerUnit'],
             karrot: json['karrot'],
         );
     }

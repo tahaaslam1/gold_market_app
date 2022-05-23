@@ -2,8 +2,8 @@
     {
         "userid": "U-485",
         "name": "Taha",
-        "phone": "03035435444",
-        "email": "taha@gmail.com",
+        "emailId": "taha@gmail.com",
+        "password" : "asdas",
         "profileUrl": "xyz",
         "inventory": {
             "totalGold": "20",
@@ -18,7 +18,8 @@
                     },
                     "qty": 4,
                     "weightIngramsPerUnit": 5,
-                    "itemValue": 444.5
+                    "itemValue": 444.5,
+                    "karrot" : 24
                 },
                 {
                     "itemId": "L-4544",

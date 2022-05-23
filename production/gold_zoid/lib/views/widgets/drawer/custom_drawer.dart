@@ -43,6 +43,12 @@ class CustomDrawer extends StatelessWidget {
               kGreyDivider,
               CustomListTile(
                 onTap: () => selectedItem(context, 4),
+                titleText: 'Transactions',
+                leadingIcon: Icons.money,
+              ),
+              kGreyDivider,
+              CustomListTile(
+                onTap: () => selectedItem(context, 5),
                 titleText: 'F.a.q & Helps',
                 leadingIcon: Icons.help_outline,
               ),
@@ -89,6 +95,10 @@ class CustomDrawer extends StatelessWidget {
       case 3:
         Navigator.popAndPushNamed(context, '/tradingScreen');
         break;
+      case 4:
+        Navigator.popAndPushNamed(context, '/transactionScreen');
+        break;
+        
     }
   }
 }

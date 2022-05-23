@@ -11,6 +11,7 @@ class CustomTextField extends StatelessWidget {
   final String hintText;
   final Function validate;
   final TextAlign textAlign;
+  final TextEditingController controller;
 
   CustomTextField(
       {@required this.obscureText,
@@ -20,7 +21,9 @@ class CustomTextField extends StatelessWidget {
       this.suffixIcon,
       @required this.hintText,
       this.validate,
-      this.textAlign});
+      this.textAlign,
+      this.controller
+      });
 
   @override
   Widget build(BuildContext context) {
@@ -30,6 +33,7 @@ class CustomTextField extends StatelessWidget {
         right: 15.0,
       ),
       child: TextFormField(
+        controller: controller,
         textAlign: textAlign,
         validator: validate,
         obscureText: obscureText,
