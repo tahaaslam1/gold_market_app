@@ -71,7 +71,7 @@ class _ItemTypeWidgetState extends State<ItemTypeWidget> {
                     );
                   },
                   child: Text(
-                    'View all',
+                    'Veiw all',
                     style: TextStyle(
                       fontSize: 15.0,
                       color: kPrimaryTextColor,
@@ -130,7 +130,7 @@ class _ItemTypeWidgetState extends State<ItemTypeWidget> {
                       itemValue: item.itemValue.toStringAsFixed(2),
                       itemWeight: item.weightInGramsPerUnit.toString(),
                     ),
-                if (widget.itemType == 'bangles')
+                if (widget.itemType == 'bangle')
                   for (var item in bangleList)
                     ItemInfoWidget(
                       itemKarrot: item.karrot.toString(),

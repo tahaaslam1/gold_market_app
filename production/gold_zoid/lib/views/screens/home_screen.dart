@@ -93,9 +93,9 @@ class _Home_PageState extends State<Home_Page> {
               ),
               GoldValueWidget(
                 gold_in_grams:
-                    context.watch<UserInventoryController>().getLoggedInUserInventory.totalGold.toStringAsFixed(2),
+                    '${context.watch<UserInventoryController>().getLoggedInUserInventory.totalGold}',
                 gold_value:
-                    '${context.watch<UserInventoryController>().getLoggedInUserInventory.totalGoldValue.toStringAsFixed(2)}',
+                    '${context.watch<UserInventoryController>().getLoggedInUserInventory.totalGoldValue}',
               ),
               kYellowDivider,
               Container(

@@ -8,12 +8,12 @@ import 'package:gold_zoid/controllers/custom_exception_handler.dart';
 
 class UserLoginSignupRepositry implements IUserLoginSignupRepositry {
 
-  //String SERVER_IP = '192.168.18.55';
+  String SERVER_IP = '192.168.18.55';
   
   registerUser(String userEmailId, String userPassword, String userName) async {
     try {
       var response = await http.post(
-        Uri.parse('http://192.168.0.105:7000/api/user/signup'),
+        Uri.parse('http://192.168.18.55:7000/api/user/signup'),
         headers: <String, String>{
           'Content-Type': 'application/json;charset=UTF-8',
           'Charset': 'utf-8'
@@ -40,7 +40,7 @@ class UserLoginSignupRepositry implements IUserLoginSignupRepositry {
   loginUser(String userEmailId, String userPassword) async {
     try {
       var response = await http.post(
-        Uri.parse('http://192.168.0.105:7000/api/user/login'),
+        Uri.parse('http://192.168.18.55:7000/api/user/login'),
         headers: <String, String>{
           'Content-Type': 'application/json;charset=UTF-8',
           'Charset': 'utf-8'

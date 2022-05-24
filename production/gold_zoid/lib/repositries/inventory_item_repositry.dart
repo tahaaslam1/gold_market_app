@@ -9,7 +9,7 @@ class ItemRepositry implements IItemRepositry {
   getItemList({String userId}) async {
     try {
       var response = await http.get(
-        Uri.parse('http://192.168.0.105:7000/api/user/getItemList/$userId'),
+        Uri.parse('http://192.168.18.55:7000/api/user/getItemList/$userId'),
         headers: <String, String>{
           'Content-Type': 'application/json;charset=UTF-8',
           'Charset': 'utf-8'
@@ -34,7 +34,7 @@ class ItemRepositry implements IItemRepositry {
       var karrot}) async {
     try {
       var response = await http.post(
-        Uri.parse('http://192.168.0.105:7000/api/user/additems'),
+        Uri.parse('http://192.168.18.55:7000/api/user/additems'),
         headers: <String, String>{
           'Content-Type': 'application/json;charset=UTF-8',
           'Charset': 'utf-8'
@@ -67,7 +67,7 @@ class ItemRepositry implements IItemRepositry {
     try {
       var response = await http.delete(
         Uri.parse(
-            'http://192.168.0.105:7000/api/user/deleteitem/$userId/$inventoryId/$itemId'),
+            'http://192.168.18.55:7000/api/user/deleteitem/$userId/$inventoryId/$itemId'),
         headers: <String, String>{
           'Content-Type': 'application/json;charset=UTF-8',
           'Charset': 'utf-8'

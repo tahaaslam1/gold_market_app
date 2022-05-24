@@ -17,13 +17,15 @@ class ItemController extends ChangeNotifier {
 
   String itemType = 'ring';
 
+
   num get getWeight => _weight;
   num get getquantity => _quantity;
   num get getkarrot => _karrot;
 
   String get getItemType => itemType;
 
-  void selectItemType(String value) {
+
+  void selectItemType(String value){
     itemType = value;
   }
 
@@ -119,7 +121,7 @@ class ItemController extends ChangeNotifier {
       } else if (map['type'] == 'necklace') {
         _necklaceList.add(Item.fromJson(e));
       } else if (map['type'] == 'earring') {
-        _earringList.add(Item.fromJson(e));
+        _necklaceList.add(Item.fromJson(e));
       } else if (map['type'] == 'bracelet') {
         _braceletList.add(Item.fromJson(e));
       } else if (map['type'] == 'nosepin') {
@@ -128,8 +130,6 @@ class ItemController extends ChangeNotifier {
         _pendantList.add(Item.fromJson(e));
       } else if (map['type'] == 'chain') {
         _chainList.add(Item.fromJson(e));
-      } else if (map['type'] == 'bangles') {
-        _bangleList.add(Item.fromJson(e));
       }
     }
     return;
@@ -176,8 +176,6 @@ class ItemController extends ChangeNotifier {
         _pendantList.add(Item.fromJson(decodedData));
       } else if (decodedData['type'] == 'chain') {
         _chainList.add(Item.fromJson(decodedData));
-      } else if (decodedData['type'] == 'bangles') {
-        _bangleList.add(Item.fromJson(decodedData));
       }
       notifyListeners();
     } else {
@@ -213,8 +211,6 @@ class ItemController extends ChangeNotifier {
         _pendantList.removeWhere((element) => element.itemId == itemId);
       } else if (itemType == 'chain') {
         _chainList.removeWhere((element) => element.itemId == itemId);
-      } else if (itemType == 'bangles') {
-        _bangleList.removeWhere((element) => element.itemId == itemId);
       }
       notifyListeners();
       msg = decodedData['Response'];
@@ -225,5 +221,5 @@ class ItemController extends ChangeNotifier {
     return msg;
   }
 
-  void updateItem() {} // dhek lein ge  baaad
+  void updateItem() {}              // dhek lein ge  baaad 
 }
